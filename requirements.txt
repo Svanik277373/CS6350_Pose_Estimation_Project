@@ -1,0 +1,25 @@
+# Install into the project venv:
+#   venv\Scripts\python.exe -m pip install -r requirements.txt
+# CPU-only PyTorch (no NVIDIA GPU)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+kornia
+opencv-contrib-python
+numpy
+scipy
+matplotlib
+pandas
+requests
+tqdm
+remotezip
+protobuf
+# only needed to regenerate src/loaders/schema/*_pb2.py from Objectron's .proto files
+grpcio-tools
+# MASt3R (code in external/mast3r, weights in models/mast3r) and the confidence model
+roma
+einops
+trimesh
+huggingface-hub>=0.22
+safetensors
+scikit-learn

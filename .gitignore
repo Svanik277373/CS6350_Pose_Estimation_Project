@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Datasets (5 GB; re-created by scripts/download_*.py)
+data/
+
+# Network weights (MASt3R 2.75 GB, torch hub caches; downloaded on first use)
+models/*
+# keep: small classifiers (scripts/confidence.py) needed by the "confident" preset
+!models/confidence/
+
+# Third-party code cloned separately (MASt3R: git clone --recursive https://github.com/naver/mast3r external/mast3r)
+external/
+
+# Run logs and unfinished evaluation runs
+logs/
+results/**/partial.csv
+results/_*/
+
+# Secrets (MVImgNet password is passed as an environment variable, never stored)
+.env
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Partial downloads
+*.part

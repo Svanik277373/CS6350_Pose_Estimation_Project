@@ -1,0 +1,4 @@
+budget_1s: xfeat_lg -> aliked_lg -> shape (conf >= 0.35) -> most confident
+budget_3s: shape -> xfeat_lg -> disk_lg (conf >= 0.9) -> most confident
+budget_8s: xfeat_lg -> sift -> shape (conf >= 0.45) -> mast3r
+unlimited: shape (conf >= 0.95) -> mast3r

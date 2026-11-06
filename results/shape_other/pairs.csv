@@ -1,0 +1,491 @@
+dataset,object,pair,angle_deg,angle_bin,ok,reason,matches,inliers,model,rot_err_deg,t_err_deg,pose_err_deg,reproj_rms_px,seconds
+tum,flat_far,tum/flat_far/347-420,5.19,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/112-155,5.66,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/109-133,7.01,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/351-398,6.33,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/278-327,7.62,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/288-356,11.24,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/283-371,7.94,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/355-426,5.38,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/291-345,10.69,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/292-364,9.04,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/100-156,5.98,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/314-350,6.27,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/291-324,6.73,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/24-112,5.65,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/282-323,6.65,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/55-145,5.42,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/334-408,5.36,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/277-337,8.8,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/300-355,9.68,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_far,tum/flat_far/40-112,5.26,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1035-1076,8.64,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1609-1674,7.47,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/716-791,7.63,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/237-253,10.04,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1593-1657,14.02,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1110-1175,6.45,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/671-704,9.3,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/38-80,9.14,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/7-73,10.42,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/11-69,10.98,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/471-514,9.0,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1073-1105,5.89,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/852-885,9.59,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/694-766,9.98,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1538-1580,14.78,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1095-1122,5.52,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1280-1330,11.6,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/677-694,5.36,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1336-1393,10.28,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/763-813,9.84,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/992-1026,16.05,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/351-413,23.28,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/872-952,25.82,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/577-655,20.57,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/916-986,23.72,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/85-154,23.03,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/366-411,15.12,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/276-338,24.95,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/285-341,22.63,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/961-1046,26.45,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/344-415,25.5,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/611-700,21.97,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/957-1022,22.53,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/459-525,17.39,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/658-714,17.17,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/339-423,28.0,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1490-1578,25.25,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/112-170,19.84,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/253-309,21.63,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/837-916,17.79,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/230-309,33.14,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/204-291,32.64,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/230-314,34.36,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/933-1021,31.11,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/255-340,31.12,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/205-292,32.69,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/233-311,32.89,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/288-367,31.78,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/331-421,30.87,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/300-388,30.76,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/315-400,33.14,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/937-1024,32.61,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/1523-1613,31.05,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/947-1026,31.63,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/936-1021,30.58,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/290-368,30.94,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/215-298,31.81,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/333-422,30.31,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/239-328,37.27,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,flat_near,tum/flat_near/947-1025,30.51,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/652-728,9.58,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/823-901,14.4,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/392-458,13.98,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/263-331,5.88,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/687-712,6.67,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/747-804,12.07,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/382-423,10.45,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/710-779,11.12,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/449-521,11.18,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/833-908,14.68,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/534-590,6.33,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/181-217,6.25,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/681-740,8.2,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/471-501,5.17,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/388-431,9.71,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/671-733,6.82,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/58-139,11.91,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/818-858,8.93,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/17-88,11.25,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/425-451,6.06,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/380-459,17.66,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/396-486,18.52,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/398-488,18.01,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/428-518,15.24,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/802-892,16.09,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/734-824,16.55,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/783-872,15.98,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/404-492,17.7,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/384-468,18.33,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/392-471,17.03,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/732-810,15.84,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/690-768,16.1,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/417-494,15.23,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/380-467,19.13,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/781-871,15.72,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/369-447,16.23,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/370-454,17.35,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/815-901,15.23,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/816-898,15.06,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_far,tum/struct_far/407-497,18.12,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/45-100,6.39,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/234-261,11.41,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/552-584,14.6,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/721-746,7.99,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/45-84,5.78,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/278-294,5.38,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/795-825,9.66,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/273-294,6.77,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/421-449,12.13,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/265-282,6.88,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/597-670,5.61,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/825-847,7.61,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/343-381,6.75,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/881-947,8.53,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/217-232,5.6,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/149-218,13.04,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/250-273,9.09,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/488-531,13.63,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/840-861,6.06,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/587-661,9.06,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/216-261,18.09,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/645-713,20.13,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/840-907,18.73,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/755-810,17.81,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/638-702,18.91,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/323-389,18.69,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/567-633,19.98,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/547-614,25.15,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/456-501,19.14,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/685-746,23.34,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/186-262,26.27,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/830-894,20.81,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/759-799,15.47,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/812-856,16.31,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/774-821,15.46,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/432-492,27.3,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/832-897,21.12,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/261-322,25.91,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/173-263,27.79,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/754-813,18.79,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/804-888,30.61,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/198-282,31.76,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/276-351,36.83,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/762-843,30.3,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/293-377,34.2,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/422-491,31.11,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/434-517,33.73,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/469-559,31.08,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/299-377,32.61,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/186-275,33.17,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/228-310,31.47,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/204-289,33.69,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/290-376,35.75,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/483-570,30.09,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/301-375,31.63,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/293-383,33.78,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/302-366,30.33,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/287-348,33.57,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/670-755,31.01,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,struct_near,tum/struct_near/275-353,37.21,30-60,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1546-1557,6.27,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1207-1297,9.88,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1408-1480,14.62,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1353-1403,6.57,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1258-1311,7.97,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1363-1447,7.75,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1050-1075,8.72,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1492-1515,10.8,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1047-1093,7.46,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/328-376,11.59,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1210-1295,9.14,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1463-1496,11.06,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1141-1195,5.38,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/47-112,5.87,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1298-1306,5.11,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/127-184,8.09,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/93-147,14.17,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1494-1557,10.01,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/307-327,5.1,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1018-1072,9.5,5-15,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1525-1565,16.51,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1410-1476,15.4,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1430-1476,15.26,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1428-1512,17.64,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/3-79,15.89,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/32-92,16.8,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/106-159,19.42,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1473-1521,17.92,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/99-187,16.19,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/0-85,15.17,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1405-1469,15.96,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1504-1569,15.48,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1466-1522,16.83,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1526-1576,16.82,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/33-99,20.01,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1427-1469,15.36,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1428-1516,19.18,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1458-1515,17.35,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/97-133,17.69,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+tum,checkerboard,tum/checkerboard/1439-1519,16.88,15-30,False,shape pose needs object masks,0,0,shape,inf,inf,inf,nan,0.0
+objectron,book,objectron/book/seq01/153-184,10.07,5-15,True,"shift 0 of [0, 2]",475,137,shape,0.9325433923690779,5.634749713990864,5.634749713990864,2.595660577876576,6.716
+objectron,book,objectron/book/seq01/102-152,10.1,5-15,True,"shift 0 of [0, 2]",507,439,shape,1.2977297591660275,7.22846358561768,7.22846358561768,3.8500365342475256,1.416
+objectron,book,objectron/book/seq01/185-246,7.3,5-15,True,"shift 0 of [0, 2]",424,289,shape,0.43996983801714573,5.241435560225399,5.241435560225399,1.1259473972611738,1.288
+objectron,book,objectron/book/seq01/9-45,20.21,15-30,True,"shift 0 of [0, 2]",434,317,shape,3.8866678394502867,7.867948160258497,7.867948160258497,10.438149855125301,0.968
+objectron,book,objectron/book/seq01/34-227,29.06,15-30,True,"shift 0 of [0, 2]",376,55,shape,3.315847353568276,5.354220432337997,5.354220432337997,8.856171453807333,1.115
+objectron,book,objectron/book/seq01/23-47,16.59,15-30,True,"shift 0 of [0, 2]",470,392,shape,3.205770613287656,9.243980451398587,9.243980451398587,8.227951693456976,0.998
+objectron,book,objectron/book/seq01/29-105,54.79,30-60,True,"shift 0 of [0, 2]",349,69,shape,1.3388223963739299,1.4584159989060879,1.4584159989060879,5.776058252878089,1.175
+objectron,book,objectron/book/seq01/23-134,57.65,30-60,True,"shift 0 of [0, 2]",337,194,shape,1.5519668182723112,1.541394699706476,1.5519668182723112,7.265849243891422,1.161
+objectron,book,objectron/book/seq01/48-147,33.31,30-60,True,"shift 0 of [0, 2]",404,252,shape,0.7717340769137653,1.4662621161619827,1.4662621161619827,2.4806217406114213,1.313
+objectron,book,objectron/book/seq02/119-140,9.85,5-15,True,"shift 1 of [1, 3]",652,567,shape,4.395648199134944,17.37853690079239,17.37853690079239,8.593878580633122,0.811
+objectron,book,objectron/book/seq02/89-161,11.91,5-15,True,"shift 0 of [0, 2]",739,3,shape,6.35736738438963,30.748859201854355,30.748859201854355,11.021775914738322,1.279
+objectron,book,objectron/book/seq02/99-131,10.23,5-15,True,"shift 0 of [0, 2]",612,307,shape,5.257538459742767,6.396432384141775,6.396432384141775,10.044725875654485,0.904
+objectron,book,objectron/book/seq02/115-158,27.44,15-30,True,"shift 0 of [0, 2]",659,13,shape,16.900881866337773,30.540318322259136,30.540318322259136,31.569551876841846,1.064
+objectron,book,objectron/book/seq02/79-176,23.64,15-30,True,"shift 0 of [0, 2]",715,555,shape,0.15454419954382834,0.3640975662586204,0.3640975662586204,0.38407808413425487,1.349
+objectron,book,objectron/book/seq02/36-87,26.8,15-30,True,"shift 0 of [0, 2]",653,454,shape,8.582932332911621,10.469631241720268,10.469631241720268,16.99488742263513,1.155
+objectron,book,objectron/book/seq02/132-164,31.66,30-60,True,"shift 0 of [0, 2]",609,149,shape,22.084226743684503,33.70594046667058,33.70594046667058,42.148356009046815,1.144
+objectron,book,objectron/book/seq02/58-141,32.4,30-60,True,"shift 0 of [0, 2]",625,425,shape,11.950490038142213,21.993788183788787,21.993788183788787,21.44616418075158,1.135
+objectron,book,objectron/book/seq02/2-159,34.76,30-60,True,"shift 0 of [0, 2]",627,32,shape,17.679835934232948,10.257847033303447,17.679835934232948,30.86470571079047,0.999
+objectron,book,objectron/book/seq03/37-58,7.72,5-15,True,"shift 0 of [0, 2]",634,182,shape,4.627165924725649,35.74135842501612,35.74135842501612,9.188920372185995,0.583
+objectron,book,objectron/book/seq03/228-277,12.44,5-15,False,outline is not a rectangle in 3D (corners 29 deg off square),0,0,shape,inf,inf,inf,nan,0.268
+objectron,book,objectron/book/seq03/18-48,5.42,5-15,True,"shift 0 of [0, 2]",549,135,shape,2.2477321749566452,19.78606800133033,19.78606800133033,3.8523073412632773,0.583
+objectron,book,objectron/book/seq03/80-115,28.37,15-30,True,"shift 0 of [0, 2]",268,52,shape,10.016929582961643,30.565303106667177,30.565303106667177,13.909664868497346,0.52
+objectron,book,objectron/book/seq03/164-178,25.88,15-30,True,"shift 0 of [0, 2]",542,479,shape,2.1071600250309563,13.570123046721578,13.570123046721578,1.1712500387791913,1.196
+objectron,book,objectron/book/seq03/28-69,16.83,15-30,False,outline is not a rectangle in 3D (corners 19 deg off square),0,0,shape,inf,inf,inf,nan,0.439
+objectron,book,objectron/book/seq03/5-91,33.48,30-60,True,"shift 0 of [0, 2]",160,3,shape,17.461547175429107,41.81440967074516,41.81440967074516,2.787070553661664,0.412
+objectron,book,objectron/book/seq03/0-122,59.54,30-60,True,"shift 0 of [0, 2]",183,1,shape,22.723182608481395,35.30915194078823,35.30915194078823,4.271147215570926,0.778
+objectron,book,objectron/book/seq03/84-122,31.06,30-60,True,"shift 0 of [0, 2]",279,32,shape,10.107740067231239,31.333775579897114,31.333775579897114,12.048498179890714,0.594
+objectron,book,objectron/book/seq04/137-165,14.47,5-15,True,"shift 0 of [0, 1, 2, 3]",889,845,shape,4.014659898511981,13.15437832240732,13.15437832240732,5.66106959605483,1.467
+objectron,book,objectron/book/seq04/107-120,8.46,5-15,True,"shift 0 of [0, 1, 2, 3]",1189,1175,shape,0.1920225969952415,1.189580974933662,1.189580974933662,0.19519596092692557,1.409
+objectron,book,objectron/book/seq04/143-165,13.55,5-15,True,"shift 0 of [0, 1, 2, 3]",981,921,shape,3.988267443025864,16.834492242572345,16.834492242572345,5.3632592791478535,1.461
+objectron,book,objectron/book/seq04/129-208,27.06,15-30,True,"shift 0 of [0, 1, 2, 3]",768,433,shape,9.512326856872757,17.233383625831014,17.233383625831014,16.13504485028075,1.357
+objectron,book,objectron/book/seq04/66-116,23.69,15-30,True,"shift 0 of [0, 1, 2, 3]",961,604,shape,8.05880895724724,18.359378407225726,18.359378407225726,11.728168348930353,1.264
+objectron,book,objectron/book/seq04/84-112,17.32,15-30,True,"shift 0 of [0, 1, 2, 3]",1043,1001,shape,4.1093451431564,16.43314702085795,16.43314702085795,5.894101104024214,1.284
+objectron,book,objectron/book/seq04/121-204,31.65,30-60,True,"shift 0 of [0, 1, 2, 3]",822,534,shape,8.254985023244696,13.665639900031952,13.665639900031952,14.71773159617548,1.376
+objectron,book,objectron/book/seq04/53-145,40.06,30-60,True,"shift 0 of [0, 1, 2, 3]",814,535,shape,7.374236294129964,9.533008479542922,9.533008479542922,14.177873705764153,1.204
+objectron,book,objectron/book/seq04/82-174,47.56,30-60,True,"shift 0 of [0, 1, 2, 3]",777,536,shape,0.3788439412467534,1.3072610935146407,1.3072610935146407,0.7147715048288396,1.3
+objectron,book,objectron/book/seq05/171-207,9.56,5-15,True,"shift 3 of [1, 3]",102,38,shape,5.283379923673443,14.32994062675503,14.32994062675503,5.147287880935347,1.101
+objectron,book,objectron/book/seq05/111-169,7.39,5-15,True,"shift 0 of [0, 2]",75,23,shape,3.835430085754408,14.300254826665707,14.300254826665707,3.7038096516356473,0.989
+objectron,book,objectron/book/seq05/106-166,8.07,5-15,True,"shift 0 of [0, 2]",91,26,shape,4.655738177422284,15.467957713019043,15.467957713019043,4.772187130647067,1.003
+objectron,book,objectron/book/seq05/31-198,26.5,15-30,True,"shift 0 of [0, 2]",33,13,shape,13.16125977577777,23.386623321167,23.386623321167,19.16264869216103,1.276
+objectron,book,objectron/book/seq05/103-325,27.08,15-30,True,"shift 0 of [0, 2]",43,8,shape,10.182826216153758,18.667747225057045,18.667747225057045,16.276758515323753,1.298
+objectron,book,objectron/book/seq05/178-257,28.16,15-30,True,"shift 0 of [0, 2]",43,5,shape,15.016425955054437,26.249836627302248,26.249836627302248,17.326738269896683,1.165
+objectron,book,objectron/book/seq05/121-270,30.71,30-60,True,"shift 0 of [0, 2]",30,5,shape,14.247609888139868,29.370608372927215,29.370608372927215,16.851854060676903,1.203
+objectron,book,objectron/book/seq05/126-330,33.15,30-60,True,"shift 0 of [0, 2]",30,1,shape,13.684330278433242,16.925693198766506,16.925693198766506,24.16563491161163,1.217
+objectron,book,objectron/book/seq05/112-343,30.52,30-60,True,"shift 0 of [0, 2]",34,7,shape,11.661799055848707,18.191711918072954,18.191711918072954,19.195456141262603,1.269
+objectron,book,objectron/book/seq06/168-188,7.51,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.015
+objectron,book,objectron/book/seq06/163-212,10.54,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.015
+objectron,book,objectron/book/seq06/21-43,13.9,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,book,objectron/book/seq06/65-203,23.27,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,book,objectron/book/seq06/102-196,15.9,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,book,objectron/book/seq06/116-203,25.15,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,book,objectron/book/seq06/37-106,48.28,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,book,objectron/book/seq06/42-162,46.38,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,book,objectron/book/seq06/25-211,50.49,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,book,objectron/book/seq07/89-97,5.42,5-15,True,"shift 1 of [1, 3]",1106,524,shape,5.002200809301332,7.679432044057825,7.679432044057825,8.008368023410169,1.126
+objectron,book,objectron/book/seq07/261-272,6.01,5-15,True,"shift 1 of [1, 3]",819,633,shape,1.0729848517838003,7.150487118969489,7.150487118969489,1.5628686561784957,1.176
+objectron,book,objectron/book/seq07/108-129,9.45,5-15,True,"shift 0 of [0, 2]",1058,498,shape,5.450959174341106,10.34007782562076,10.34007782562076,8.697061127551315,1.432
+objectron,book,objectron/book/seq07/186-220,17.69,15-30,True,"shift 0 of [0, 2]",824,680,shape,2.7444928025466093,3.665559487033391,3.665559487033391,4.153610052456,1.198
+objectron,book,objectron/book/seq07/37-69,15.87,15-30,False,outline is not a quadrilateral (IoU 0.80),0,0,shape,inf,inf,inf,nan,0.376
+objectron,book,objectron/book/seq07/20-76,27.45,15-30,False,outline is not a quadrilateral (IoU 0.83),0,0,shape,inf,inf,inf,nan,0.361
+objectron,book,objectron/book/seq07/78-179,52.18,30-60,False,outline is not a quadrilateral (IoU 0.85),0,0,shape,inf,inf,inf,nan,0.923
+objectron,book,objectron/book/seq07/145-198,33.3,30-60,True,"shift 0 of [0, 2]",817,728,shape,4.104961692369703,1.0706216674022628,4.104961692369703,15.877053786786831,1.35
+objectron,book,objectron/book/seq07/100-294,58.28,30-60,True,"shift 0 of [0, 2]",465,87,shape,3.1415629965492142,2.357236619973105,3.1415629965492142,9.270227221536945,1.24
+objectron,book,objectron/book/seq08/26-44,6.67,5-15,True,"shift 0 of [0, 2]",1089,1057,shape,1.1167661073510673,10.983939608516613,10.983939608516613,3.5024245245112886,0.608
+objectron,book,objectron/book/seq08/221-247,5.59,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.284
+objectron,book,objectron/book/seq08/18-57,13.68,5-15,True,"shift 0 of [0, 2]",787,283,shape,6.456540646928496,26.948218980770676,26.948218980770676,17.163710930084,0.605
+objectron,book,objectron/book/seq08/162-200,21.89,15-30,True,"shift 0 of [0, 2]",1139,945,shape,1.6804784697696593,2.7580936517304577,2.7580936517304577,2.243988240367876,1.132
+objectron,book,objectron/book/seq08/204-281,18.27,15-30,True,"shift 1 of [1, 3]",1169,1,shape,2.802504164322469,2.202266717694395,2.802504164322469,5.47431412231147,1.014
+objectron,book,objectron/book/seq08/52-86,15.35,15-30,False,outline is not a quadrilateral (IoU 0.84),0,0,shape,inf,inf,inf,nan,0.712
+objectron,book,objectron/book/seq08/152-216,38.31,30-60,False,outline is not a quadrilateral (IoU 0.85),0,0,shape,inf,inf,inf,nan,0.841
+objectron,book,objectron/book/seq08/203-308,41.43,30-60,True,"shift 0 of [0, 2]",1080,977,shape,0.1872553950319055,0.11285024316974497,0.1872553950319055,0.46284492412956263,1.167
+objectron,book,objectron/book/seq08/50-302,51.67,30-60,True,"shift 2 of [0, 2]",886,48,shape,11.577884431248066,7.750114173510794,11.577884431248066,30.316158052854757,1.066
+objectron,book,objectron/book/seq09/141-157,5.03,5-15,True,"shift 0 of [0, 2]",597,570,shape,0.5238690875249228,18.545089664329694,18.545089664329694,1.406327337658131,0.548
+objectron,book,objectron/book/seq09/59-83,10.67,5-15,True,"shift 1 of [0, 1, 2, 3]",298,1,shape,156.03117502581702,100.56287768379899,156.03117502581702,223.90067496256805,0.757
+objectron,book,objectron/book/seq09/77-88,5.5,5-15,True,"shift 0 of [0, 2]",377,15,shape,10.819741065740333,109.11570779134749,109.11570779134749,6.136739645615801,0.687
+objectron,book,objectron/book/seq09/66-115,19.19,15-30,False,outline is not a rectangle in 3D (corners 48 deg off square),0,0,shape,inf,inf,inf,nan,0.49
+objectron,book,objectron/book/seq09/27-42,24.12,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.094
+objectron,book,objectron/book/seq09/62-113,18.12,15-30,False,outline is not a rectangle in 3D (corners 47 deg off square),0,0,shape,inf,inf,inf,nan,0.448
+objectron,book,objectron/book/seq09/97-140,44.08,30-60,True,"shift 0 of [0, 1, 2, 3]",139,3,shape,148.1659608800725,145.88275887526757,148.1659608800725,209.35639450279692,0.603
+objectron,book,objectron/book/seq09/66-128,32.51,30-60,True,"shift 3 of [0, 1, 2, 3]",201,1,shape,173.80551821667638,96.9685522706077,173.80551821667638,146.5818773769881,0.565
+objectron,book,objectron/book/seq09/98-164,47.73,30-60,True,"shift 0 of [0, 1, 2, 3]",138,2,shape,147.77234687704595,143.00118484643784,147.77234687704595,185.25652896905228,0.595
+objectron,book,objectron/book/seq10/198-232,14.11,5-15,True,"shift 0 of [0, 2]",275,157,shape,3.011669459226407,3.7422488488816996,3.7422488488816996,7.1797917387470305,0.485
+objectron,book,objectron/book/seq10/531-543,8.47,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.599
+objectron,book,objectron/book/seq10/33-53,6.97,5-15,True,"shift 0 of [0, 2]",380,270,shape,1.7240649335659017,4.636215604207197,4.636215604207197,5.129066780780137,0.397
+objectron,book,objectron/book/seq10/237-387,15.28,15-30,True,"shift 0 of [0, 2]",226,160,shape,3.5167721510274212,15.032183256848063,15.032183256848063,8.479692587521724,0.502
+objectron,book,objectron/book/seq10/214-369,27.89,15-30,True,"shift 0 of [0, 2]",110,15,shape,5.9728413682611246,5.109931569805603,5.9728413682611246,15.207502558876476,0.407
+objectron,book,objectron/book/seq10/273-403,15.78,15-30,True,"shift 0 of [0, 2]",218,128,shape,2.080350083487525,6.070429350090029,6.070429350090029,5.178136227531955,0.421
+objectron,book,objectron/book/seq10/146-271,59.57,30-60,True,"shift 1 of [1, 3]",108,16,shape,5.4267978920418924,7.379925157602766,7.379925157602766,17.480453718755296,0.455
+objectron,book,objectron/book/seq10/489-524,35.0,30-60,True,"shift 0 of [0, 2]",119,11,shape,1.1820988679849642,4.051029747879963,4.051029747879963,1.7720559491971954,1.253
+objectron,book,objectron/book/seq10/135-393,59.39,30-60,True,"shift 1 of [1, 3]",125,11,shape,4.788453489951516,6.506540322947428,6.506540322947428,20.413778955431116,0.461
+objectron,laptop,objectron/laptop/seq01/311-333,9.59,5-15,True,"shift 0 of [0, 2]",204,149,shape,0.329653394780895,1.3979314933060327,1.3979314933060327,1.9023081968872073,1.043
+objectron,laptop,objectron/laptop/seq01/12-359,6.3,5-15,True,"shift 0 of [0, 2]",118,99,shape,0.2453203940740251,2.637670523896325,2.637670523896325,1.7373222886698154,0.935
+objectron,laptop,objectron/laptop/seq01/111-131,5.36,5-15,True,"shift 0 of [0, 2]",293,243,shape,0.12628250218127027,2.0680801441197416,2.0680801441197416,2.5728488700085212,1.185
+objectron,laptop,objectron/laptop/seq01/118-340,25.89,15-30,True,"shift 1 of [1, 3]",172,101,shape,0.7585505130187725,1.9633752231661423,1.9633752231661423,2.012744517102903,1.046
+objectron,laptop,objectron/laptop/seq01/297-347,25.92,15-30,True,"shift 1 of [1, 3]",160,106,shape,0.5417690048078058,1.2092684157991163,1.2092684157991163,2.06563211466946,1.037
+objectron,laptop,objectron/laptop/seq01/327-370,17.31,15-30,True,"shift 0 of [0, 2]",96,74,shape,0.37716727159732477,1.8789624683498591,1.8789624683498591,1.776916838187979,0.942
+objectron,laptop,objectron/laptop/seq01/55-152,32.42,30-60,True,"shift 3 of [1, 3]",166,76,shape,0.8630976284564684,1.8750744504512489,1.8750744504512489,2.3427616753855998,0.992
+objectron,laptop,objectron/laptop/seq01/225-313,37.87,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.465
+objectron,laptop,objectron/laptop/seq01/196-352,50.9,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.37
+objectron,laptop,objectron/laptop/seq02/80-277,13.46,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq02/262-286,14.77,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq02/130-146,8.41,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.221
+objectron,laptop,objectron/laptop/seq02/48-241,20.43,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq02/166-203,22.49,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq02/173-225,26.8,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq02/17-338,33.29,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq02/29-202,42.69,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq02/263-334,49.2,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq03/235-296,5.94,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq03/229-318,7.81,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq03/202-271,13.5,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq03/180-242,18.63,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.011
+objectron,laptop,objectron/laptop/seq03/32-99,27.86,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq03/4-76,22.95,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq03/71-181,39.36,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq03/154-280,33.62,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq03/130-271,40.22,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq04/365-378,6.98,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq04/325-389,14.31,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq04/106-213,9.71,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq04/55-91,16.86,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq04/93-269,25.95,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq04/40-93,22.84,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq04/17-391,35.78,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq04/199-264,30.59,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq04/261-353,57.68,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq05/220-238,13.63,5-15,True,"shift 0 of [0, 2]",192,88,shape,0.21326812717623028,0.3587180539809011,0.3587180539809011,0.5407876290393783,0.975
+objectron,laptop,objectron/laptop/seq05/138-151,5.75,5-15,True,"shift 0 of [0, 2]",148,34,shape,0.0845431289222383,0.5358441084152559,0.5358441084152559,0.47908889679219263,0.942
+objectron,laptop,objectron/laptop/seq05/181-201,12.36,5-15,True,"shift 0 of [0, 2]",223,30,shape,0.09803470452274947,0.7882592419539932,0.7882592419539932,0.43589054267444544,1.089
+objectron,laptop,objectron/laptop/seq05/283-317,17.3,15-30,True,"shift 0 of [0, 2]",124,49,shape,0.3100087345311382,0.7927345367536702,0.7927345367536702,0.7105014160853367,1.322
+objectron,laptop,objectron/laptop/seq05/222-264,25.11,15-30,True,"shift 0 of [0, 2]",91,24,shape,0.4444051142718536,0.8812605198047414,0.8812605198047414,0.4503554235371236,1.172
+objectron,laptop,objectron/laptop/seq05/13-56,17.3,15-30,True,"shift 0 of [0, 2]",132,75,shape,0.08986075405540683,0.1521777056684093,0.1521777056684093,0.5280128735715142,1.104
+objectron,laptop,objectron/laptop/seq05/140-220,45.14,30-60,True,"shift 3 of [1, 3]",84,11,shape,0.37753868889253367,0.8211660396770599,0.8211660396770599,0.30755763445103634,0.979
+objectron,laptop,objectron/laptop/seq05/171-225,32.1,30-60,True,"shift 3 of [1, 3]",147,48,shape,0.3390372467400311,1.0474596962275298,1.0474596962275298,0.24778819225072735,0.994
+objectron,laptop,objectron/laptop/seq05/51-136,48.97,30-60,True,"shift 0 of [0, 2]",68,1,shape,0.24887438063633566,0.0672035662514874,0.24887438063633566,0.2076628063871707,0.983
+objectron,laptop,objectron/laptop/seq06/5-84,14.94,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.013
+objectron,laptop,objectron/laptop/seq06/102-285,14.74,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.013
+objectron,laptop,objectron/laptop/seq06/202-220,11.67,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq06/99-145,16.85,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq06/22-108,23.97,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq06/206-255,20.46,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq06/66-163,36.53,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq06/8-164,38.65,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq06/39-306,36.59,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.01
+objectron,laptop,objectron/laptop/seq07/89-138,10.02,5-15,True,"shift 0 of [0, 2]",513,146,shape,8.200344842367414,109.54583762191056,109.54583762191056,13.318231862449274,1.143
+objectron,laptop,objectron/laptop/seq07/44-58,5.36,5-15,True,"shift 0 of [0, 2]",623,292,shape,1.681698488517502,20.192064814231955,20.192064814231955,6.571277462464309,1.088
+objectron,laptop,objectron/laptop/seq07/57-81,7.53,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.491
+objectron,laptop,objectron/laptop/seq07/10-148,26.06,15-30,True,"shift 0 of [0, 2]",233,9,shape,16.778356872979558,3.6214464610555637,16.778356872979558,28.25076188465499,1.106
+objectron,laptop,objectron/laptop/seq07/175-235,19.85,15-30,True,"shift 0 of [0, 2]",155,22,shape,9.08174683264827,57.21167263929198,57.21167263929198,16.843792130432984,0.738
+objectron,laptop,objectron/laptop/seq07/49-148,15.28,15-30,True,"shift 0 of [0, 2]",320,46,shape,15.43313987153827,27.12735963575187,27.12735963575187,23.55436666642432,1.126
+objectron,laptop,objectron/laptop/seq07/33-205,50.99,30-60,True,"shift 0 of [0, 1, 2, 3]",176,4,shape,22.992951280911413,41.89587000932488,41.89587000932488,39.47425270953362,0.925
+objectron,laptop,objectron/laptop/seq07/38-184,38.35,30-60,True,"shift 0 of [0, 1, 2, 3]",162,12,shape,21.168476352305344,36.549653721326045,36.549653721326045,34.64060728540863,1.003
+objectron,laptop,objectron/laptop/seq07/28-222,51.0,30-60,True,"shift 0 of [0, 1, 2, 3]",142,0,shape,24.911068360604176,45.037573515384075,45.037573515384075,46.28246522414457,0.882
+objectron,laptop,objectron/laptop/seq08/35-60,13.17,5-15,True,"shift 1 of [1, 3]",369,26,shape,15.272180324837853,67.72094682942735,67.72094682942735,9.710965303189269,1.033
+objectron,laptop,objectron/laptop/seq08/56-76,11.23,5-15,True,"shift 1 of [1, 3]",501,32,shape,16.510800802868168,78.89250484913346,78.89250484913346,11.896417194771509,1.018
+objectron,laptop,objectron/laptop/seq08/35-56,11.09,5-15,True,"shift 0 of [0, 2]",386,33,shape,15.086381608530441,73.24185292303198,73.24185292303198,10.189823492876258,1.03
+objectron,laptop,objectron/laptop/seq08/200-219,15.72,15-30,True,"shift 0 of [0, 1, 2, 3]",504,2,shape,22.300844937543683,45.41729105532285,45.41729105532285,18.885416683435057,0.891
+objectron,laptop,objectron/laptop/seq08/213-239,16.42,15-30,True,"shift 0 of [0, 1, 2, 3]",413,42,shape,8.558448165929022,37.976461683180226,37.976461683180226,14.723458503401481,0.527
+objectron,laptop,objectron/laptop/seq08/145-184,29.64,15-30,True,"shift 0 of [0, 1, 2, 3]",423,21,shape,32.34596179834362,69.69276779092392,69.69276779092392,6.865237394514741,0.656
+objectron,laptop,objectron/laptop/seq08/123-190,49.58,30-60,True,"shift 1 of [1, 3]",235,19,shape,50.34609643854353,54.89401889285236,54.89401889285236,22.735417746054992,0.928
+objectron,laptop,objectron/laptop/seq08/175-229,36.59,30-60,True,"shift 1 of [0, 1, 2, 3]",287,5,shape,19.847922205279364,55.784938036289674,55.784938036289674,16.96493069186371,0.828
+objectron,laptop,objectron/laptop/seq08/11-100,56.46,30-60,False,outline is not a rectangle in 3D (corners 22 deg off square),0,0,shape,inf,inf,inf,nan,0.615
+objectron,laptop,objectron/laptop/seq09/89-294,9.82,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.034
+objectron,laptop,objectron/laptop/seq09/83-333,5.25,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.053
+objectron,laptop,objectron/laptop/seq09/94-185,14.87,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.367
+objectron,laptop,objectron/laptop/seq09/267-295,18.21,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.011
+objectron,laptop,objectron/laptop/seq09/133-342,22.87,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq09/157-230,29.86,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq09/20-136,45.64,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq09/7-156,34.66,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq09/110-261,41.75,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq10/220-241,14.14,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq10/164-211,11.31,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.01
+objectron,laptop,objectron/laptop/seq10/36-81,14.82,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq10/206-238,22.7,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq10/194-233,27.59,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq10/9-89,22.65,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq10/96-190,38.85,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,laptop,objectron/laptop/seq10/91-153,37.91,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,laptop,objectron/laptop/seq10/49-193,59.11,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,cereal_box,objectron/cereal_box/seq01/23-42,10.56,5-15,True,"shift 0 of [0, 2]",661,251,shape,4.309430499216864,21.851285158659234,21.851285158659234,7.732161897649429,0.473
+objectron,cereal_box,objectron/cereal_box/seq01/26-39,7.33,5-15,True,"shift 0 of [0, 1, 2, 3]",687,480,shape,3.0481366385443756,22.272444928246973,22.272444928246973,5.878946423080357,0.542
+objectron,cereal_box,objectron/cereal_box/seq01/2-32,6.07,5-15,True,"shift 2 of [0, 1, 2, 3]",679,239,shape,2.337950851235721,24.548750329869517,24.548750329869517,4.334797533245435,0.437
+objectron,cereal_box,objectron/cereal_box/seq01/122-215,21.95,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.399
+objectron,cereal_box,objectron/cereal_box/seq01/19-61,25.5,15-30,True,"shift 3 of [1, 3]",475,146,shape,11.0108920115584,25.224989916611232,25.224989916611232,15.856397440381604,0.812
+objectron,cereal_box,objectron/cereal_box/seq01/65-98,22.88,15-30,True,"shift 0 of [0, 2]",686,277,shape,8.911667722892748,22.777371530780425,22.777371530780425,10.679516569996947,1.267
+objectron,cereal_box,objectron/cereal_box/seq01/104-177,30.17,30-60,True,"shift 0 of [0, 2]",427,110,shape,3.6280181474469178,12.257870725204917,12.257870725204917,5.982597899806412,0.978
+objectron,cereal_box,objectron/cereal_box/seq01/86-186,40.57,30-60,True,"shift 0 of [0, 2]",405,3,shape,0.15906788434386263,6.646132419906332,6.646132419906332,0.43624726330527414,1.039
+objectron,cereal_box,objectron/cereal_box/seq01/82-161,53.17,30-60,True,"shift 0 of [0, 2]",343,43,shape,6.5065155861449755,6.997797668891391,6.997797668891391,13.8869183395029,0.99
+objectron,cereal_box,objectron/cereal_box/seq02/197-208,10.2,5-15,True,"shift 0 of [0, 2]",654,262,shape,5.265270988013309,3.1212010813320368,5.265270988013309,12.626119764616375,0.694
+objectron,cereal_box,objectron/cereal_box/seq02/33-51,13.53,5-15,True,"shift 0 of [0, 2]",668,324,shape,6.312344780174091,25.49650358157651,25.49650358157651,15.759733754518171,0.681
+objectron,cereal_box,objectron/cereal_box/seq02/8-40,12.27,5-15,True,"shift 1 of [0, 1, 2, 3]",710,500,shape,3.9158769564792855,26.85706108839444,26.85706108839444,13.349431349714711,0.529
+objectron,cereal_box,objectron/cereal_box/seq02/126-166,27.13,15-30,True,"shift 0 of [0, 2]",648,110,shape,16.35976018607468,42.22614963359133,42.22614963359133,25.96892572432753,1.122
+objectron,cereal_box,objectron/cereal_box/seq02/129-197,27.55,15-30,True,"shift 0 of [0, 2]",610,26,shape,13.485429919317335,38.62147450208016,38.62147450208016,23.572285352483156,1.022
+objectron,cereal_box,objectron/cereal_box/seq02/121-219,28.61,15-30,True,"shift 0 of [0, 2]",588,13,shape,2.6809653623512415,12.992898093163987,12.992898093163987,4.220747535994171,1.139
+objectron,cereal_box,objectron/cereal_box/seq02/80-237,47.35,30-60,True,"shift 0 of [0, 2]",473,5,shape,5.6131308963952495,10.754737397728382,10.754737397728382,10.97500900645972,1.073
+objectron,cereal_box,objectron/cereal_box/seq02/81-139,40.29,30-60,True,"shift 0 of [0, 2]",709,17,shape,6.027529670048074,8.05280846933862,8.05280846933862,14.408615405942813,1.212
+objectron,cereal_box,objectron/cereal_box/seq02/179-242,31.73,30-60,True,"shift 0 of [0, 1, 2, 3]",500,53,shape,15.79436621971378,7.123841406820659,15.79436621971378,38.38001770939497,0.759
+objectron,cereal_box,objectron/cereal_box/seq03/239-258,5.2,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,cereal_box,objectron/cereal_box/seq03/76-95,10.11,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.008
+objectron,cereal_box,objectron/cereal_box/seq03/1-68,13.42,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.01
+objectron,cereal_box,objectron/cereal_box/seq03/198-271,26.83,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,cereal_box,objectron/cereal_box/seq03/147-182,25.06,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.01
+objectron,cereal_box,objectron/cereal_box/seq03/196-283,27.36,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.013
+objectron,cereal_box,objectron/cereal_box/seq03/132-187,36.49,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.009
+objectron,cereal_box,objectron/cereal_box/seq03/58-141,40.4,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.01
+objectron,cereal_box,objectron/cereal_box/seq03/116-190,46.49,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.011
+objectron,cereal_box,objectron/cereal_box/seq04/46-57,8.33,5-15,True,"shift 0 of [0, 2]",900,884,shape,3.8291099502418406,25.28920595734738,25.28920595734738,4.950751748926428,1.526
+objectron,cereal_box,objectron/cereal_box/seq04/13-32,10.75,5-15,True,"shift 0 of [0, 2]",901,625,shape,5.557497526766441,25.624763497521474,25.624763497521474,10.392804377825373,0.99
+objectron,cereal_box,objectron/cereal_box/seq04/62-79,11.03,5-15,True,"shift 0 of [0, 2]",983,925,shape,0.20414501501536758,0.936822153525674,0.936822153525674,0.4948840787626268,1.448
+objectron,cereal_box,objectron/cereal_box/seq04/57-138,27.78,15-30,True,"shift 0 of [0, 2]",724,185,shape,6.005525086435591,13.871685085002651,13.871685085002651,9.278575613498878,1.347
+objectron,cereal_box,objectron/cereal_box/seq04/121-161,28.32,15-30,True,"shift 0 of [0, 2]",736,261,shape,13.315294544273153,20.579386897866353,20.579386897866353,21.145018437058134,1.252
+objectron,cereal_box,objectron/cereal_box/seq04/58-82,15.33,15-30,True,"shift 0 of [0, 2]",901,849,shape,0.20491965180830518,0.6898358495374665,0.6898358495374665,0.6365397222129948,1.421
+objectron,cereal_box,objectron/cereal_box/seq04/60-151,30.74,30-60,True,"shift 0 of [0, 2]",737,196,shape,11.481657784478987,12.944159652980915,12.944159652980915,16.900216286623383,1.297
+objectron,cereal_box,objectron/cereal_box/seq04/30-76,34.31,30-60,True,"shift 0 of [0, 2]",826,219,shape,11.021164383735307,15.65336445576919,15.65336445576919,21.368142641539738,1.252
+objectron,cereal_box,objectron/cereal_box/seq04/56-104,31.49,30-60,True,"shift 0 of [0, 2]",732,578,shape,5.891262224942848,9.403805308354658,9.403805308354658,11.984638666963127,1.377
+objectron,cereal_box,objectron/cereal_box/seq05/262-276,5.52,5-15,True,"shift 0 of [0, 2]",1154,1151,shape,0.019930461486471113,0.2701806466535813,0.2701806466535813,0.3010299060510068,1.54
+objectron,cereal_box,objectron/cereal_box/seq05/202-225,9.32,5-15,True,"shift 3 of [1, 3]",947,161,shape,10.816237826042023,102.69296487551215,102.69296487551215,27.76598712952393,0.878
+objectron,cereal_box,objectron/cereal_box/seq05/146-257,9.13,5-15,True,"shift 0 of [0, 2]",1058,1049,shape,1.4808216794363596,8.856699418954435,8.856699418954435,3.2793262888524732,1.478
+objectron,cereal_box,objectron/cereal_box/seq05/132-227,17.18,15-30,True,"shift 0 of [0, 2]",948,936,shape,0.04965303014600916,0.2291937836713474,0.2291937836713474,0.5027960104729066,1.218
+objectron,cereal_box,objectron/cereal_box/seq05/28-64,21.01,15-30,True,"shift 0 of [0, 2]",845,122,shape,12.97703713599191,31.42513848170277,31.42513848170277,29.6862211882673,1.167
+objectron,cereal_box,objectron/cereal_box/seq05/37-102,29.82,15-30,True,"shift 0 of [0, 2]",888,376,shape,12.549691354152838,15.39919483430519,15.39919483430519,34.01364404589421,1.218
+objectron,cereal_box,objectron/cereal_box/seq05/91-175,40.65,30-60,True,"shift 1 of [1, 3]",748,211,shape,9.529059431427642,8.539280862836764,9.529059431427642,31.773029552803944,1.184
+objectron,cereal_box,objectron/cereal_box/seq05/72-164,39.88,30-60,True,"shift 0 of [0, 2]",771,268,shape,6.447342354213792,7.588893954718876,7.588893954718876,22.87426335438753,1.338
+objectron,cereal_box,objectron/cereal_box/seq05/17-238,57.33,30-60,True,"shift 0 of [0, 2]",676,25,shape,4.492691032661037,4.416756497204347,4.492691032661037,26.714919074846083,1.12
+objectron,cereal_box,objectron/cereal_box/seq06/183-189,5.27,5-15,False,outline is not a rectangle in 3D (corners 49 deg off square),0,0,shape,inf,inf,inf,nan,0.511
+objectron,cereal_box,objectron/cereal_box/seq06/117-123,5.86,5-15,True,"shift 0 of [0, 2]",857,805,shape,1.7126303339157534,34.092806182695796,34.092806182695796,3.349347404698212,0.732
+objectron,cereal_box,objectron/cereal_box/seq06/113-120,7.11,5-15,True,"shift 0 of [0, 2]",844,469,shape,2.3212378794240647,34.33083260304213,34.33083260304213,4.32405707836827,0.818
+objectron,cereal_box,objectron/cereal_box/seq06/139-168,24.66,15-30,False,outline is not a quadrilateral (IoU 0.84),0,0,shape,inf,inf,inf,nan,0.408
+objectron,cereal_box,objectron/cereal_box/seq06/148-167,16.39,15-30,False,outline is not a quadrilateral (IoU 0.78),0,0,shape,inf,inf,inf,nan,0.263
+objectron,cereal_box,objectron/cereal_box/seq06/36-64,24.82,15-30,True,"shift 3 of [1, 3]",329,25,shape,6.889199872343507,29.825942740731765,29.825942740731765,14.398694893900483,0.646
+objectron,cereal_box,objectron/cereal_box/seq06/92-137,48.96,30-60,True,"shift 0 of [0, 2]",385,14,shape,5.469257546712034,12.908910528429072,12.908910528429072,12.49926688559258,0.823
+objectron,cereal_box,objectron/cereal_box/seq06/12-73,42.85,30-60,False,outline is not a rectangle in 3D (corners 31 deg off square),0,0,shape,inf,inf,inf,nan,0.604
+objectron,cereal_box,objectron/cereal_box/seq06/46-96,36.92,30-60,True,"shift 3 of [1, 3]",376,26,shape,10.122548705094802,24.49858260619299,24.49858260619299,20.446410304462272,0.792
+objectron,cereal_box,objectron/cereal_box/seq07/104-120,11.61,5-15,True,"shift 0 of [0, 2]",957,658,shape,5.157442966824465,33.145812470731826,33.145812470731826,11.554230790865256,1.464
+objectron,cereal_box,objectron/cereal_box/seq07/119-179,14.94,5-15,True,"shift 1 of [1, 3]",717,245,shape,6.934347361223187,28.2561094388205,28.2561094388205,18.665890837773894,1.097
+objectron,cereal_box,objectron/cereal_box/seq07/27-40,13.52,5-15,True,"shift 0 of [0, 2]",928,480,shape,6.137756855826882,29.831381968494394,29.831381968494394,15.417375588556446,1.208
+objectron,cereal_box,objectron/cereal_box/seq07/142-217,20.28,15-30,True,"shift 3 of [1, 3]",834,191,shape,9.416346548803276,30.39028023036049,30.39028023036049,23.383095630856683,1.18
+objectron,cereal_box,objectron/cereal_box/seq07/207-238,17.39,15-30,True,"shift 0 of [0, 2]",975,934,shape,5.7395926753055395,16.968614960535184,16.968614960535184,13.992903229840296,1.517
+objectron,cereal_box,objectron/cereal_box/seq07/133-214,15.31,15-30,True,"shift 3 of [1, 3]",885,417,shape,6.511271144361502,32.24015529629987,32.24015529629987,15.963243874339371,1.204
+objectron,cereal_box,objectron/cereal_box/seq07/30-119,50.82,30-60,True,"shift 0 of [0, 2]",754,676,shape,0.2245511777116758,0.35294559618971416,0.35294559618971416,1.030582433185182,1.274
+objectron,cereal_box,objectron/cereal_box/seq07/87-153,37.89,30-60,True,"shift 1 of [1, 3]",713,144,shape,18.295761761155735,34.30714989915954,34.30714989915954,48.221106011260424,1.123
+objectron,cereal_box,objectron/cereal_box/seq07/177-231,31.5,30-60,True,"shift 3 of [1, 3]",726,116,shape,14.831655856513848,24.704044657988717,24.704044657988717,39.293984403712265,1.155
+objectron,cereal_box,objectron/cereal_box/seq08/112-156,9.42,5-15,True,"shift 0 of [0, 2]",955,942,shape,4.42190678125671,13.131675213559761,13.131675213559761,4.838270748347845,1.302
+objectron,cereal_box,objectron/cereal_box/seq08/36-71,14.64,5-15,True,"shift 3 of [1, 3]",831,356,shape,5.017302420953009,29.30367897474721,29.30367897474721,8.51604119110628,0.957
+objectron,cereal_box,objectron/cereal_box/seq08/99-112,9.55,5-15,True,"shift 0 of [0, 2]",957,937,shape,0.7605235919879126,15.560919129644281,15.560919129644281,0.9967170267177929,1.354
+objectron,cereal_box,objectron/cereal_box/seq08/76-154,25.31,15-30,True,"shift 0 of [0, 2]",820,130,shape,9.412593666606096,18.08099610739747,18.08099610739747,10.908915275636437,1.355
+objectron,cereal_box,objectron/cereal_box/seq08/120-181,15.14,15-30,True,"shift 0 of [0, 2]",913,900,shape,2.783025266091133,6.867798543796519,6.867798543796519,3.2923552068023376,1.372
+objectron,cereal_box,objectron/cereal_box/seq08/107-183,17.43,15-30,True,"shift 0 of [0, 2]",893,855,shape,3.6844332906650945,7.962223248106044,7.962223248106044,5.018631533438278,1.345
+objectron,cereal_box,objectron/cereal_box/seq08/4-135,36.77,30-60,True,"shift 3 of [1, 3]",484,15,shape,20.66562340076357,27.213020306822433,27.213020306822433,29.324661366046644,0.888
+objectron,cereal_box,objectron/cereal_box/seq08/30-155,40.97,30-60,True,"shift 3 of [1, 3]",577,32,shape,22.807460971628718,19.140193844863486,22.807460971628718,30.34996901323768,1.005
+objectron,cereal_box,objectron/cereal_box/seq08/30-169,45.45,30-60,True,"shift 3 of [1, 3]",573,29,shape,15.82221432693509,14.67645140242039,15.82221432693509,23.212018032374875,0.951
+objectron,cereal_box,objectron/cereal_box/seq09/77-90,9.52,5-15,True,"shift 0 of [0, 2]",1015,1010,shape,0.23175852018666865,0.793933483476077,0.793933483476077,0.5241692032312306,1.397
+objectron,cereal_box,objectron/cereal_box/seq09/131-155,14.07,5-15,False,outline is not a quadrilateral (IoU 0.69),0,0,shape,inf,inf,inf,nan,0.5
+objectron,cereal_box,objectron/cereal_box/seq09/46-54,8.66,5-15,True,"shift 0 of [0, 2]",881,856,shape,4.772093570989261,21.233428067206546,21.233428067206546,5.6104710016806285,1.295
+objectron,cereal_box,objectron/cereal_box/seq09/112-178,20.84,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.536
+objectron,cereal_box,objectron/cereal_box/seq09/115-179,23.92,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.48
+objectron,cereal_box,objectron/cereal_box/seq09/21-46,21.25,15-30,True,"shift 0 of [0, 2]",761,75,shape,8.51011286233408,4.758199009046869,8.51011286233408,12.451395685645528,1.155
+objectron,cereal_box,objectron/cereal_box/seq09/56-159,50.2,30-60,True,"shift 3 of [1, 3]",735,395,shape,5.556459845903677,1.3626983930686272,5.556459845903677,14.533048386090314,1.115
+objectron,cereal_box,objectron/cereal_box/seq09/49-162,54.82,30-60,True,"shift 1 of [1, 3]",715,470,shape,2.189335110544217,0.4699141700869419,2.189335110544217,6.586273823201407,1.155
+objectron,cereal_box,objectron/cereal_box/seq09/150-215,33.72,30-60,True,"shift 0 of [0, 1, 2, 3]",653,34,shape,15.316571596147401,5.5737234757318594,15.316571596147401,20.95283239785869,1.033
+objectron,cereal_box,objectron/cereal_box/seq10/165-181,8.53,5-15,True,"shift 0 of [0, 2]",917,452,shape,4.45336799776766,31.241395499655674,31.241395499655674,12.071194015732233,0.669
+objectron,cereal_box,objectron/cereal_box/seq10/124-146,11.86,5-15,True,"shift 0 of [0, 2]",867,276,shape,4.395967314139663,30.446205621476036,30.446205621476036,7.527001688123798,0.842
+objectron,cereal_box,objectron/cereal_box/seq10/96-104,8.09,5-15,True,"shift 0 of [0, 2]",1220,1006,shape,0.2148444190543,1.750560167316623,1.750560167316623,0.13305392859973916,1.371
+objectron,cereal_box,objectron/cereal_box/seq10/55-87,19.82,15-30,True,"shift 0 of [0, 2]",787,346,shape,15.792643681453658,51.59194549847234,51.59194549847234,20.1897649702933,1.337
+objectron,cereal_box,objectron/cereal_box/seq10/145-207,23.23,15-30,True,"shift 0 of [0, 2]",713,2,shape,12.58227147745323,35.23010951170714,35.23010951170714,31.396364367602494,0.692
+objectron,cereal_box,objectron/cereal_box/seq10/147-173,17.44,15-30,True,"shift 0 of [0, 2]",797,172,shape,9.613339229458541,34.61900935874961,34.61900935874961,23.000767384445954,0.701
+objectron,cereal_box,objectron/cereal_box/seq10/10-94,48.66,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.621
+objectron,cereal_box,objectron/cereal_box/seq10/20-77,34.04,30-60,True,"shift 3 of [0, 1, 2, 3]",507,41,shape,25.735901855408112,42.51305349678426,42.51305349678426,41.514437511686275,0.887
+objectron,cereal_box,objectron/cereal_box/seq10/11-72,33.04,30-60,True,"shift 3 of [0, 1, 2, 3]",475,36,shape,23.358554836970903,39.920939783775836,39.920939783775836,39.87466964490034,0.871

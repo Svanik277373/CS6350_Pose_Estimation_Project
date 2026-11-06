@@ -1,0 +1,301 @@
+dataset,object,pair,angle_deg,angle_bin,ok,reason,matches,inliers,model,rot_err_deg,t_err_deg,pose_err_deg,reproj_rms_px,seconds
+co3d,cellphone,co3d/cellphone/seq01/106-111,12.69,5-15,True,"shift 1 of [0, 1, 2, 3]",188,55,shape,70.73920268381188,67.69275102827353,70.73920268381188,2.470529753851753,2.368
+co3d,cellphone,co3d/cellphone/seq01/64-70,14.22,5-15,False,outline is not a quadrilateral (IoU 0.79),0,0,shape,inf,inf,inf,nan,0.259
+co3d,cellphone,co3d/cellphone/seq01/26-178,5.99,5-15,False,outline is not a quadrilateral (IoU 0.85),0,0,shape,inf,inf,inf,nan,0.082
+co3d,cellphone,co3d/cellphone/seq01/28-179,6.18,5-15,True,"shift 0 of [0, 1, 2, 3]",243,124,shape,7.128033388598131,102.31999680900853,102.31999680900853,4.839510159536724,0.131
+co3d,cellphone,co3d/cellphone/seq01/175-179,12.17,5-15,True,"shift 0 of [0, 1, 2, 3]",202,17,shape,5.767846449993432,2.279405363480899,5.767846449993432,7.901878955798097,0.201
+co3d,cellphone,co3d/cellphone/seq01/135-148,26.03,15-30,False,outline is not a quadrilateral (IoU 0.70),0,0,shape,inf,inf,inf,nan,0.186
+co3d,cellphone,co3d/cellphone/seq01/54-61,20.49,15-30,False,outline is not a quadrilateral (IoU 0.83),0,0,shape,inf,inf,inf,nan,0.143
+co3d,cellphone,co3d/cellphone/seq01/92-105,28.35,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.034
+co3d,cellphone,co3d/cellphone/seq01/159-165,17.7,15-30,False,outline is not a quadrilateral (IoU 0.74),0,0,shape,inf,inf,inf,nan,0.18
+co3d,cellphone,co3d/cellphone/seq01/81-85,16.96,15-30,False,outline is not a quadrilateral (IoU 0.76),0,0,shape,inf,inf,inf,nan,0.118
+co3d,cellphone,co3d/cellphone/seq01/95-120,50.9,30-60,True,"shift 3 of [0, 1, 2, 3]",96,18,shape,26.383222930610327,29.726828719926953,29.726828719926953,3.8614991429825256,0.1
+co3d,cellphone,co3d/cellphone/seq01/133-146,30.21,30-60,False,outline is not a quadrilateral (IoU 0.82),0,0,shape,inf,inf,inf,nan,0.198
+co3d,cellphone,co3d/cellphone/seq01/25-156,46.85,30-60,False,outline is not a rectangle in 3D (corners 30 deg off square),0,0,shape,inf,inf,inf,nan,0.169
+co3d,cellphone,co3d/cellphone/seq01/164-191,52.64,30-60,False,outline is not a quadrilateral (IoU 0.62),0,0,shape,inf,inf,inf,nan,0.073
+co3d,cellphone,co3d/cellphone/seq01/67-88,43.92,30-60,False,outline is not a quadrilateral (IoU 0.84),0,0,shape,inf,inf,inf,nan,0.18
+co3d,cellphone,co3d/cellphone/seq02/136-139,10.36,5-15,True,"shift 0 of [0, 2]",233,128,shape,1.1854012717144473,2.0078727308862945,2.0078727308862945,2.474625517146209,0.218
+co3d,cellphone,co3d/cellphone/seq02/142-150,14.79,5-15,False,outline is not a quadrilateral (IoU 0.75),0,0,shape,inf,inf,inf,nan,0.15
+co3d,cellphone,co3d/cellphone/seq02/36-38,6.72,5-15,False,outline is not a quadrilateral (IoU 0.78),0,0,shape,inf,inf,inf,nan,0.089
+co3d,cellphone,co3d/cellphone/seq02/161-168,11.85,5-15,False,outline is not a rectangle in 3D (corners 21 deg off square),0,0,shape,inf,inf,inf,nan,0.138
+co3d,cellphone,co3d/cellphone/seq02/5-191,14.69,5-15,True,"shift 0 of [0, 2]",137,76,shape,1.179954431453474,1.4856493827794885,1.4856493827794885,0.47089835551157083,0.34
+co3d,cellphone,co3d/cellphone/seq02/48-66,29.18,15-30,False,outline is not a quadrilateral (IoU 0.75),0,0,shape,inf,inf,inf,nan,0.158
+co3d,cellphone,co3d/cellphone/seq02/86-94,17.81,15-30,True,"shift 3 of [1, 3]",187,62,shape,4.215828186092429,11.067472036923645,11.067472036923645,2.052361008792639,0.355
+co3d,cellphone,co3d/cellphone/seq02/73-82,17.68,15-30,True,"shift 0 of [0, 2]",72,25,shape,4.195137072824767,12.797419526393616,12.797419526393616,2.0290887869599907,0.3
+co3d,cellphone,co3d/cellphone/seq02/69-84,19.67,15-30,True,"shift 0 of [0, 2]",74,11,shape,5.060755419147931,19.008766705243303,19.008766705243303,2.4592262805751792,0.293
+co3d,cellphone,co3d/cellphone/seq02/10-19,22.56,15-30,True,"shift 0 of [0, 2]",70,9,shape,2.014904497730544,6.9370945877772705,6.9370945877772705,1.4529103001624015,0.348
+co3d,cellphone,co3d/cellphone/seq02/104-129,33.65,30-60,True,"shift 0 of [0, 2]",56,2,shape,2.0139979793641842,4.341443494726582,4.341443494726582,2.5221589407100238,0.283
+co3d,cellphone,co3d/cellphone/seq02/99-137,50.65,30-60,True,"shift 2 of [0, 1, 2, 3]",47,0,shape,175.10527036838414,107.05907742558998,175.10527036838414,8.471585216257925,0.365
+co3d,cellphone,co3d/cellphone/seq02/93-127,46.52,30-60,True,"shift 0 of [0, 1, 2, 3]",95,10,shape,5.073877882274025,8.886417670481851,8.886417670481851,5.632027277542384,0.435
+co3d,cellphone,co3d/cellphone/seq02/81-116,54.36,30-60,True,"shift 3 of [1, 3]",88,5,shape,7.139158992458314,6.469580021200112,7.139158992458314,2.873472197763567,0.327
+co3d,cellphone,co3d/cellphone/seq02/31-55,38.51,30-60,True,"shift 3 of [0, 1, 2, 3]",53,3,shape,103.60917905544409,95.72669622721858,103.60917905544409,7.943945703006378,0.192
+co3d,cellphone,co3d/cellphone/seq03/134-138,14.41,5-15,True,"shift 0 of [0, 1, 2, 3]",80,7,shape,123.5765486645544,73.18555982101225,123.5765486645544,7.354394845061339,0.18
+co3d,cellphone,co3d/cellphone/seq03/192-194,8.94,5-15,False,outline is not a rectangle in 3D (corners 22 deg off square),0,0,shape,inf,inf,inf,nan,0.077
+co3d,cellphone,co3d/cellphone/seq03/40-46,8.96,5-15,False,outline is not a quadrilateral (IoU 0.57),0,0,shape,inf,inf,inf,nan,0.095
+co3d,cellphone,co3d/cellphone/seq03/182-185,11.27,5-15,True,"shift 0 of [0, 2]",93,14,shape,2.095149771185877,19.899897667830594,19.899897667830594,0.8632503319898078,0.109
+co3d,cellphone,co3d/cellphone/seq03/95-99,7.65,5-15,True,"shift 2 of [0, 2]",81,30,shape,0.5221228720853746,6.654650579927648,6.654650579927648,0.685624130318851,0.314
+co3d,cellphone,co3d/cellphone/seq03/64-73,20.04,15-30,True,"shift 0 of [0, 2]",101,17,shape,3.085033170007105,7.295874587272896,7.295874587272896,1.7115546894489975,0.155
+co3d,cellphone,co3d/cellphone/seq03/36-180,28.24,15-30,True,"shift 0 of [0, 1, 2, 3]",82,3,shape,1.0113072060606643,7.8472718537266895,7.8472718537266895,5.688036777970241,0.228
+co3d,cellphone,co3d/cellphone/seq03/153-162,18.62,15-30,True,"shift 2 of [0, 2]",112,13,shape,2.3359319101968423,3.2285045220750503,3.2285045220750503,0.7045699950440775,0.302
+co3d,cellphone,co3d/cellphone/seq03/11-180,29.55,15-30,True,"shift 0 of [0, 2]",54,0,shape,2.7360640292362204,8.860929906591313,8.860929906591313,2.4811882343253817,0.372
+co3d,cellphone,co3d/cellphone/seq03/108-118,29.85,15-30,True,"shift 0 of [0, 2]",75,5,shape,3.5261483538647775,1.995456344060744,3.5261483538647775,1.3298865523061756,0.271
+co3d,cellphone,co3d/cellphone/seq03/45-178,50.98,30-60,True,"shift 0 of [0, 1, 2, 3]",55,0,shape,4.544286589102993,10.1218523686212,10.1218523686212,3.5829617873455217,0.281
+co3d,cellphone,co3d/cellphone/seq03/150-172,50.94,30-60,True,"shift 3 of [1, 3]",77,1,shape,2.191106294832227,2.675953923970447,2.675953923970447,0.7756705968728934,0.391
+co3d,cellphone,co3d/cellphone/seq03/54-75,47.44,30-60,True,"shift 0 of [0, 1, 2, 3]",32,3,shape,4.59476997138955,3.34871780408553,4.59476997138955,3.119585609537556,0.294
+co3d,cellphone,co3d/cellphone/seq03/101-121,58.44,30-60,True,"shift 0 of [0, 2]",35,0,shape,5.626455695007489,3.487324755588808,5.626455695007489,0.9552441612209431,0.283
+co3d,cellphone,co3d/cellphone/seq03/8-36,56.4,30-60,True,"shift 3 of [0, 1, 2, 3]",86,8,shape,84.44048413485329,84.16315364353706,84.44048413485329,12.181518975751079,0.653
+co3d,cellphone,co3d/cellphone/seq04/125-134,13.61,5-15,True,"shift 0 of [0, 2]",248,66,shape,1.1107895369380567,4.873225174771815,4.873225174771815,1.6945148997506685,0.354
+co3d,cellphone,co3d/cellphone/seq04/90-95,9.78,5-15,True,"shift 0 of [0, 2]",278,61,shape,2.3501059969997864,10.529322652654978,10.529322652654978,4.474978575226133,0.609
+co3d,cellphone,co3d/cellphone/seq04/95-100,8.74,5-15,True,"shift 0 of [0, 2]",277,99,shape,1.3162848986262832,6.745916127664041,6.745916127664041,4.145962274796482,0.604
+co3d,cellphone,co3d/cellphone/seq04/17-183,14.18,5-15,True,"shift 1 of [1, 3]",359,68,shape,6.372454478247847,18.210169247341135,18.210169247341135,4.7685070172784325,0.498
+co3d,cellphone,co3d/cellphone/seq04/31-39,12.76,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.163
+co3d,cellphone,co3d/cellphone/seq04/167-179,22.17,15-30,True,"shift 0 of [0, 2]",222,98,shape,1.8979216172721314,6.579448590018196,6.579448590018196,1.5050087163292047,0.449
+co3d,cellphone,co3d/cellphone/seq04/18-189,16.78,15-30,True,"shift 1 of [1, 3]",201,19,shape,9.161778584231724,12.512893440767463,12.512893440767463,6.69419593724206,0.483
+co3d,cellphone,co3d/cellphone/seq04/119-131,24.39,15-30,True,"shift 0 of [0, 2]",147,24,shape,1.7389651068449519,4.344302157512793,4.344302157512793,3.009427698409309,0.318
+co3d,cellphone,co3d/cellphone/seq04/23-190,27.44,15-30,True,"shift 1 of [1, 3]",153,44,shape,5.850644492628103,9.229853804217901,9.229853804217901,4.482125052020661,0.496
+co3d,cellphone,co3d/cellphone/seq04/15-191,18.15,15-30,True,"shift 0 of [0, 2]",219,28,shape,5.829152450720486,7.965114550106954,7.965114550106954,2.9743985815396687,0.502
+co3d,cellphone,co3d/cellphone/seq04/42-68,57.54,30-60,True,"shift 3 of [1, 3]",162,7,shape,2.1920168334875862,1.3032328318078648,2.1920168334875862,4.231618111538351,0.393
+co3d,cellphone,co3d/cellphone/seq04/136-151,34.6,30-60,True,"shift 0 of [0, 2]",187,13,shape,2.018431187403135,2.081207656835277,2.081207656835277,3.748339333186667,0.319
+co3d,cellphone,co3d/cellphone/seq04/149-170,50.26,30-60,True,"shift 3 of [1, 3]",120,3,shape,4.04688915327201,5.807514950413995,5.807514950413995,1.589024039186633,0.486
+co3d,cellphone,co3d/cellphone/seq04/26-42,31.08,30-60,True,"shift 0 of [0, 2]",202,8,shape,1.427182228440394,4.694511027594989,4.694511027594989,4.8181134973903506,0.354
+co3d,cellphone,co3d/cellphone/seq04/32-55,45.05,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.172
+co3d,cellphone,co3d/cellphone/seq05/107-111,8.2,5-15,True,"shift 0 of [0, 1, 2, 3]",205,57,shape,6.915980072434283,12.036577007639837,12.036577007639837,3.888116689291597,0.28
+co3d,cellphone,co3d/cellphone/seq05/25-32,11.65,5-15,True,"shift 0 of [0, 1, 2, 3]",286,5,shape,23.854718130520006,151.2793073728021,151.2793073728021,13.593510602610918,0.252
+co3d,cellphone,co3d/cellphone/seq05/156-162,12.11,5-15,True,"shift 0 of [0, 2]",195,25,shape,2.68747964225,6.201417910613819,6.201417910613819,2.0952054009283994,0.389
+co3d,cellphone,co3d/cellphone/seq05/13-185,9.41,5-15,True,"shift 0 of [0, 2]",157,11,shape,5.68058158255885,40.28650535650112,40.28650535650112,3.1549636761211994,0.338
+co3d,cellphone,co3d/cellphone/seq05/80-83,11.61,5-15,True,"shift 1 of [1, 3]",160,24,shape,2.5171685871786207,10.91609353453338,10.91609353453338,2.1550839503612207,0.787
+co3d,cellphone,co3d/cellphone/seq05/133-151,28.05,15-30,False,outline is not a rectangle in 3D (corners 50 deg off square),0,0,shape,inf,inf,inf,nan,0.295
+co3d,cellphone,co3d/cellphone/seq05/91-102,24.6,15-30,True,"shift 0 of [0, 2]",133,1,shape,3.461168548979058,4.211262126908466,4.211262126908466,2.4713574646769483,0.393
+co3d,cellphone,co3d/cellphone/seq05/5-11,16.3,15-30,True,"shift 0 of [0, 2]",197,83,shape,3.7812113721950045,19.57812026594186,19.57812026594186,3.4199063711093265,0.517
+co3d,cellphone,co3d/cellphone/seq05/22-184,21.73,15-30,False,outline is not a rectangle in 3D (corners 44 deg off square),0,0,shape,inf,inf,inf,nan,0.289
+co3d,cellphone,co3d/cellphone/seq05/49-60,23.02,15-30,False,outline is not a rectangle in 3D (corners 21 deg off square),0,0,shape,inf,inf,inf,nan,0.132
+co3d,cellphone,co3d/cellphone/seq05/155-176,47.06,30-60,False,outline is not a rectangle in 3D (corners 26 deg off square),0,0,shape,inf,inf,inf,nan,0.25
+co3d,cellphone,co3d/cellphone/seq05/85-118,57.85,30-60,False,outline is not a rectangle in 3D (corners 23 deg off square),0,0,shape,inf,inf,inf,nan,0.266
+co3d,cellphone,co3d/cellphone/seq05/94-114,37.66,30-60,True,"shift 0 of [0, 2]",56,0,shape,5.516013893247603,6.358782295103086,6.358782295103086,1.2991291880972455,0.277
+co3d,cellphone,co3d/cellphone/seq05/156-176,46.02,30-60,False,outline is not a rectangle in 3D (corners 26 deg off square),0,0,shape,inf,inf,inf,nan,0.258
+co3d,cellphone,co3d/cellphone/seq05/32-56,58.69,30-60,False,outline is not a rectangle in 3D (corners 27 deg off square),0,0,shape,inf,inf,inf,nan,0.075
+co3d,cellphone,co3d/cellphone/seq06/177-200,13.55,5-15,True,"shift 1 of [1, 3]",160,68,shape,0.871778377106251,5.273594596834023,5.273594596834023,0.44822754223891365,0.397
+co3d,cellphone,co3d/cellphone/seq06/6-155,10.45,5-15,True,"shift 1 of [1, 3]",133,50,shape,4.775955255579696,23.06871946426282,23.06871946426282,1.9364167735454494,0.548
+co3d,cellphone,co3d/cellphone/seq06/81-84,10.14,5-15,True,"shift 0 of [0, 2]",222,163,shape,0.2552278587422218,0.20146227972839673,0.2552278587422218,0.5251537257571866,0.558
+co3d,cellphone,co3d/cellphone/seq06/12-155,10.15,5-15,True,"shift 1 of [1, 3]",132,52,shape,4.9648724819044245,23.24498740872458,23.24498740872458,2.0192266534034893,0.546
+co3d,cellphone,co3d/cellphone/seq06/35-181,8.46,5-15,True,"shift 0 of [0, 2]",183,62,shape,3.2238800174384528,28.09408270388221,28.09408270388221,1.1572653812148634,0.503
+co3d,cellphone,co3d/cellphone/seq06/171-197,23.84,15-30,True,"shift 1 of [1, 3]",144,75,shape,5.00896022471784,23.509356625207012,23.509356625207012,0.5918786904862511,0.484
+co3d,cellphone,co3d/cellphone/seq06/18-168,17.88,15-30,True,"shift 0 of [0, 2]",127,63,shape,1.2271428328825857,1.4729305075627306,1.4729305075627306,0.6656480579516576,0.599
+co3d,cellphone,co3d/cellphone/seq06/40-167,23.03,15-30,True,"shift 3 of [1, 3]",153,57,shape,5.312646687738975,27.710235595219253,27.710235595219253,0.4776050129553736,0.469
+co3d,cellphone,co3d/cellphone/seq06/36-47,29.95,15-30,True,"shift 0 of [0, 2]",57,2,shape,4.734162275294372,17.7530211672128,17.7530211672128,1.0689479550664878,0.381
+co3d,cellphone,co3d/cellphone/seq06/44-175,23.87,15-30,True,"shift 3 of [1, 3]",64,5,shape,0.9199333630929203,3.6641418552725007,3.6641418552725007,0.6938441865771244,0.44
+co3d,cellphone,co3d/cellphone/seq06/156-177,40.67,30-60,True,"shift 3 of [1, 3]",145,29,shape,5.412073446297918,5.644533940344327,5.644533940344327,1.385561658640414,0.537
+co3d,cellphone,co3d/cellphone/seq06/59-184,47.86,30-60,True,"shift 2 of [0, 2]",56,2,shape,2.515028973874749,6.166024454324502,6.166024454324502,0.25109381466863795,0.394
+co3d,cellphone,co3d/cellphone/seq06/162-199,33.8,30-60,True,"shift 1 of [1, 3]",111,24,shape,6.051386910323241,18.36743363591844,18.36743363591844,0.2302176345155719,0.475
+co3d,cellphone,co3d/cellphone/seq06/28-49,52.96,30-60,True,"shift 0 of [0, 2]",50,1,shape,3.7758250233703436,6.516608440983387,6.516608440983387,0.9592270428379209,0.639
+co3d,cellphone,co3d/cellphone/seq06/61-183,55.63,30-60,True,"shift 2 of [0, 2]",46,1,shape,1.879434610895194,4.777045740523431,4.777045740523431,0.4167229642976326,0.641
+co3d,cellphone,co3d/cellphone/seq07/66-70,12.06,5-15,False,outline is not a quadrilateral (IoU 0.71),0,0,shape,inf,inf,inf,nan,0.286
+co3d,cellphone,co3d/cellphone/seq07/20-201,8.48,5-15,True,"shift 0 of [0, 2]",173,77,shape,0.7946417582487738,4.266420219850021,4.266420219850021,1.5674357693108685,0.609
+co3d,cellphone,co3d/cellphone/seq07/81-91,12.14,5-15,True,"shift 0 of [0, 2]",122,64,shape,5.928459146730218,9.478777094733484,9.478777094733484,1.7131124460597422,0.262
+co3d,cellphone,co3d/cellphone/seq07/62-67,6.29,5-15,True,"shift 0 of [0, 2]",247,93,shape,1.1800779555957805,6.119098622253545,6.119098622253545,0.5799781498534085,0.518
+co3d,cellphone,co3d/cellphone/seq07/92-95,9.49,5-15,True,"shift 0 of [0, 2]",180,79,shape,1.9220344756781824,6.192526762609143,6.192526762609143,1.939930116641416,0.712
+co3d,cellphone,co3d/cellphone/seq07/135-144,15.52,15-30,True,"shift 0 of [0, 2]",178,149,shape,1.794851861404028,8.871126059470122,8.871126059470122,1.4215696454640774,0.885
+co3d,cellphone,co3d/cellphone/seq07/142-151,19.02,15-30,True,"shift 0 of [0, 2]",86,39,shape,2.0420226212368138,2.806495487434207,2.806495487434207,1.2939700459429893,0.685
+co3d,cellphone,co3d/cellphone/seq07/175-191,22.49,15-30,False,outline is not a quadrilateral (IoU 0.63),0,0,shape,inf,inf,inf,nan,0.189
+co3d,cellphone,co3d/cellphone/seq07/177-186,20.81,15-30,False,outline is not a quadrilateral (IoU 0.73),0,0,shape,inf,inf,inf,nan,0.362
+co3d,cellphone,co3d/cellphone/seq07/139-153,18.86,15-30,True,"shift 0 of [0, 2]",114,44,shape,1.7732913467239582,1.8831728549588536,1.8831728549588536,0.6446685303313596,0.696
+co3d,cellphone,co3d/cellphone/seq07/161-191,43.11,30-60,False,outline is not a rectangle in 3D (corners 17 deg off square),0,0,shape,inf,inf,inf,nan,0.309
+co3d,cellphone,co3d/cellphone/seq07/171-196,43.84,30-60,False,outline is not a quadrilateral (IoU 0.74),0,0,shape,inf,inf,inf,nan,0.322
+co3d,cellphone,co3d/cellphone/seq07/111-132,38.07,30-60,True,"shift 3 of [1, 3]",206,43,shape,4.003354948771797,1.934305221747486,4.003354948771797,0.8390281572019844,0.637
+co3d,cellphone,co3d/cellphone/seq07/151-183,52.05,30-60,True,"shift 3 of [0, 1, 2, 3]",115,27,shape,6.4857240891213195,8.34840098001111,8.34840098001111,4.702715387854218,0.483
+co3d,cellphone,co3d/cellphone/seq07/171-201,49.98,30-60,False,outline is not a quadrilateral (IoU 0.74),0,0,shape,inf,inf,inf,nan,0.344
+co3d,cellphone,co3d/cellphone/seq08/179-193,6.52,5-15,False,outline is not a rectangle in 3D (corners 20 deg off square),0,0,shape,inf,inf,inf,nan,1.599
+co3d,cellphone,co3d/cellphone/seq08/8-14,10.26,5-15,False,outline is not a rectangle in 3D (corners 17 deg off square),0,0,shape,inf,inf,inf,nan,0.585
+co3d,cellphone,co3d/cellphone/seq08/169-175,9.76,5-15,False,outline is not a rectangle in 3D (corners 41 deg off square),0,0,shape,inf,inf,inf,nan,0.763
+co3d,cellphone,co3d/cellphone/seq08/58-66,10.49,5-15,True,"shift 0 of [0, 2]",352,228,shape,8.145235676455991,148.7251388278551,148.7251388278551,11.012271350934741,1.216
+co3d,cellphone,co3d/cellphone/seq08/178-185,6.07,5-15,False,outline is not a rectangle in 3D (corners 22 deg off square),0,0,shape,inf,inf,inf,nan,1.182
+co3d,cellphone,co3d/cellphone/seq08/41-53,29.96,15-30,True,"shift 2 of [0, 2]",328,27,shape,6.255096538028342,19.18363714519509,19.18363714519509,9.597026999120674,0.878
+co3d,cellphone,co3d/cellphone/seq08/51-65,21.31,15-30,True,"shift 0 of [0, 2]",311,257,shape,5.202517074387827,32.923912322213106,32.923912322213106,15.65741628385011,1.563
+co3d,cellphone,co3d/cellphone/seq08/16-26,21.8,15-30,False,outline is not a quadrilateral (IoU 0.55),0,0,shape,inf,inf,inf,nan,0.461
+co3d,cellphone,co3d/cellphone/seq08/71-82,21.06,15-30,True,"shift 0 of [0, 2]",318,293,shape,3.621896094057797,69.45164384106843,69.45164384106843,7.128662001508353,1.266
+co3d,cellphone,co3d/cellphone/seq08/147-155,18.14,15-30,True,"shift 0 of [0, 2]",417,117,shape,7.449978967677589,29.84804607669983,29.84804607669983,4.19257988202419,0.663
+co3d,cellphone,co3d/cellphone/seq08/26-183,55.08,30-60,False,outline is not a quadrilateral (IoU 0.55),0,0,shape,inf,inf,inf,nan,0.564
+co3d,cellphone,co3d/cellphone/seq08/79-95,31.9,30-60,False,outline is not a rectangle in 3D (corners 20 deg off square),0,0,shape,inf,inf,inf,nan,0.711
+co3d,cellphone,co3d/cellphone/seq08/155-200,48.37,30-60,True,"shift 3 of [1, 3]",130,7,shape,16.929655753048973,29.057522003676052,29.057522003676052,1.7368880590632374,1.091
+co3d,cellphone,co3d/cellphone/seq08/161-185,37.43,30-60,False,outline is not a rectangle in 3D (corners 22 deg off square),0,0,shape,inf,inf,inf,nan,0.91
+co3d,cellphone,co3d/cellphone/seq08/54-78,41.24,30-60,True,"shift 0 of [0, 2]",120,0,shape,16.13225813098554,41.356854872101955,41.356854872101955,10.078034280216517,1.327
+co3d,cellphone,co3d/cellphone/seq09/15-22,13.24,5-15,True,"shift 0 of [0, 2]",113,13,shape,3.71279141262275,18.710372829179036,18.710372829179036,0.8980404597914146,0.715
+co3d,cellphone,co3d/cellphone/seq09/4-11,8.18,5-15,False,outline is not a rectangle in 3D (corners 25 deg off square),0,0,shape,inf,inf,inf,nan,0.506
+co3d,cellphone,co3d/cellphone/seq09/94-101,13.67,5-15,True,"shift 3 of [1, 3]",115,22,shape,2.1112891942665155,11.502255252709856,11.502255252709856,1.260725542272914,0.759
+co3d,cellphone,co3d/cellphone/seq09/135-138,5.9,5-15,True,"shift 0 of [0, 2]",224,135,shape,1.339544209618618,6.950288428674984,6.950288428674984,1.2607227882159353,0.609
+co3d,cellphone,co3d/cellphone/seq09/108-113,11.6,5-15,True,"shift 0 of [0, 2]",161,46,shape,4.037219279470361,14.565915228249523,14.565915228249523,1.50959022408201,0.941
+co3d,cellphone,co3d/cellphone/seq09/123-134,24.93,15-30,True,"shift 3 of [0, 1, 2, 3]",54,1,shape,96.33557137679244,120.14890713083447,120.14890713083447,21.600563385071748,0.595
+co3d,cellphone,co3d/cellphone/seq09/29-36,20.5,15-30,True,"shift 0 of [0, 2]",112,58,shape,4.849441795104411,2.105386167961862,4.849441795104411,0.7924783685077916,1.211
+co3d,cellphone,co3d/cellphone/seq09/8-156,23.36,15-30,True,"shift 0 of [0, 2]",130,26,shape,3.14850102096225,7.406889800912835,7.406889800912835,0.7859416118424606,0.541
+co3d,cellphone,co3d/cellphone/seq09/2-21,26.17,15-30,True,"shift 0 of [0, 1, 2, 3]",51,4,shape,25.403325232581768,42.623365877447306,42.623365877447306,4.848902129703434,0.637
+co3d,cellphone,co3d/cellphone/seq09/111-121,22.9,15-30,True,"shift 0 of [0, 2]",134,42,shape,7.593913911846093,16.172423983579748,16.172423983579748,3.62600413026445,0.842
+co3d,cellphone,co3d/cellphone/seq09/141-163,54.49,30-60,True,"shift 3 of [1, 3]",97,17,shape,3.9475430663361597,0.6449682461511708,3.9475430663361597,0.581467423618208,0.527
+co3d,cellphone,co3d/cellphone/seq09/81-104,49.75,30-60,True,"shift 3 of [1, 3]",62,0,shape,7.474468622225172,9.001491599995882,9.001491599995882,1.964142615009234,0.878
+co3d,cellphone,co3d/cellphone/seq09/7-151,32.87,30-60,False,outline is not a quadrilateral (IoU 0.71),0,0,shape,inf,inf,inf,nan,0.346
+co3d,cellphone,co3d/cellphone/seq09/55-200,34.75,30-60,True,"shift 1 of [1, 3]",51,1,shape,3.645786978991864,4.1045537665328995,4.1045537665328995,1.4023323340895524,1.02
+co3d,cellphone,co3d/cellphone/seq09/27-41,37.47,30-60,True,"shift 1 of [1, 3]",100,30,shape,1.5386272192542965,3.739215419654652,3.739215419654652,3.1649282096943985,0.962
+co3d,cellphone,co3d/cellphone/seq10/123-126,7.26,5-15,True,"shift 0 of [0, 1, 2, 3]",379,27,shape,21.97742188004792,83.04928939437765,83.04928939437765,11.811732970003225,0.272
+co3d,cellphone,co3d/cellphone/seq10/188-199,9.6,5-15,True,"shift 0 of [0, 2]",231,49,shape,3.6781546379331718,37.802897360937784,37.802897360937784,3.233844302948698,0.479
+co3d,cellphone,co3d/cellphone/seq10/92-96,13.17,5-15,True,"shift 0 of [0, 2]",645,348,shape,5.426842755548635,15.579572425836487,15.579572425836487,1.578412229790634,0.559
+co3d,cellphone,co3d/cellphone/seq10/180-200,6.94,5-15,True,"shift 0 of [0, 2]",224,50,shape,17.933619037592194,21.372730134000946,21.372730134000946,2.758849240381762,0.434
+co3d,cellphone,co3d/cellphone/seq10/28-33,11.63,5-15,True,"shift 0 of [0, 2]",154,111,shape,17.83269531070208,123.63186336857316,123.63186336857316,2.8042134728008374,0.231
+co3d,cellphone,co3d/cellphone/seq10/12-196,23.95,15-30,True,"shift 0 of [0, 2]",130,42,shape,20.834378661438773,42.13071402615659,42.13071402615659,6.946991348172521,0.375
+co3d,cellphone,co3d/cellphone/seq10/157-166,23.5,15-30,True,"shift 0 of [0, 2]",189,26,shape,2.921148314925832,8.547965976319835,8.547965976319835,3.096031978659207,0.317
+co3d,cellphone,co3d/cellphone/seq10/7-191,25.8,15-30,True,"shift 3 of [1, 3]",121,39,shape,14.3631148831694,3.3714111452886706,14.3631148831694,4.350509970643894,0.572
+co3d,cellphone,co3d/cellphone/seq10/13-33,28.56,15-30,True,"shift 3 of [1, 3]",101,43,shape,30.31951453486975,133.12887301350605,133.12887301350605,10.702513439859114,0.24
+co3d,cellphone,co3d/cellphone/seq10/12-177,27.88,15-30,True,"shift 0 of [0, 2]",122,16,shape,29.112553309035864,19.063617270957874,29.112553309035864,5.929611723396967,0.345
+co3d,cellphone,co3d/cellphone/seq10/111-124,32.78,30-60,True,"shift 1 of [1, 3]",408,62,shape,13.670748920446016,24.970759031904556,24.970759031904556,6.592385850655429,0.331
+co3d,cellphone,co3d/cellphone/seq10/125-139,34.02,30-60,False,outline is not a quadrilateral (IoU 0.77),0,0,shape,inf,inf,inf,nan,0.132
+co3d,cellphone,co3d/cellphone/seq10/139-159,48.71,30-60,False,outline is not a quadrilateral (IoU 0.77),0,0,shape,inf,inf,inf,nan,0.243
+co3d,cellphone,co3d/cellphone/seq10/53-181,58.34,30-60,True,"shift 3 of [0, 1, 2, 3]",82,1,shape,99.64693598046894,102.10890639672375,102.10890639672375,13.888606887964357,0.532
+co3d,cellphone,co3d/cellphone/seq10/60-81,54.5,30-60,True,"shift 0 of [0, 1, 2, 3]",118,1,shape,179.3194926591903,96.7176772083192,179.3194926591903,74.96037352966721,0.294
+co3d,handbag,co3d/handbag/seq01/77-80,7.74,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.233
+co3d,handbag,co3d/handbag/seq01/63-65,5.97,5-15,False,outline is not a quadrilateral (IoU 0.61),0,0,shape,inf,inf,inf,nan,0.579
+co3d,handbag,co3d/handbag/seq01/170-186,11.69,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.048
+co3d,handbag,co3d/handbag/seq01/90-93,8.6,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.003
+co3d,handbag,co3d/handbag/seq01/170-175,5.54,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.001
+co3d,handbag,co3d/handbag/seq01/8-165,20.06,15-30,False,outline is not a rectangle in 3D (corners 73 deg off square),0,0,shape,inf,inf,inf,nan,0.537
+co3d,handbag,co3d/handbag/seq01/102-110,17.08,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.001
+co3d,handbag,co3d/handbag/seq01/90-101,26.43,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.211
+co3d,handbag,co3d/handbag/seq01/19-27,15.75,15-30,True,"shift 0 of [0, 2]",657,54,shape,9.874509078839118,38.33603042174711,38.33603042174711,2.7402209851679658,0.685
+co3d,handbag,co3d/handbag/seq01/39-54,26.34,15-30,False,outline is not a quadrilateral (IoU 0.36),0,0,shape,inf,inf,inf,nan,0.148
+co3d,handbag,co3d/handbag/seq01/152-173,32.89,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.296
+co3d,handbag,co3d/handbag/seq01/41-69,58.88,30-60,False,outline is not a quadrilateral (IoU 0.46),0,0,shape,inf,inf,inf,nan,0.244
+co3d,handbag,co3d/handbag/seq01/148-201,47.08,30-60,False,outline is not a rectangle in 3D (corners 66 deg off square),0,0,shape,inf,inf,inf,nan,0.265
+co3d,handbag,co3d/handbag/seq01/5-151,40.82,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.025
+co3d,handbag,co3d/handbag/seq01/140-170,53.66,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.105
+co3d,handbag,co3d/handbag/seq02/5-9,5.96,5-15,True,"shift 0 of [0, 2]",633,194,shape,8.643026106396112,166.18727033692625,166.18727033692625,12.046834515108415,1.369
+co3d,handbag,co3d/handbag/seq02/158-163,13.58,5-15,False,outline is not a quadrilateral (IoU 0.80),0,0,shape,inf,inf,inf,nan,0.872
+co3d,handbag,co3d/handbag/seq02/1-181,12.29,5-15,True,"shift 0 of [0, 2]",459,21,shape,32.13123880399656,114.93799563161645,114.93799563161645,11.840036263866748,1.6
+co3d,handbag,co3d/handbag/seq02/167-171,13.76,5-15,True,"shift 0 of [0, 2]",447,3,shape,65.45741649851325,123.54183068685316,123.54183068685316,27.10237986095052,1.228
+co3d,handbag,co3d/handbag/seq02/55-58,7.31,5-15,False,outline is not a quadrilateral (IoU 0.77),0,0,shape,inf,inf,inf,nan,0.569
+co3d,handbag,co3d/handbag/seq02/15-193,23.93,15-30,False,outline is not a quadrilateral (IoU 0.72),0,0,shape,inf,inf,inf,nan,0.958
+co3d,handbag,co3d/handbag/seq02/99-108,17.45,15-30,False,outline is not a rectangle in 3D (corners 19 deg off square),0,0,shape,inf,inf,inf,nan,0.545
+co3d,handbag,co3d/handbag/seq02/167-195,27.08,15-30,True,"shift 0 of [0, 2]",466,3,shape,33.989514974715625,110.52198072241659,110.52198072241659,27.418612612056855,1.728
+co3d,handbag,co3d/handbag/seq02/68-74,17.6,15-30,False,outline is not a quadrilateral (IoU 0.68),0,0,shape,inf,inf,inf,nan,0.188
+co3d,handbag,co3d/handbag/seq02/16-189,25.48,15-30,False,outline is not a quadrilateral (IoU 0.83),0,0,shape,inf,inf,inf,nan,1.429
+co3d,handbag,co3d/handbag/seq02/7-167,41.51,30-60,True,"shift 0 of [0, 2]",243,3,shape,80.50703141170989,115.97209643287039,115.97209643287039,27.549047547300958,1.139
+co3d,handbag,co3d/handbag/seq02/15-172,32.33,30-60,False,outline is not a quadrilateral (IoU 0.68),0,0,shape,inf,inf,inf,nan,1.069
+co3d,handbag,co3d/handbag/seq02/37-67,55.89,30-60,False,outline is not a quadrilateral (IoU 0.27),0,0,shape,inf,inf,inf,nan,0.235
+co3d,handbag,co3d/handbag/seq02/5-33,43.48,30-60,False,outline is not a quadrilateral (IoU 0.64),0,0,shape,inf,inf,inf,nan,0.766
+co3d,handbag,co3d/handbag/seq02/149-168,46.14,30-60,False,outline is not a quadrilateral (IoU 0.54),0,0,shape,inf,inf,inf,nan,0.551
+co3d,handbag,co3d/handbag/seq03/44-48,12.25,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,1.101
+co3d,handbag,co3d/handbag/seq03/43-46,12.88,5-15,False,outline is not a rectangle in 3D (corners 19 deg off square),0,0,shape,inf,inf,inf,nan,1.933
+co3d,handbag,co3d/handbag/seq03/105-110,6.15,5-15,False,outline is not a quadrilateral (IoU 0.79),0,0,shape,inf,inf,inf,nan,0.396
+co3d,handbag,co3d/handbag/seq03/21-184,13.06,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,1.038
+co3d,handbag,co3d/handbag/seq03/191-196,5.63,5-15,True,"shift 0 of [0, 1, 2, 3]",659,18,shape,11.95245360790006,102.03490437887525,102.03490437887525,8.09803322317634,2.166
+co3d,handbag,co3d/handbag/seq03/94-101,18.01,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.01
+co3d,handbag,co3d/handbag/seq03/161-170,20.08,15-30,False,outline is not a quadrilateral (IoU 0.82),0,0,shape,inf,inf,inf,nan,1.452
+co3d,handbag,co3d/handbag/seq03/59-73,22.54,15-30,False,outline is not a rectangle in 3D (corners 40 deg off square),0,0,shape,inf,inf,inf,nan,1.151
+co3d,handbag,co3d/handbag/seq03/156-161,18.85,15-30,False,outline is not a quadrilateral (IoU 0.72),0,0,shape,inf,inf,inf,nan,0.991
+co3d,handbag,co3d/handbag/seq03/24-186,16.56,15-30,False,outline is not a rectangle in 3D (corners 22 deg off square),0,0,shape,inf,inf,inf,nan,2.453
+co3d,handbag,co3d/handbag/seq03/39-59,47.77,30-60,False,outline is not a rectangle in 3D (corners 37 deg off square),0,0,shape,inf,inf,inf,nan,1.692
+co3d,handbag,co3d/handbag/seq03/9-169,39.84,30-60,False,outline is not a quadrilateral (IoU 0.84),0,0,shape,inf,inf,inf,nan,1.977
+co3d,handbag,co3d/handbag/seq03/117-132,34.78,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.754
+co3d,handbag,co3d/handbag/seq03/175-201,36.16,30-60,False,outline is not a quadrilateral (IoU 0.78),0,0,shape,inf,inf,inf,nan,2.212
+co3d,handbag,co3d/handbag/seq03/81-105,56.84,30-60,False,outline is not a quadrilateral (IoU 0.79),0,0,shape,inf,inf,inf,nan,0.982
+co3d,handbag,co3d/handbag/seq04/139-141,10.22,5-15,False,outline is not a rectangle in 3D (corners 30 deg off square),0,0,shape,inf,inf,inf,nan,0.742
+co3d,handbag,co3d/handbag/seq04/54-58,11.47,5-15,False,outline is not a quadrilateral (IoU 0.82),0,0,shape,inf,inf,inf,nan,0.226
+co3d,handbag,co3d/handbag/seq04/184-185,5.43,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.004
+co3d,handbag,co3d/handbag/seq04/91-97,11.61,5-15,False,outline is not a quadrilateral (IoU 0.84),0,0,shape,inf,inf,inf,nan,0.707
+co3d,handbag,co3d/handbag/seq04/113-126,10.98,5-15,False,outline is not a quadrilateral (IoU 0.85),0,0,shape,inf,inf,inf,nan,0.942
+co3d,handbag,co3d/handbag/seq04/147-161,29.91,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.088
+co3d,handbag,co3d/handbag/seq04/20-193,18.43,15-30,False,outline is not a quadrilateral (IoU 0.54),0,0,shape,inf,inf,inf,nan,0.537
+co3d,handbag,co3d/handbag/seq04/190-197,15.72,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.615
+co3d,handbag,co3d/handbag/seq04/72-86,28.98,15-30,False,outline is not a quadrilateral (IoU 0.80),0,0,shape,inf,inf,inf,nan,0.451
+co3d,handbag,co3d/handbag/seq04/90-98,18.3,15-30,False,outline is not a quadrilateral (IoU 0.76),0,0,shape,inf,inf,inf,nan,0.657
+co3d,handbag,co3d/handbag/seq04/102-135,50.77,30-60,False,outline is not a quadrilateral (IoU 0.52),0,0,shape,inf,inf,inf,nan,0.847
+co3d,handbag,co3d/handbag/seq04/23-42,34.5,30-60,False,outline is not a quadrilateral (IoU 0.77),0,0,shape,inf,inf,inf,nan,0.365
+co3d,handbag,co3d/handbag/seq04/135-152,45.92,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.596
+co3d,handbag,co3d/handbag/seq04/97-133,52.15,30-60,False,outline is not a quadrilateral (IoU 0.84),0,0,shape,inf,inf,inf,nan,1.204
+co3d,handbag,co3d/handbag/seq04/47-61,30.6,30-60,False,outline is not a quadrilateral (IoU 0.77),0,0,shape,inf,inf,inf,nan,0.187
+co3d,handbag,co3d/handbag/seq05/128-134,9.97,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.011
+co3d,handbag,co3d/handbag/seq05/106-120,11.91,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.012
+co3d,handbag,co3d/handbag/seq05/72-78,14.94,5-15,False,outline is not a quadrilateral (IoU 0.82),0,0,shape,inf,inf,inf,nan,0.513
+co3d,handbag,co3d/handbag/seq05/16-193,9.51,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.011
+co3d,handbag,co3d/handbag/seq05/115-121,6.64,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.015
+co3d,handbag,co3d/handbag/seq05/3-23,21.97,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,1.533
+co3d,handbag,co3d/handbag/seq05/73-80,22.09,15-30,False,outline is not a quadrilateral (IoU 0.08),0,0,shape,inf,inf,inf,nan,0.682
+co3d,handbag,co3d/handbag/seq05/58-64,15.87,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.477
+co3d,handbag,co3d/handbag/seq05/6-24,23.8,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.017
+co3d,handbag,co3d/handbag/seq05/183-198,22.51,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.012
+co3d,handbag,co3d/handbag/seq05/173-188,38.13,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.027
+co3d,handbag,co3d/handbag/seq05/74-99,57.7,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.258
+co3d,handbag,co3d/handbag/seq05/115-141,50.97,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.011
+co3d,handbag,co3d/handbag/seq05/86-102,31.45,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.511
+co3d,handbag,co3d/handbag/seq05/175-189,35.04,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.013
+co3d,handbag,co3d/handbag/seq06/130-137,12.87,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.26
+co3d,handbag,co3d/handbag/seq06/108-112,9.55,5-15,False,outline is not a quadrilateral (IoU 0.78),0,0,shape,inf,inf,inf,nan,1.205
+co3d,handbag,co3d/handbag/seq06/128-131,6.94,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.655
+co3d,handbag,co3d/handbag/seq06/15-23,13.59,5-15,False,outline is not a quadrilateral (IoU 0.67),0,0,shape,inf,inf,inf,nan,0.777
+co3d,handbag,co3d/handbag/seq06/108-111,7.42,5-15,False,outline is not a quadrilateral (IoU 0.78),0,0,shape,inf,inf,inf,nan,1.043
+co3d,handbag,co3d/handbag/seq06/82-90,17.24,15-30,False,outline is not a quadrilateral (IoU 0.74),0,0,shape,inf,inf,inf,nan,1.107
+co3d,handbag,co3d/handbag/seq06/93-104,18.98,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.949
+co3d,handbag,co3d/handbag/seq06/8-191,16.54,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.423
+co3d,handbag,co3d/handbag/seq06/7-182,25.91,15-30,False,outline is not a quadrilateral (IoU 0.75),0,0,shape,inf,inf,inf,nan,0.732
+co3d,handbag,co3d/handbag/seq06/81-93,25.62,15-30,False,outline is not a quadrilateral (IoU 0.74),0,0,shape,inf,inf,inf,nan,0.991
+co3d,handbag,co3d/handbag/seq06/121-139,33.2,30-60,False,outline is not a quadrilateral (IoU 0.80),0,0,shape,inf,inf,inf,nan,0.772
+co3d,handbag,co3d/handbag/seq06/8-28,35.73,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.367
+co3d,handbag,co3d/handbag/seq06/117-147,57.8,30-60,False,outline is not a quadrilateral (IoU 0.85),0,0,shape,inf,inf,inf,nan,0.431
+co3d,handbag,co3d/handbag/seq06/45-72,48.96,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.506
+co3d,handbag,co3d/handbag/seq06/161-197,57.13,30-60,False,outline is not a quadrilateral (IoU 0.75),0,0,shape,inf,inf,inf,nan,0.525
+co3d,handbag,co3d/handbag/seq07/83-91,12.91,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.053
+co3d,handbag,co3d/handbag/seq07/166-173,12.95,5-15,True,"shift 0 of [0, 2]",499,92,shape,6.127876429369624,25.120217275542437,25.120217275542437,6.08697683292331,0.54
+co3d,handbag,co3d/handbag/seq07/38-42,7.74,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.096
+co3d,handbag,co3d/handbag/seq07/191-194,5.52,5-15,False,outline is not a rectangle in 3D (corners 26 deg off square),0,0,shape,inf,inf,inf,nan,0.18
+co3d,handbag,co3d/handbag/seq07/106-111,10.77,5-15,True,"shift 0 of [0, 2]",693,255,shape,5.896048267688402,23.223151201476192,23.223151201476192,1.3683597739036426,0.426
+co3d,handbag,co3d/handbag/seq07/11-185,20.47,15-30,True,"shift 0 of [0, 1, 2, 3]",292,59,shape,6.558012624050237,9.32808458390025,9.32808458390025,4.783179488129123,0.436
+co3d,handbag,co3d/handbag/seq07/24-179,29.76,15-30,False,outline is not a quadrilateral (IoU 0.83),0,0,shape,inf,inf,inf,nan,0.298
+co3d,handbag,co3d/handbag/seq07/61-73,25.71,15-30,False,outline is not a quadrilateral (IoU 0.57),0,0,shape,inf,inf,inf,nan,0.171
+co3d,handbag,co3d/handbag/seq07/7-32,22.2,15-30,True,"shift 0 of [0, 1, 2, 3]",508,172,shape,11.206764505391433,40.67205972290165,40.67205972290165,6.9049849836118,0.298
+co3d,handbag,co3d/handbag/seq07/163-176,27.26,15-30,True,"shift 0 of [0, 2]",344,44,shape,7.9979335995971566,12.712032191478494,12.712032191478494,5.788400413131558,0.416
+co3d,handbag,co3d/handbag/seq07/54-81,59.16,30-60,False,outline is not a quadrilateral (IoU 0.84),0,0,shape,inf,inf,inf,nan,0.138
+co3d,handbag,co3d/handbag/seq07/4-163,53.67,30-60,True,"shift 1 of [0, 1, 2, 3]",239,5,shape,9.377061336518224,0.23427667214975248,9.377061336518224,5.60642215708692,0.363
+co3d,handbag,co3d/handbag/seq07/180-195,36.69,30-60,False,outline is not a quadrilateral (IoU 0.80),0,0,shape,inf,inf,inf,nan,0.329
+co3d,handbag,co3d/handbag/seq07/77-98,39.8,30-60,True,"shift 0 of [0, 2]",244,1,shape,9.621334134204771,11.744282957795344,11.744282957795344,3.520415510975867,0.604
+co3d,handbag,co3d/handbag/seq07/86-110,45.35,30-60,True,"shift 2 of [0, 1, 2, 3]",259,1,shape,156.7805530491138,114.00903873379407,156.7805530491138,10.35517988682127,0.596
+co3d,handbag,co3d/handbag/seq08/29-35,7.87,5-15,False,outline is not a quadrilateral (IoU 0.69),0,0,shape,inf,inf,inf,nan,0.584
+co3d,handbag,co3d/handbag/seq08/5-177,12.01,5-15,True,"shift 3 of [1, 3]",1043,789,shape,42.46049299507395,48.907885145369384,48.907885145369384,10.453095299868734,1.458
+co3d,handbag,co3d/handbag/seq08/74-82,13.09,5-15,False,outline is not a rectangle in 3D (corners 23 deg off square),0,0,shape,inf,inf,inf,nan,1.387
+co3d,handbag,co3d/handbag/seq08/152-160,13.98,5-15,False,outline is not a rectangle in 3D (corners 25 deg off square),0,0,shape,inf,inf,inf,nan,1.096
+co3d,handbag,co3d/handbag/seq08/1-200,6.16,5-15,True,"shift 3 of [1, 3]",1085,373,shape,17.12109037324953,24.92381251334191,24.92381251334191,11.017228605942885,1.188
+co3d,handbag,co3d/handbag/seq08/17-197,28.7,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.426
+co3d,handbag,co3d/handbag/seq08/8-165,27.33,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.473
+co3d,handbag,co3d/handbag/seq08/98-103,19.3,15-30,False,outline is not a quadrilateral (IoU 0.74),0,0,shape,inf,inf,inf,nan,0.476
+co3d,handbag,co3d/handbag/seq08/5-168,17.44,15-30,True,"shift 3 of [0, 1, 2, 3]",943,301,shape,22.31425660791516,19.870657579493354,22.31425660791516,15.54191100680944,0.941
+co3d,handbag,co3d/handbag/seq08/15-182,28.36,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.457
+co3d,handbag,co3d/handbag/seq08/158-200,35.55,30-60,False,outline is not a rectangle in 3D (corners 35 deg off square),0,0,shape,inf,inf,inf,nan,0.721
+co3d,handbag,co3d/handbag/seq08/18-35,33.1,30-60,False,outline is not a quadrilateral (IoU 0.69),0,0,shape,inf,inf,inf,nan,0.393
+co3d,handbag,co3d/handbag/seq08/64-79,32.49,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.641
+co3d,handbag,co3d/handbag/seq08/68-91,55.91,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.299
+co3d,handbag,co3d/handbag/seq08/73-89,37.42,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.762
+co3d,handbag,co3d/handbag/seq09/163-167,9.26,5-15,False,outline is not a quadrilateral (IoU 0.65),0,0,shape,inf,inf,inf,nan,0.382
+co3d,handbag,co3d/handbag/seq09/119-125,11.39,5-15,False,outline is not a quadrilateral (IoU 0.60),0,0,shape,inf,inf,inf,nan,1.065
+co3d,handbag,co3d/handbag/seq09/85-88,5.62,5-15,False,outline is not a quadrilateral (IoU 0.76),0,0,shape,inf,inf,inf,nan,0.366
+co3d,handbag,co3d/handbag/seq09/76-79,6.28,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.187
+co3d,handbag,co3d/handbag/seq09/158-163,10.07,5-15,False,outline is not a quadrilateral (IoU 0.64),0,0,shape,inf,inf,inf,nan,0.326
+co3d,handbag,co3d/handbag/seq09/7-20,16.02,15-30,False,outline is not a quadrilateral (IoU 0.71),0,0,shape,inf,inf,inf,nan,0.393
+co3d,handbag,co3d/handbag/seq09/158-168,21.43,15-30,False,outline is not a quadrilateral (IoU 0.64),0,0,shape,inf,inf,inf,nan,0.394
+co3d,handbag,co3d/handbag/seq09/93-101,16.38,15-30,False,outline is not a quadrilateral (IoU 0.44),0,0,shape,inf,inf,inf,nan,0.59
+co3d,handbag,co3d/handbag/seq09/167-182,26.85,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.227
+co3d,handbag,co3d/handbag/seq09/173-183,18.54,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.242
+co3d,handbag,co3d/handbag/seq09/11-187,45.74,30-60,False,outline is not a quadrilateral (IoU 0.70),0,0,shape,inf,inf,inf,nan,0.925
+co3d,handbag,co3d/handbag/seq09/131-150,40.49,30-60,False,outline is not a quadrilateral (IoU 0.67),0,0,shape,inf,inf,inf,nan,0.789
+co3d,handbag,co3d/handbag/seq09/176-202,37.89,30-60,False,outline is not a quadrilateral (IoU 0.50),0,0,shape,inf,inf,inf,nan,1.012
+co3d,handbag,co3d/handbag/seq09/110-137,53.81,30-60,False,outline is not a quadrilateral (IoU 0.74),0,0,shape,inf,inf,inf,nan,0.554
+co3d,handbag,co3d/handbag/seq09/37-71,50.52,30-60,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.236
+co3d,handbag,co3d/handbag/seq10/150-154,8.12,5-15,False,outline is not a quadrilateral (IoU 0.31),0,0,shape,inf,inf,inf,nan,0.234
+co3d,handbag,co3d/handbag/seq10/94-100,10.2,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.347
+co3d,handbag,co3d/handbag/seq10/4-195,5.95,5-15,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.291
+co3d,handbag,co3d/handbag/seq10/131-138,14.89,5-15,False,outline is not a quadrilateral (IoU 0.72),0,0,shape,inf,inf,inf,nan,0.267
+co3d,handbag,co3d/handbag/seq10/180-190,11.25,5-15,False,outline is not a quadrilateral (IoU 0.82),0,0,shape,inf,inf,inf,nan,0.402
+co3d,handbag,co3d/handbag/seq10/114-122,17.74,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.392
+co3d,handbag,co3d/handbag/seq10/94-104,17.46,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.002
+co3d,handbag,co3d/handbag/seq10/139-149,23.93,15-30,False,outline is not a quadrilateral (IoU 0.83),0,0,shape,inf,inf,inf,nan,0.129
+co3d,handbag,co3d/handbag/seq10/120-128,20.0,15-30,False,outline is not a quadrilateral (IoU 0.00),0,0,shape,inf,inf,inf,nan,0.231
+co3d,handbag,co3d/handbag/seq10/32-46,26.3,15-30,False,outline is not a quadrilateral (IoU 0.69),0,0,shape,inf,inf,inf,nan,0.301
+co3d,handbag,co3d/handbag/seq10/74-100,54.6,30-60,False,outline is not a rectangle in 3D (corners 21 deg off square),0,0,shape,inf,inf,inf,nan,0.623
+co3d,handbag,co3d/handbag/seq10/65-87,58.48,30-60,False,outline is not a quadrilateral (IoU 0.72),0,0,shape,inf,inf,inf,nan,0.274
+co3d,handbag,co3d/handbag/seq10/44-62,32.39,30-60,False,outline is not a quadrilateral (IoU 0.02),0,0,shape,inf,inf,inf,nan,0.287
+co3d,handbag,co3d/handbag/seq10/44-69,49.31,30-60,False,outline is not a quadrilateral (IoU 0.65),0,0,shape,inf,inf,inf,nan,0.512
+co3d,handbag,co3d/handbag/seq10/13-50,52.9,30-60,False,outline is not a quadrilateral (IoU 0.75),0,0,shape,inf,inf,inf,nan,0.33
