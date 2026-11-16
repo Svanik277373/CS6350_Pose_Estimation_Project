@@ -23,3 +23,7 @@ trimesh
 huggingface-hub>=0.22
 safetensors
 scikit-learn
+# auto_run.py: SAM 2.1 masks and YOLO-World detection (weights download to models/ on first use)
+ultralytics
+# auto_run.py --focal-method geocalib (single-image focal length estimation)
+geocalib @ git+https://github.com/cvg/GeoCalib

@@ -40,12 +40,87 @@ metres. `--save` draws the inlier matches and `--json` writes everything to a fi
 
 **Object only.** Give the object's region in each image with `--mask1/--mask2` (any
 binary or alpha PNG) or `--box1/--box2`. Then only points on the object are matched,
-which is the task. Without a region the whole image is used ("with surroundings"). That
-is a different problem: it only gives the object's pose if the object stays still
-relative to the background.
+which is the task.
+
+Without a region the whole image is used ("with surroundings"). That is a different
+problem: it only gives the object's pose if the object stays still relative to the
+background.
+
+### Photos with nothing known: `auto_run.py`
+
+For photos you are handed without calibration or annotations (for example in a live demo),
+`auto_run.py` works out the focal length and the object region itself, then runs the same
+pose pipeline. `run.py` and the benchmark code are unchanged; the new parts are in new
+modules.
+
+```
+venv\Scripts\python.exe auto_run.py a.jpg b.jpg --save out.jpg                         (fully automatic)
+venv\Scripts\python.exe auto_run.py a.jpg b.jpg --method accurate --save out.jpg       (SIFT-based cascade; better on large in-plane turns)
+venv\Scripts\python.exe auto_run.py a.jpg b.jpg --object "wallet" --save out.jpg       (let the detector try first)
+venv\Scripts\python.exe auto_run.py a.jpg b.jpg --select --save out.jpg                (draw the boxes with the mouse)
+```
+
+- **Focal length** ([src/pipeline/focal.py](src/pipeline/focal.py)), tried in this order:
+  1. `--K` or `--focal`, if given;
+  2. EXIF (messaging apps usually strip it);
+  3. an estimate from MASt3R's 3D point map;
+  4. a 70° field-of-view guess, flagged in the verdict.
+
+  `scripts\estimate_focal.py` runs only this step, and can compare the estimate with a
+  known value.
+- **Object region**, fully automatic by default ([src/pipeline/region.py](src/pipeline/region.py)):
+  - SAM 2.1-tiny, prompted with a grid of points, splits each image into candidate
+    segments; segments touching the border or too small are dropped.
+  - **Motion rule:** XFeat+LightGlue matches the whole images. The background's matches give
+    a fundamental matrix (MAGSAC); a segment whose matches are mostly outliers to it moved
+    differently from the background, so it is the object.
+  - **Change rule:** for objects with few matches (a rotated key or coin), the segment's
+    surroundings are warped into image 2 with a local homography. A segment whose content
+    changed while its surrounding ring stayed the same is the object.
+  - The same object in image 2 is found by voting with the matches. If no object is
+    confirmed, the whole images are used and the output says so.
+  - `--object "name"` lets the open-vocabulary detector YOLO-World
+    ([src/pipeline/detect.py](src/pipeline/detect.py)) try first; `--select` lets you draw
+    the boxes with the mouse; `--box1/--box2` or `--mask1/--mask2` give the region directly.
+- **Focal-length method:** `--focal-method mast3r` (default) or `geocalib` (single-image
+  calibration network).
+- **Object mask** ([src/pipeline/segment.py](src/pipeline/segment.py)): a box always
+  contains some background. On a dark, low-texture object, such as a black wallet on a
+  steel table, the background can hold most of the texture, so the pose ends up
+  describing the table. SAM 2.1-tiny, prompted with the box, cuts it down to the object's
+  outline; GrabCut is the classical fallback. With `--save out.jpg`, both masks are drawn
+  to `out_mask1.jpg` and `out_mask2.jpg`, so you can check them before trusting the pose.
+- **Verdict:** each answer is labelled RELIABLE, UNCERTAIN or NO RESULT, based on the
+  inliers, the reprojection error, the size of the rotation and where the focal length
+  came from.
+- **Defaults:** the method is `mast3r`. The weights for SAM 2.1 (78 MB) and YOLO-World
+  (about 25 MB) download to `models/` on first use.
+- **Credit:** segmenting the object before matching follows the idea of another CS6350
+  TPA-12 report (Anirudh and Harshavardhan), which used FastSAM. SAM 2.1 is used here
+  because its box prompt conditions the mask directly.
 
 MASt3R needs its code in `external/mast3r` and the weights in `models/mast3r`. These
 folders are not in the repository; see section 6.
+
+**Blind evaluation** ([scripts/blind_eval.py](scripts/blind_eval.py), results in
+[results/blind/](results/blind/)): on random test pairs with MASt3R for the pose, AUC@10 with
+the dataset K and region / estimated focal / estimated focal and automatic region is
+76.4 / 71.7 / 71.7 on TUM, 84.8 / 80.3 / 80.4 on Objectron and 67.9 / 61.0 / 74.8 on CO3D.
+The focal estimate is a median 3–4% off on these datasets. These runs predate the change rule.
+
+**Own photos** (iPhone, no EXIF; folders `coin_test/`, `Key_test/`, `testing_sample_wallet/`,
+`Testing_sample_mouse/`, `testing_sample_calculator/`, `Testing_sample_nailcutter/`):
+
+| object | turned by | `accurate` | `mast3r` |
+|---|---|---|---|
+| coin | ≈ 45° | **47.2°** | 18.1° |
+| key | ≈ 55–60° | **50°** | 16.8° |
+| wallet | ≈ 45° | – | **40.6°** |
+| mouse | ≈ 60° | 7° | 13° (region not found: both measure the camera's motion) |
+
+MASt3R underestimates large in-plane turns of flat objects, while the rotation-invariant SIFT
+inside `accurate` follows them. Both answers have sub-pixel reprojection error, so check the
+rotation axis: a turn flat on a table must be about the table's normal.
 
 ### Live webcam mode
 
@@ -325,10 +400,27 @@ reprojection error alone therefore does not prove a good calibration.
 
 ---
 
-## 6. Repository layout
+## 6. Report and slides
+
+[report/](report/) holds the course report and the presentation:
+
+| file | what it is |
+|---|---|
+| [report/main.pdf](report/main.pdf) | the report (problem, pipeline, datasets and preprocessing, models, presets, results, limitations) |
+| [report/main.tex](report/main.tex) | its LaTeX source (`pdflatex main.tex` twice, inside `report/`) |
+| [report/slides.pptx](report/slides.pptx) | the presentation, 16 slides with speaker notes |
+| [report/figures/](report/figures/) | pipeline and cascade diagrams, result plots, match images |
+| [report/figures.py](report/figures.py) | redraws the pipeline and cascade diagrams |
+| [report/slides.js](report/slides.js) | rebuilds the slides (Node.js + pptxgenjs) |
+
+---
+
+## 7. Repository layout
 
 ```
 run.py                   two images -> pose (command line)
+auto_run.py              two images, nothing known -> focal, object region, pose
+report/                  report (PDF + LaTeX), slides, figures
 src/loaders/             dataset readers: TUM, Objectron, CO3D, MVImgNet -> frame pairs with ground truth
 src/pipeline/            matching, geometry, GRIC, refinement, cascade, shape, scale, metrics
 scripts/                 downloads, calibration, evaluation, tuning, experiments, report
@@ -351,7 +443,8 @@ venv\Scripts\python.exe scripts\report.py
 ```
 
 The learned matchers' weights (XFeat, LightGlue, ALIKED, DISK, LoFTR) download
-automatically through kornia and torch.hub. For MASt3R:
+automatically through kornia and torch.hub, and SAM 2.1's and YOLO-World's (for `auto_run.py`)
+through ultralytics. For MASt3R:
 * clone https://github.com/naver/mast3r into `external/mast3r`, with its submodules;
 * put the checkpoint `MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric` in
   `models/mast3r/`.

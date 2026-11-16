@@ -34,3 +34,15 @@ desktop.ini
 
 # Partial downloads
 *.part
+
+# CLIP weights pulled in by YOLO-World (338 MB; downloaded on first use)
+weights/
+
+# Reference report from another group (not ours to publish)
+CS6350.pdf
+
+# LaTeX build files
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
