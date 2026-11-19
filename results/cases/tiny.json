@@ -1,0 +1,66 @@
+{
+  "label": "tiny",
+  "pair": "tum/flat_near/598-599",
+  "angle_deg": 0.27747847225065764,
+  "focal_source": "estimated by MASt3R (per image 420 / 411; same size -> same camera assumed, averaged)",
+  "f_est": 415.6570243835449,
+  "f_true": 535.4,
+  "region_mode": "scene",
+  "region_note": "everything moved together (static scene, moving camera): whole images used -- the result is the camera's motion relative to the scene",
+  "ok": true,
+  "model": "H",
+  "inliers": 2076,
+  "matches": 2089,
+  "reproj_px": 0.19031860131331443,
+  "rot_err": 0.23682532517131993,
+  "t_err": 5.1986990646758295,
+  "R": [
+    [
+      1.0,
+      0.0013,
+      -0.0005
+    ],
+    [
+      -0.0013,
+      1.0,
+      -0.00067
+    ],
+    [
+      0.0005,
+      0.00068,
+      1.0
+    ]
+  ],
+  "t": [
+    0.95379,
+    -0.23845,
+    0.18283
+  ],
+  "R_gt": [
+    [
+      0.99999,
+      0.0045,
+      0.00083
+    ],
+    [
+      -0.0045,
+      0.99999,
+      0.00158
+    ],
+    [
+      -0.00082,
+      -0.00158,
+      1.0
+    ]
+  ],
+  "euler_est": [
+    0.039,
+    -0.029,
+    -0.075
+  ],
+  "euler_gt": [
+    -0.091,
+    0.047,
+    -0.258
+  ]
+}

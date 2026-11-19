@@ -1,0 +1,66 @@
+{
+  "label": "small",
+  "pair": "mvimgnet/watch/seq09/20-26",
+  "angle_deg": 25.79440060388513,
+  "focal_source": "estimated by MASt3R (per image 2006 / 1955; same size -> same camera assumed, averaged)",
+  "f_est": 1980.5667114257812,
+  "f_true": 1841.8229415877543,
+  "region_mode": "scene",
+  "region_note": "everything moved together (static scene, moving camera): whole images used -- the result is the camera's motion relative to the scene",
+  "ok": true,
+  "model": "E",
+  "inliers": 1316,
+  "matches": 1365,
+  "reproj_px": 0.9181464489033244,
+  "rot_err": 0.7354350801118392,
+  "t_err": 0.7471388591480506,
+  "R": [
+    [
+      0.89618,
+      -0.38666,
+      0.21761
+    ],
+    [
+      0.39539,
+      0.9185,
+      0.0037
+    ],
+    [
+      -0.20131,
+      0.08273,
+      0.97603
+    ]
+  ],
+  "t": [
+    -0.9913,
+    0.12562,
+    0.03922
+  ],
+  "R_gt": [
+    [
+      0.90098,
+      -0.38045,
+      0.20857
+    ],
+    [
+      0.3877,
+      0.92176,
+      0.0066
+    ],
+    [
+      -0.19476,
+      0.07491,
+      0.97799
+    ]
+  ],
+  "euler_est": [
+    4.845,
+    11.614,
+    23.807
+  ],
+  "euler_gt": [
+    4.38,
+    11.231,
+    23.283
+  ]
+}

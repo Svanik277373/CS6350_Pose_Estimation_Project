@@ -1,0 +1,202 @@
+[
+  {
+    "winner": "mast3r",
+    "pair": "mvimgnet/key/seq09/16-24",
+    "angle": 51.14672205276937,
+    "region": "unconfirmed",
+    "errors": {
+      "sift": {
+        "rot": Infinity,
+        "t": Infinity,
+        "reproj": NaN,
+        "inliers": 4,
+        "answered_by": "only 4 inliers"
+      },
+      "xfeat_lg": {
+        "rot": Infinity,
+        "t": Infinity,
+        "reproj": NaN,
+        "inliers": 0,
+        "answered_by": "only 7 matches"
+      },
+      "loftr": {
+        "rot": 72.24428517815178,
+        "t": 147.78922281598048,
+        "reproj": 1.6358420886486729,
+        "inliers": 26,
+        "answered_by": ""
+      },
+      "mast3r": {
+        "rot": 3.299837777080496,
+        "t": 1.7745521698422904,
+        "reproj": 0.5914230880240687,
+        "inliers": 893,
+        "answered_by": ""
+      },
+      "accurate": {
+        "rot": 72.24428517815178,
+        "t": 147.78922281598048,
+        "reproj": 1.6358420886486729,
+        "inliers": 26,
+        "answered_by": "cascade: none confident, best was loftr (26 inliers)"
+      },
+      "confident": {
+        "rot": 3.299837777080496,
+        "t": 1.7745521698422904,
+        "reproj": 0.5914230880240687,
+        "inliers": 893,
+        "answered_by": "confident: no cheap stage confident (best -1.00), mast3r answered"
+      }
+    }
+  },
+  {
+    "winner": "confident",
+    "pair": "mvimgnet/key/seq10/18-28",
+    "angle": 61.13176648970337,
+    "region": "unconfirmed",
+    "errors": {
+      "sift": {
+        "rot": Infinity,
+        "t": Infinity,
+        "reproj": NaN,
+        "inliers": 10,
+        "answered_by": "only 10 inliers"
+      },
+      "xfeat_lg": {
+        "rot": Infinity,
+        "t": Infinity,
+        "reproj": NaN,
+        "inliers": 0,
+        "answered_by": "only 4 matches"
+      },
+      "loftr": {
+        "rot": 62.042901562625346,
+        "t": 138.0535136937184,
+        "reproj": 1.1791846781595368,
+        "inliers": 20,
+        "answered_by": ""
+      },
+      "mast3r": {
+        "rot": 0.8325653946850895,
+        "t": 1.195800924537333,
+        "reproj": 0.4371092853291143,
+        "inliers": 523,
+        "answered_by": ""
+      },
+      "accurate": {
+        "rot": 62.042901562625346,
+        "t": 138.0535136937184,
+        "reproj": 1.1791846781595368,
+        "inliers": 20,
+        "answered_by": "cascade: none confident, best was loftr (20 inliers)"
+      },
+      "confident": {
+        "rot": 0.8325653946850895,
+        "t": 1.195800924537333,
+        "reproj": 0.4371092853291143,
+        "inliers": 523,
+        "answered_by": "confident: no cheap stage confident (best -1.00), mast3r answered"
+      }
+    }
+  },
+  {
+    "winner": "accurate",
+    "pair": "objectron/laptop/seq05/51-136",
+    "angle": 48.973380560398915,
+    "region": "unconfirmed",
+    "errors": {
+      "sift": {
+        "rot": Infinity,
+        "t": Infinity,
+        "reproj": NaN,
+        "inliers": 6,
+        "answered_by": "only 6 inliers"
+      },
+      "xfeat_lg": {
+        "rot": 8.45827043121285,
+        "t": 3.396418198836062,
+        "reproj": 1.0662091395092383,
+        "inliers": 227,
+        "answered_by": ""
+      },
+      "loftr": {
+        "rot": Infinity,
+        "t": Infinity,
+        "reproj": NaN,
+        "inliers": 8,
+        "answered_by": "only 8 inliers"
+      },
+      "mast3r": {
+        "rot": 12.118547720149841,
+        "t": 8.796728811717152,
+        "reproj": 0.7472795010017323,
+        "inliers": 195,
+        "answered_by": ""
+      },
+      "accurate": {
+        "rot": 3.8284107595174524,
+        "t": 3.3953052412381064,
+        "reproj": 3.1767315507017133,
+        "inliers": 3,
+        "answered_by": "cascade: shape accepted"
+      },
+      "confident": {
+        "rot": 12.118547720149841,
+        "t": 8.796728811717152,
+        "reproj": 0.7472795010017323,
+        "inliers": 195,
+        "answered_by": "confident: no cheap stage confident (best 0.40), mast3r answered"
+      }
+    }
+  },
+  {
+    "winner": "loftr",
+    "pair": "tum/checkerboard/1526-1576",
+    "angle": 16.820035994832068,
+    "region": "moved",
+    "errors": {
+      "sift": {
+        "rot": 1.0747005088836068,
+        "t": 9.876319850621993,
+        "reproj": 1.175521945504877,
+        "inliers": 167,
+        "answered_by": ""
+      },
+      "xfeat_lg": {
+        "rot": 112.05557998137614,
+        "t": 52.86698515541919,
+        "reproj": 0.8401759247438041,
+        "inliers": 15,
+        "answered_by": ""
+      },
+      "loftr": {
+        "rot": 0.7640996669057278,
+        "t": 0.36438077424648935,
+        "reproj": 0.4209421494697772,
+        "inliers": 1174,
+        "answered_by": ""
+      },
+      "mast3r": {
+        "rot": 61.71911171708959,
+        "t": 96.23851391154456,
+        "reproj": 0.4883856983168383,
+        "inliers": 111,
+        "answered_by": ""
+      },
+      "accurate": {
+        "rot": 14.740187296290781,
+        "t": 44.16877577958804,
+        "reproj": 0.9513050342395953,
+        "inliers": 7,
+        "answered_by": "cascade: shape accepted"
+      },
+      "confident": {
+        "rot": 14.740187296290781,
+        "t": 44.16877577958804,
+        "reproj": 0.9513050342395953,
+        "inliers": 7,
+        "answered_by": "confident: shape accepted (confidence 0.76)"
+      }
+    }
+  }
+]

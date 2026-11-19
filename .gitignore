@@ -46,3 +46,20 @@ report/*.aux
 report/*.log
 report/*.out
 report/*.toc
+
+# Course template (provided, not ours) and downloaded reference papers (copyrighted)
+TPA_Report_Format_Latex/
+report/references/
+
+# LaTeX / Beamer build files in report subfolders
+report/**/*.aux
+report/**/*.log
+report/**/*.out
+report/**/*.toc
+report/**/*.nav
+report/**/*.snm
+report/**/*.synctex.gz
+
+# Full-size PNG copies of figures the report uses as JPEG
+report/final/figures/case_*.png
+report/final/figures/methods.png

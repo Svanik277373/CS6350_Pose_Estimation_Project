@@ -402,7 +402,22 @@ reprojection error alone therefore does not prove a good calibration.
 
 ## 6. Report and slides
 
-[report/](report/) holds the course report and the presentation:
+**Final submission (two-image pipeline: only the two photos are given):**
+
+| file | what it is |
+|---|---|
+| [report/ieee/main.pdf](report/ieee/main.pdf) | **final report** in the official TPA template (IEEEtran, one column): Introduction, Algorithmic Description, Output with Observation, Conclusion, appendix |
+| [report/final/main.pdf](report/final/main.pdf) | the same report in the two-column CS6350 layout |
+| [report/beamer/slides.pdf](report/beamer/slides.pdf) | **presentation** (Beamer, 17 slides, about 10 minutes); [slides.pptx](report/beamer/slides.pptx) is the same deck as PowerPoint |
+| [report/notes/parts9_12.pdf](report/notes/parts9_12.pdf) | study notes: decomposition, refinement, outputs and evaluation |
+| [results/auto_eval/](results/auto_eval/) | per-pair results of the two-image pipeline (`pairs_v2.csv`: final, with the tuned region rule) |
+| [results/euler_track/](results/euler_track/), [results/cases/](results/cases/), [results/region_tune/](results/region_tune/) | roll/pitch/yaw track, example cases and method comparison, region-rule tuning on the tuning split |
+
+Scripts behind these results: `scripts/auto_eval.py` and `auto_eval2.py` (evaluation),
+`region_tune.py` and `pick_rule.py` (region rule, tuning split only), `euler_track.py`,
+`report_figures.py`, `method_figures.py`, and `report/final/make_figures.py` (diagrams and plots).
+
+Earlier version (pipeline given K and the object mask), kept for reference:
 
 | file | what it is |
 |---|---|

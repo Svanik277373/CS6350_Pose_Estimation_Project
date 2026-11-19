@@ -1,0 +1,66 @@
+{
+  "label": "large",
+  "pair": "co3d/cellphone/seq08/62-96",
+  "angle_deg": 64.81764756802419,
+  "focal_source": "estimated by MASt3R (per image 1610 / 1732; same size -> same camera assumed, averaged)",
+  "f_est": 1671.083519399166,
+  "f_true": 1607.5974297523499,
+  "region_mode": "unconfirmed",
+  "region_note": "object found by SAM 2.1 (10.7% / 12.6% of the image): chosen by size and position; too few matches on it to confirm by motion; found in image 2 by size and position (too few matches to vote)",
+  "ok": true,
+  "model": "E",
+  "inliers": 927,
+  "matches": 930,
+  "reproj_px": 0.34218819006273715,
+  "rot_err": 0.564336253258129,
+  "t_err": 0.356189678299472,
+  "R": [
+    [
+      0.44977,
+      -0.67765,
+      0.5818
+    ],
+    [
+      0.79733,
+      0.59817,
+      0.08033
+    ],
+    [
+      -0.40245,
+      0.42776,
+      0.80935
+    ]
+  ],
+  "t": [
+    -0.96551,
+    -0.23572,
+    0.11056
+  ],
+  "R_gt": [
+    [
+      0.448,
+      -0.67216,
+      0.58949
+    ],
+    [
+      0.7971,
+      0.59891,
+      0.07711
+    ],
+    [
+      -0.40488,
+      0.43533,
+      0.80409
+    ]
+  ],
+  "euler_est": [
+    27.858,
+    23.731,
+    60.573
+  ],
+  "euler_gt": [
+    28.431,
+    23.884,
+    60.662
+  ]
+}

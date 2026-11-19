@@ -1,0 +1,66 @@
+{
+  "label": "planar",
+  "pair": "tum/flat_near/611-700",
+  "angle_deg": 21.974455256703447,
+  "focal_source": "estimated by MASt3R (per image 463 / 450; same size -> same camera assumed, averaged)",
+  "f_est": 456.141357421875,
+  "f_true": 535.4,
+  "region_mode": "scene",
+  "region_note": "everything moved together (static scene, moving camera): whole images used -- the result is the camera's motion relative to the scene",
+  "ok": true,
+  "model": "H",
+  "inliers": 1742,
+  "matches": 1792,
+  "reproj_px": 0.1738050209726808,
+  "rot_err": 1.6765233932242996,
+  "t_err": 1.4511662296925534,
+  "R": [
+    [
+      0.93596,
+      0.30038,
+      -0.18372
+    ],
+    [
+      -0.28853,
+      0.95334,
+      0.08882
+    ],
+    [
+      0.20183,
+      -0.03012,
+      0.97896
+    ]
+  ],
+  "t": [
+    0.91094,
+    -0.293,
+    0.2904
+  ],
+  "R_gt": [
+    [
+      0.92968,
+      0.30291,
+      -0.2096
+    ],
+    [
+      -0.28761,
+      0.95243,
+      0.10074
+    ],
+    [
+      0.23015,
+      -0.03338,
+      0.97258
+    ]
+  ],
+  "euler_est": [
+    -1.762,
+    -11.644,
+    -17.133
+  ],
+  "euler_gt": [
+    -1.965,
+    -13.306,
+    -17.19
+  ]
+}

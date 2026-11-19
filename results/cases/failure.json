@@ -1,0 +1,66 @@
+{
+  "label": "failure",
+  "pair": "tum/checkerboard/1526-1576",
+  "angle_deg": 16.820035994832068,
+  "focal_source": "estimated by MASt3R (per image 526 / 527; same size -> same camera assumed, averaged)",
+  "f_est": 526.5065002441406,
+  "f_true": 535.4,
+  "region_mode": "moved",
+  "region_note": "object found by SAM 2.1 (2.1% / 1.8% of the image): moved differently from the background: it no longer lines up after the background's motion is undone (similarity 0.27 vs 0.90 around it); found in image 2 by size and position (too few matches to vote)",
+  "ok": true,
+  "model": "E",
+  "inliers": 111,
+  "matches": 152,
+  "reproj_px": 0.4883856983168383,
+  "rot_err": 61.71911171708959,
+  "t_err": 96.23851391154456,
+  "R": [
+    [
+      0.96525,
+      0.00471,
+      -0.26127
+    ],
+    [
+      -0.21217,
+      0.59778,
+      -0.77307
+    ],
+    [
+      0.15254,
+      0.80165,
+      0.57801
+    ]
+  ],
+  "t": [
+    0.08312,
+    0.83426,
+    0.54507
+  ],
+  "R_gt": [
+    [
+      0.95738,
+      0.07039,
+      0.28013
+    ],
+    [
+      -0.07542,
+      0.99713,
+      0.00721
+    ],
+    [
+      -0.27882,
+      -0.02803,
+      0.95993
+    ]
+  ],
+  "euler_est": [
+    54.207,
+    -8.774,
+    -12.397
+  ],
+  "euler_gt": [
+    -1.673,
+    16.19,
+    -4.505
+  ]
+}

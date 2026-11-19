@@ -1,0 +1,399 @@
+% TPA-12 presentation (Beamer, 16:9), about 10 minutes.
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme{Madrid}
+\definecolor{iitblue}{RGB}{22,50,74}
+\definecolor{accent}{RGB}{47,111,159}
+\definecolor{warm}{RGB}{181,101,29}
+\definecolor{soft}{RGB}{238,243,248}
+\setbeamercolor{structure}{fg=accent}
+\setbeamercolor{palette primary}{bg=iitblue,fg=white}
+\setbeamercolor{palette secondary}{bg=accent,fg=white}
+\setbeamercolor{palette tertiary}{bg=iitblue,fg=white}
+\setbeamercolor{frametitle}{bg=iitblue,fg=white}
+\setbeamercolor{block title}{bg=accent,fg=white}
+\setbeamercolor{block body}{bg=soft}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setlength{\leftmargini}{1.2em}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\graphicspath{{../final/figures/}{../figures/}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\tv}{\mathbf{t}}
+\newcommand{\K}{\mathbf{K}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\n}{\mathbf{n}}
+\newcommand{\p}{\mathbf{p}}
+\newcommand{\head}[1]{{\usebeamercolor[fg]{structure}\textbf{#1}}}
+
+\title[TPA-12: Change in 3D pose of small objects]{Compute change in pose (3D) of a small object}
+\author[Chiramana, Chanduluri]{Sai Svanik Chiramana (ME23B195) \and Sathwik Chanduluri (ME23B238)}
+\institute[IIT Madras]{Group 3 \textbullet\ CS6350 Computer Vision, TPA-12 \textbullet\ IIT Madras}
+\date{}
+
+\begin{document}
+
+% ------------------------------------------------------------------ 1 title
+\begin{frame}[plain]
+  \centering
+  \vspace*{0.2cm}
+  \includegraphics[height=1.6cm]{iitm_logo.png}\par\vspace{0.4cm}
+  {\usebeamercolor[fg]{structure}\large\bfseries Compute change in pose (3D) of a small object (coin, key, mobile phone, purse, clock, plate, checkerboard etc.) with very high accuracy from two successive views (arbitrary) of the same object (objects can have a near planar surface)\par}
+  \vspace{0.6cm}
+  {\normalsize Sai Svanik Chiramana (ME23B195) \qquad Sathwik Chanduluri (ME23B238)\par}
+  \vspace{0.3cm}
+  {\normalsize\bfseries Group 3\par}
+  \vspace{0.3cm}
+  {\small CS6350 Computer Vision \textbullet\ TPA-12 \textbullet\ Prof.\ Sukhendu Das \textbullet\ Indian Institute of Technology Madras\par}
+\end{frame}
+
+% ------------------------------------------------------------------ 2 problem
+\begin{frame}{Problem statement}
+  \begin{columns}[c]
+    \begin{column}{0.53\textwidth}
+      \head{What the task asks.} Given two RGB images of the same small object taken from arbitrary viewpoints, compute the change in its 3D pose with high accuracy. The object may be nearly planar.\\[6pt]
+      \head{Input.} Only the two images: no camera intrinsics, no object mask and no object name.\\[6pt]
+      \head{Output.}
+      \begin{itemize}
+        \item the relative rotation matrix $\R$
+        \item the relative translation vector $\tv$ --- its direction; the length needs the object's size
+        \item reprojection error metrics indicating the accuracy
+      \end{itemize}
+      \vspace{4pt}
+      \[\X_2=\R\,\X_1+\tv,\qquad \R^\top\R=I,\ \det\R=1\]
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{block}{Why it is difficult}
+        \begin{itemize}
+          \item \textbf{Small object:} most matches lie on the background and describe its motion.
+          \item \textbf{Weak texture:} phone backs, metal keys and watch faces give few features.
+          \item \textbf{Near-planar:} a plane admits two valid poses; $E$ becomes ill-conditioned.
+          \item \textbf{Large viewpoint change:} local appearance changes beyond $30^\circ$.
+          \item \textbf{Nothing else given:} focal length and object location must be estimated.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 3 pipeline
+\begin{frame}{Proposed solution: the two-image pipeline}
+  \centering
+  \includegraphics[width=\textwidth]{pipeline.png}\par
+  \vspace{8pt}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \small\textcolor{warm}{\textbf{Front end}} --- estimates what is not given: the focal length (from a predicted 3D point map) and the object region (the segment that moved relative to the background).
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \small\textcolor{accent}{\textbf{Pose estimation}} --- correspondences on the object, robust fitting of $H$ and $E$, model choice, decomposition and refinement; outputs $\R$, the direction of $\tv$ and the reprojection error.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 4 focal
+\begin{frame}{Step 1 --- Focal length from the images}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \head{Why.} The focal length turns pixels into viewing rays; a 10\% error costs about 6 AUC@10 points, and no calibration is given.\\[8pt]
+      \head{How.}
+      \begin{itemize}
+        \item MASt3R predicts a 3D point for every pixel of image 1.
+        \item With the principal point at the centre, each pixel votes for one $f$.
+        \item Weiszfeld's robust fit combines the votes; repeated with the images swapped and averaged.
+      \end{itemize}
+      \vspace{4pt}
+      \head{Result.} Median focal error 6\%.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Equations}
+        Pinhole projection and pixel ray:
+        \[\lambda\,(u,v,1)^\top=\K\X,\qquad \x=\K^{-1}(u,v,1)^\top\]
+        Vote of pixel $i$:
+        \[(u_i-c_x,\ v_i-c_y)\approx f\,(X_i/Z_i,\ Y_i/Z_i)\]
+        Robust combination:
+        \[f^\star=\arg\min_f\sum_i\big\|\p_i-\mathbf{c}-f\,\mathbf{q}_i\big\|\]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 5 SAM
+\begin{frame}{Step 2a --- Candidate objects with SAM 2.1}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \head{Why.} A small object is outnumbered by the background, whose matches describe the camera's motion. Its pixels must be found without a box or a name.\\[8pt]
+      \head{SAM 2.1.} A Hiera encoder reads the image once; a light two-way decoder returns the mask under each prompt, with no class name needed.\\[8pt]
+      \head{Our use.} A $12\times12$ grid of point prompts; duplicates merged, border-touching and wrongly sized segments dropped.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Equations}
+        Duplicate masks are merged when
+        \[\mathrm{IoU}=\frac{|A\cap B|}{|A\cup B|}>0.8\]
+        Candidates are ranked by
+        \[\text{score}=\text{area}\times\big(0.25+\text{centrality}\big)\]
+        \[\text{centrality}=1-\frac{\|\mathbf{c}-(\tfrac12,\tfrac12)\|}{\sqrt{1/2}}\]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 6 moved object
+\begin{frame}{Step 2b --- Which candidate moved?}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \head{Idea.} If only the camera moves, the background shifts consistently; a hand-moved object breaks that pattern.\\[8pt]
+      \head{Motion rule.} Fit the background's $F$ with MAGSAC++; a candidate whose matches mostly break it has moved.\\[8pt]
+      \head{Change rule.} For shiny or dark objects: undo the background's motion by warping, then check whether the region still aligns.\\[8pt]
+      \head{Decision.} Largest moved segment = object; nothing moved $\Rightarrow$ static scene, whole images.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Equations}
+        Static points obey
+        \[\p_2^\top F\,\p_1=0\]
+        Sampson distance of a match:
+        \[d_S^2=\frac{(\p_2^\top F\p_1)^2}{\|(F\p_1)_{1:2}\|^2+\|(F^\top\p_2)_{1:2}\|^2}\]
+        Alignment after warping:
+        \[\mathrm{NCC}=\frac{\sum(a-\bar a)(b-\bar b)}{\sqrt{\sum(a-\bar a)^2\sum(b-\bar b)^2}}\]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 7 matching
+\begin{frame}{Step 3 --- Crop and correspondences with MASt3R}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \head{Crop.} Object box $+20\%$, at most 800\,px, so the object fills the matcher's input; matches are mapped back, so $\K$ is unchanged.\\[8pt]
+      \head{MASt3R.} A shared ViT encoder and cross-attending decoders predict a 3D point and a descriptor per pixel. Reasoning in 3D, it handles weak texture and large viewpoint changes.\\[8pt]
+      \head{Alternatives.} SIFT, XFeat+LightGlue, LoFTR, \texttt{accurate}, \texttt{confident}.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Equations}
+        Crop back to image coordinates:
+        \[\p_{\text{full}}=\p_{\text{crop}}/s+\mathbf{o}\]
+        Mutual nearest neighbours:
+        \[j=\arg\max_k\,\mathbf{d}^{1\top}_i\mathbf{d}^2_k,\quad i=\arg\max_l\,\mathbf{d}^{2\top}_j\mathbf{d}^1_l\]
+        Confidence-weighted training loss:
+        \[\mathcal{L}=\sum_i C_i\,\|\X_i-\hat\X_i\|-\alpha\log C_i\]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 8 H and E
+\begin{frame}{Step 4 --- Robust fitting of $H$ and $E$}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \head{Two models.} $H$ is exact for a flat object, $E$ holds for any rigid object; both are fitted because the shape is unknown.\\[8pt]
+      \head{MAGSAC++.} Fits models to random minimal samples (4 matches for $H$, 5 for $E$) and keeps the best supported; it averages over noise levels instead of using one inlier threshold.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Equations}
+        Plane-induced homography:
+        \[\p_2\simeq H\p_1,\quad H=\K_2\Big(\R+\frac{\tv\,\n^\top}{d}\Big)\K_1^{-1}\]
+        Epipolar constraint:
+        \[\x_2^\top E\,\x_1=0,\qquad E=[\tv]_\times\R\]
+        Samples needed:
+        \[N=\frac{\log(1-p)}{\log(1-w^{s})}\]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 9 GRIC + decomposition
+\begin{frame}{Step 5 --- Model choice (GRIC) and decomposition}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \head{Model choice.} $E$ always fits at least as well as $H$; GRIC penalises its extra freedom, so $E$ wins only if clearly better (GRIC 44.9 vs $H$ 29.9, $E$ 44.3 AUC@10).\\[8pt]
+      \head{Decomposition.} Keep the candidate with points in front of both cameras; for a plane, off-plane matches pick between its two valid poses.\\[8pt]
+      \head{Planar-twin check.} Corrects $E$ on nearly flat objects (+1--3 AUC@10).
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Equations}
+        Geometric robust information criterion:
+        \[\mathrm{GRIC}=\sum_i\rho\Big(\frac{e_i^2}{\sigma^2}\Big)+\lambda_1d\,n+\lambda_2k\]
+        $H$: $d=2,\ k=8$; \quad $E$: $d=3,\ k=5$.\\[4pt]
+        Candidates from $E=U\,\mathrm{diag}(1,1,0)V^\top$:
+        \[\R\in\{UWV^\top,\ UW^\top V^\top\},\quad \tv=\pm\mathbf{u}_3\]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 10 refinement + outputs
+\begin{frame}{Step 6 --- Refinement and outputs}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \head{Refinement.} Levenberg--Marquardt adjusts $\R$ and $\tv$ to minimise the pixel error over all inliers, then inliers are re-selected and refined again.\\[8pt]
+      \head{Reprojection error.} Inliers are triangulated, projected back into both images, and the RMS pixel error is reported.\\[8pt]
+      \head{Verdict.} The error shows consistency, not correctness, so the output also states reliable, uncertain or camera motion only.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Equations}
+        Levenberg--Marquardt step:
+        \[\big(J^\top J+\lambda\,\mathrm{diag}(J^\top J)\big)\,\delta=-J^\top\mathbf{r}\]
+        Reprojection error over $N$ inliers:
+        \[\epsilon_{\mathrm{RMS}}^2=\frac{1}{2N}\sum_{i=1}^{N}\Big(\|\hat\p_{1,i}-\p_{1,i}\|^2+\|\hat\p_{2,i}-\p_{2,i}\|^2\Big)\]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 11 data preprocessing
+\begin{frame}{Evaluation data and preprocessing}
+  \centering
+  \includegraphics[width=0.78\textwidth]{dataprep.png}\par
+  \vspace{4pt}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \small\head{Common form.} Every dataset is converted offline to frames, pixel $\K$, an OpenCV world-to-camera pose and a mask --- for evaluation only; the pipeline sees just two images.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \small\head{Test pairs.} $\R_{gt}=\R_2\R_1^\top,\ \tv_{gt}=\tv_2-\R_{gt}\tv_1$; 56 held-out pairs, 12 objects, $<1^\circ$ to $90^\circ$; thresholds set on tuning sequences only.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 12 metrics
+\begin{frame}{Evaluation metrics}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \head{Rotation.} Geodesic angle between the estimated and true rotation.\\[8pt]
+      \head{Translation.} Angle between the directions; the scale is not observable from two views.\\[8pt]
+      \head{Summary.} Pose error is the larger of the two; AUC@5/10/20 counts failures as infinite error. Per-axis roll, pitch and yaw errors are also reported.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Equations}
+        \[e_R=\arccos\frac{\mathrm{tr}(\R_{est}^\top\R_{gt})-1}{2}\]
+        \[e_t=\arccos\frac{\tv_{est}^\top\tv_{gt}}{\|\tv_{est}\|\,\|\tv_{gt}\|}\]
+        \[e=\max(e_R,\,e_t)\]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 12 scores
+\begin{frame}{Results --- score comparison (two images only)}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \centering\small
+      \textbf{All six methods, 46 test pairs ($\ge5^\circ$)}\\[3pt]
+      \begin{tabular}{lccc}
+        \toprule
+        Method & AUC@10 & med.\ $e_R$ & med.\ $e_t$\\
+        \midrule
+        SIFT & 46.4 & 1.77$^\circ$ & 3.81$^\circ$\\
+        XFeat+LightGlue & 46.6 & 3.44$^\circ$ & 1.81$^\circ$\\
+        LoFTR & 46.7 & 2.36$^\circ$ & 2.59$^\circ$\\
+        \texttt{accurate} & 48.5 & 2.47$^\circ$ & 1.82$^\circ$\\
+        \texttt{confident} & 66.1 & 1.44$^\circ$ & 1.43$^\circ$\\
+        \textbf{MASt3R} & \textbf{69.0} & \textbf{1.17}$^\circ$ & \textbf{1.39}$^\circ$\\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering\small
+      \textbf{MASt3R by viewpoint change, 56 pairs}\\[3pt]
+      \begin{tabular}{lccc}
+        \toprule
+        Viewpoint & AUC@10 & med.\ $e_R$ & med.\ $e_t$\\
+        \midrule
+        $<1^\circ$ & 7.4 & 0.32$^\circ$ & 44.6$^\circ$\\
+        5--15$^\circ$ & 70.9 & 0.76$^\circ$ & 1.65$^\circ$\\
+        15--30$^\circ$ & 80.3 & 1.11$^\circ$ & 0.78$^\circ$\\
+        30--60$^\circ$ & 68.8 & 1.68$^\circ$ & 1.77$^\circ$\\
+        60--90$^\circ$ & 65.2 & 3.08$^\circ$ & 1.41$^\circ$\\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \begin{block}{Summary}
+    With only the two images, MASt3R gives a median rotation error of \textbf{0.97$^\circ$}, translation-direction error of \textbf{1.79$^\circ$} and reprojection error of \textbf{0.46\,px} on all 56 pairs --- within one AUC@10 point of the same method given the true camera and object mask (57.5 vs 58.5). On consecutive frames the rotation is accurate but the translation direction is not observable over a millimetre baseline.
+  \end{block}
+\end{frame}
+
+% ------------------------------------------------------------------ 13 worked example
+\begin{frame}{Results --- one pair through every stage}
+  \begin{columns}[c]
+    \begin{column}{0.64\textwidth}
+      \includegraphics[width=\linewidth]{case_planar.jpg}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \small
+      \head{TUM poster, true rotation 22.0$^\circ$}
+      \begin{enumerate}
+        \item SAM 2.1 proposes candidate segments.
+        \item All follow the background's motion and align after warping, so the scene is static and the whole images are used.
+        \item MASt3R matches; GRIC chooses the model; decomposition and refinement give the pose.
+        \item Rotation error \textbf{1.68$^\circ$}, reprojection error \textbf{0.17\,px}.
+      \end{enumerate}
+      The focal length was estimated; nothing else was given.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 14 euler
+\begin{frame}{Results --- roll, pitch and yaw along a sequence}
+  \begin{columns}[c]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{euler_struct_near_gap20.png}
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \small
+      38 TUM pairs 20 frames apart, each estimated from the two images only. The estimates follow the ground truth closely; the largest deviation is one roll error at pair 30.\\[6pt]
+      \centering
+      \begin{tabular}{lccc}
+        \toprule
+        Error & MAE & MAX & STD\\
+        \midrule
+        Roll & 0.43$^\circ$ & 8.48$^\circ$ & 1.33$^\circ$\\
+        Pitch & 0.34$^\circ$ & 3.84$^\circ$ & 0.65$^\circ$\\
+        Yaw & 0.19$^\circ$ & 0.75$^\circ$ & 0.14$^\circ$\\
+        Translation direction & 8.44$^\circ$ & 57.7$^\circ$ & 11.2$^\circ$\\
+        Reprojection & 0.21\,px & 0.33\,px & 0.05\,px\\
+        \bottomrule
+      \end{tabular}\\[6pt]
+      \raggedright On consecutive frames the per-axis rotation MAE is \textbf{0.195$^\circ$}.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 15 methods + failure
+\begin{frame}{Results --- where each method wins}
+  \begin{columns}[c]
+    \begin{column}{0.62\textwidth}
+      \includegraphics[width=\linewidth]{methods.jpg}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \small
+      Each row is a pair on which the framed method is clearly best.
+      \begin{itemize}
+        \item \textbf{MASt3R:} weakly textured keys where the 2D matchers fail.
+        \item \textbf{confident:} defers to MASt3R when unsure.
+        \item \textbf{accurate:} its outline stage on a laptop.
+        \item \textbf{LoFTR:} a checkerboard pair where a wrong region pairing misleads MASt3R ($61.7^\circ$ error at only 0.49\,px).
+      \end{itemize}
+      \head{Reliability.} When MASt3R and \texttt{accurate} agree within $2^\circ$ (34 of 56 pairs), no rotation error exceeds $10^\circ$.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 16 thanks
+\begin{frame}[plain]
+  \centering
+  \vspace*{2.2cm}
+  {\usebeamercolor[fg]{structure}\Huge\bfseries Thank you\par}
+  \vspace{0.6cm}
+  {\large Questions?\par}
+  \vspace{1.2cm}
+  {\small Sai Svanik Chiramana (ME23B195) \qquad Sathwik Chanduluri (ME23B238) \qquad Group 3\par}
+\end{frame}
+
+\end{document}
