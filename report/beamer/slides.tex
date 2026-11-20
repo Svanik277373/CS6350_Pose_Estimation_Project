@@ -29,6 +29,7 @@
 \newcommand{\n}{\mathbf{n}}
 \newcommand{\p}{\mathbf{p}}
 \newcommand{\head}[1]{{\usebeamercolor[fg]{structure}\textbf{#1}}}
+\newcommand{\cit}[1]{{\scriptsize\textcolor{black!55}{[#1]}}}
 
 \title[TPA-12: Change in 3D pose of small objects]{Compute change in pose (3D) of a small object}
 \author[Chiramana, Chanduluri]{Sai Svanik Chiramana (ME23B195) \and Sathwik Chanduluri (ME23B238)}
@@ -102,16 +103,16 @@
       \head{Why.} The focal length turns pixels into viewing rays; a 10\% error costs about 6 AUC@10 points, and no calibration is given.\\[8pt]
       \head{How.}
       \begin{itemize}
-        \item MASt3R predicts a 3D point for every pixel of image 1.
+        \item MASt3R (Matching And Stereo 3D Reconstruction)~\cit{3} predicts a 3D point for every pixel of image 1.
         \item With the principal point at the centre, each pixel votes for one $f$.
-        \item Weiszfeld's robust fit combines the votes; repeated with the images swapped and averaged.
+        \item Weiszfeld's robust fit~\cit{2} combines the votes; repeated with the images swapped and averaged.
       \end{itemize}
       \vspace{4pt}
       \head{Result.} Median focal error 6\%.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Equations}
-        Pinhole projection and pixel ray:
+        Pinhole projection and pixel ray~\cit{1}:
         \[\lambda\,(u,v,1)^\top=\K\X,\qquad \x=\K^{-1}(u,v,1)^\top\]
         Vote of pixel $i$:
         \[(u_i-c_x,\ v_i-c_y)\approx f\,(X_i/Z_i,\ Y_i/Z_i)\]
@@ -127,12 +128,12 @@
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
       \head{Why.} A small object is outnumbered by the background, whose matches describe the camera's motion. Its pixels must be found without a box or a name.\\[8pt]
-      \head{SAM 2.1.} A Hiera encoder reads the image once; a light two-way decoder returns the mask under each prompt, with no class name needed.\\[8pt]
+      \head{SAM 2.1 (Segment Anything Model)~\cit{5}.} A Hiera (hierarchical vision transformer)~\cit{6} encoder reads the image once; a light two-way decoder returns the mask under each prompt, with no class name needed.\\[8pt]
       \head{Our use.} A $12\times12$ grid of point prompts; duplicates merged, border-touching and wrongly sized segments dropped.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Equations}
-        Duplicate masks are merged when
+        Duplicate masks are merged when (Intersection over Union)
         \[\mathrm{IoU}=\frac{|A\cap B|}{|A\cup B|}>0.8\]
         Candidates are ranked by
         \[\text{score}=\text{area}\times\big(0.25+\text{centrality}\big)\]
@@ -147,17 +148,17 @@
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
       \head{Idea.} If only the camera moves, the background shifts consistently; a hand-moved object breaks that pattern.\\[8pt]
-      \head{Motion rule.} Fit the background's $F$ with MAGSAC++; a candidate whose matches mostly break it has moved.\\[8pt]
-      \head{Change rule.} For shiny or dark objects: undo the background's motion by warping, then check whether the region still aligns.\\[8pt]
+      \head{Motion rule.} Fit the background's fundamental matrix $F$ with MAGSAC++ (Marginalizing Sample Consensus)~\cit{7}; a candidate whose matches mostly break it has moved.\\[8pt]
+      \head{Change rule~\cit{8}.} For shiny or dark objects: undo the background's motion by warping, then check whether the region still aligns.\\[8pt]
       \head{Decision.} Largest moved segment = object; nothing moved $\Rightarrow$ static scene, whole images.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Equations}
         Static points obey
         \[\p_2^\top F\,\p_1=0\]
-        Sampson distance of a match:
+        Sampson distance of a match~\cit{1}:
         \[d_S^2=\frac{(\p_2^\top F\p_1)^2}{\|(F\p_1)_{1:2}\|^2+\|(F^\top\p_2)_{1:2}\|^2}\]
-        Alignment after warping:
+        Normalised cross-correlation (NCC)~\cit{9}:
         \[\mathrm{NCC}=\frac{\sum(a-\bar a)(b-\bar b)}{\sqrt{\sum(a-\bar a)^2\sum(b-\bar b)^2}}\]
       \end{block}
     \end{column}
@@ -168,9 +169,10 @@
 \begin{frame}{Step 3 --- Crop and correspondences with MASt3R}
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
-      \head{Crop.} Object box $+20\%$, at most 800\,px, so the object fills the matcher's input; matches are mapped back, so $\K$ is unchanged.\\[8pt]
-      \head{MASt3R.} A shared ViT encoder and cross-attending decoders predict a 3D point and a descriptor per pixel. Reasoning in 3D, it handles weak texture and large viewpoint changes.\\[8pt]
-      \head{Alternatives.} SIFT, XFeat+LightGlue, LoFTR, \texttt{accurate}, \texttt{confident}.
+      \small\head{Crop.} Object box $+20\%$, at most 800\,px; matches mapped back, so $\K$ is unchanged.\\[5pt]
+      \head{MASt3R (Matching And Stereo 3D Reconstruction)~\cit{3}.} Built on DUSt3R (Dense and Unconstrained Stereo 3D Reconstruction)~\cit{4}: a ViT (Vision Transformer) encoder with cross-attending decoders predicts a 3D point and a descriptor per pixel.\\[5pt]
+      \head{Alternatives.} SIFT (Scale-Invariant Feature Transform)~\cit{10}, XFeat (Accelerated Features)~\cit{11} + LightGlue~\cit{12}, LoFTR (Local Feature TRansformer)~\cit{13}.\\[5pt]
+      \head{Cascades.} \texttt{accurate} takes the first 2D matcher with enough inliers; \texttt{confident} takes a cheap stage only if a learned classifier predicts $P(e<10^\circ)\ge0.45$, else MASt3R.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Equations}
@@ -178,7 +180,7 @@
         \[\p_{\text{full}}=\p_{\text{crop}}/s+\mathbf{o}\]
         Mutual nearest neighbours:
         \[j=\arg\max_k\,\mathbf{d}^{1\top}_i\mathbf{d}^2_k,\quad i=\arg\max_l\,\mathbf{d}^{2\top}_j\mathbf{d}^1_l\]
-        Confidence-weighted training loss:
+        Confidence-weighted training loss~\cit{4}:
         \[\mathcal{L}=\sum_i C_i\,\|\X_i-\hat\X_i\|-\alpha\log C_i\]
       \end{block}
     \end{column}
@@ -189,8 +191,8 @@
 \begin{frame}{Step 4 --- Robust fitting of $H$ and $E$}
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
-      \head{Two models.} $H$ is exact for a flat object, $E$ holds for any rigid object; both are fitted because the shape is unknown.\\[8pt]
-      \head{MAGSAC++.} Fits models to random minimal samples (4 matches for $H$, 5 for $E$) and keeps the best supported; it averages over noise levels instead of using one inlier threshold.
+      \head{Two models~\cit{1}.} The homography $H$ is exact for a flat object, the essential matrix $E$ holds for any rigid object; both are fitted because the shape is unknown.\\[8pt]
+      \head{MAGSAC++ (Marginalizing Sample Consensus)~\cit{7}.} Like RANSAC (Random Sample Consensus)~\cit{15}, it fits models to random minimal samples (4 matches for $H$, 5 for $E$ via Nist\'er's solver~\cit{14}) and keeps the best supported; it averages over noise levels instead of using one inlier threshold.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Equations}
@@ -209,8 +211,8 @@
 \begin{frame}{Step 5 --- Model choice (GRIC) and decomposition}
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
-      \head{Model choice.} $E$ always fits at least as well as $H$; GRIC penalises its extra freedom, so $E$ wins only if clearly better (GRIC 44.9 vs $H$ 29.9, $E$ 44.3 AUC@10).\\[8pt]
-      \head{Decomposition.} Keep the candidate with points in front of both cameras; for a plane, off-plane matches pick between its two valid poses.\\[8pt]
+      \head{Model choice.} $E$ always fits at least as well as $H$; GRIC (Geometric Robust Information Criterion)~\cit{16} penalises its extra freedom, so $E$ wins only if clearly better (GRIC 44.9 vs $H$ 29.9, $E$ 44.3 AUC@10).\\[8pt]
+      \head{Decomposition~\cit{1,17}.} Keep the candidate with points in front of both cameras; for a plane, off-plane matches pick between its two valid poses.\\[8pt]
       \head{Planar-twin check.} Corrects $E$ on nearly flat objects (+1--3 AUC@10).
     \end{column}
     \begin{column}{0.46\textwidth}
@@ -229,8 +231,8 @@
 \begin{frame}{Step 6 --- Refinement and outputs}
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
-      \head{Refinement.} Levenberg--Marquardt adjusts $\R$ and $\tv$ to minimise the pixel error over all inliers, then inliers are re-selected and refined again.\\[8pt]
-      \head{Reprojection error.} Inliers are triangulated, projected back into both images, and the RMS pixel error is reported.\\[8pt]
+      \head{Refinement.} Levenberg--Marquardt (LM)~\cit{18,19} adjusts $\R$ and $\tv$ to minimise the pixel error over all inliers, then inliers are re-selected and refined again.\\[8pt]
+      \head{Reprojection error~\cit{1}.} Inliers are triangulated, projected back into both images, and the RMS pixel error is reported.\\[8pt]
       \head{Verdict.} The error shows consistency, not correctness, so the output also states reliable, uncertain or camera motion only.
     \end{column}
     \begin{column}{0.46\textwidth}
@@ -247,11 +249,12 @@
 % ------------------------------------------------------------------ 11 data preprocessing
 \begin{frame}{Evaluation data and preprocessing}
   \centering
-  \includegraphics[width=0.78\textwidth]{dataprep.png}\par
+  \includegraphics[width=0.66\textwidth]{dataprep.png}\par
   \vspace{4pt}
   \begin{columns}[t]
     \begin{column}{0.48\textwidth}
-      \small\head{Common form.} Every dataset is converted offline to frames, pixel $\K$, an OpenCV world-to-camera pose and a mask --- for evaluation only; the pipeline sees just two images.
+      \small\head{Datasets.} TUM RGB-D~\cit{20}, Objectron~\cit{21}, CO3D (Common Objects in 3D)~\cit{22}, MVImgNet (Multi-View ImageNet)~\cit{23}.\\
+      \head{Common form.} Frames, pixel $\K$, OpenCV world-to-camera pose and mask --- for evaluation only.
     \end{column}
     \begin{column}{0.48\textwidth}
       \small\head{Test pairs.} $\R_{gt}=\R_2\R_1^\top,\ \tv_{gt}=\tv_2-\R_{gt}\tv_1$; 56 held-out pairs, 12 objects, $<1^\circ$ to $90^\circ$; thresholds set on tuning sequences only.
@@ -263,9 +266,9 @@
 \begin{frame}{Evaluation metrics}
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
-      \head{Rotation.} Geodesic angle between the estimated and true rotation.\\[8pt]
+      \head{Rotation.} Geodesic angle between the estimated and true rotation~\cit{1}.\\[8pt]
       \head{Translation.} Angle between the directions; the scale is not observable from two views.\\[8pt]
-      \head{Summary.} Pose error is the larger of the two; AUC@5/10/20 counts failures as infinite error. Per-axis roll, pitch and yaw errors are also reported.
+      \head{Summary.} Pose error is the larger of the two; AUC@5/10/20 (area under the cumulative error curve up to 5, 10, 20$^\circ$)~\cit{24} counts failures as infinite error. Per-axis roll, pitch and yaw errors are also reported.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Equations}
@@ -381,6 +384,46 @@
         \item \textbf{LoFTR:} a checkerboard pair where a wrong region pairing misleads MASt3R ($61.7^\circ$ error at only 0.49\,px).
       \end{itemize}
       \head{Reliability.} When MASt3R and \texttt{accurate} agree within $2^\circ$ (34 of 56 pairs), no rotation error exceeds $10^\circ$.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ references
+\begin{frame}{References}
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      \tiny
+      \begin{enumerate}
+        \item[{[1]}] R.~Hartley, A.~Zisserman, \emph{Multiple View Geometry in Computer Vision}, 2nd ed., Cambridge Univ.\ Press, 2004.
+        \item[{[2]}] E.~Weiszfeld, ``Sur le point pour lequel la somme des distances de $n$ points donn\'es est minimum,'' \emph{T\^ohoku Math.\ J.}, 1937.
+        \item[{[3]}] V.~Leroy, Y.~Cabon, J.~Revaud, ``Grounding image matching in 3D with MASt3R,'' \emph{ECCV}, 2024.
+        \item[{[4]}] S.~Wang, V.~Leroy, Y.~Cabon, B.~Chidlovskii, J.~Revaud, ``DUSt3R: Geometric 3D vision made easy,'' \emph{CVPR}, 2024.
+        \item[{[5]}] N.~Ravi \emph{et al.}, ``SAM 2: Segment anything in images and videos,'' arXiv:2408.00714, 2024.
+        \item[{[6]}] C.~Ryali \emph{et al.}, ``Hiera: A hierarchical vision transformer without the bells-and-whistles,'' \emph{ICML}, 2023.
+        \item[{[7]}] D.~Barath, J.~Noskova, M.~Ivashechkin, J.~Matas, ``MAGSAC++, a fast, reliable and accurate robust estimator,'' \emph{CVPR}, 2020.
+        \item[{[8]}] M.~Irani, P.~Anandan, ``A unified approach to moving object detection in 2D and 3D scenes,'' \emph{IEEE TPAMI}, 1998.
+        \item[{[9]}] J.~P.~Lewis, ``Fast normalized cross-correlation,'' \emph{Vision Interface}, 1995.
+        \item[{[10]}] D.~G.~Lowe, ``Distinctive image features from scale-invariant keypoints,'' \emph{IJCV}, 2004.
+        \item[{[11]}] G.~Potje \emph{et al.}, ``XFeat: Accelerated features for lightweight image matching,'' \emph{CVPR}, 2024.
+        \item[{[12]}] P.~Lindenberger, P.-E.~Sarlin, M.~Pollefeys, ``LightGlue: Local feature matching at light speed,'' \emph{ICCV}, 2023.
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \tiny
+      \begin{enumerate}
+        \item[{[13]}] J.~Sun, Z.~Shen, Y.~Wang, H.~Bao, X.~Zhou, ``LoFTR: Detector-free local feature matching with transformers,'' \emph{CVPR}, 2021.
+        \item[{[14]}] D.~Nist\'er, ``An efficient solution to the five-point relative pose problem,'' \emph{IEEE TPAMI}, 2004.
+        \item[{[15]}] M.~A.~Fischler, R.~C.~Bolles, ``Random sample consensus,'' \emph{Comm.\ ACM}, 1981.
+        \item[{[16]}] P.~H.~S.~Torr, ``Geometric motion segmentation and model selection,'' \emph{Phil.\ Trans.\ Royal Society A}, 1998.
+        \item[{[17]}] E.~Malis, M.~Vargas, ``Deeper understanding of the homography decomposition for vision-based control,'' INRIA RR-6303, 2007.
+        \item[{[18]}] K.~Levenberg, ``A method for the solution of certain non-linear problems in least squares,'' \emph{Q.\ Appl.\ Math.}, 1944.
+        \item[{[19]}] D.~W.~Marquardt, ``An algorithm for least-squares estimation of nonlinear parameters,'' \emph{SIAM J.\ Appl.\ Math.}, 1963.
+        \item[{[20]}] J.~Sturm \emph{et al.}, ``A benchmark for the evaluation of RGB-D SLAM systems,'' \emph{IROS}, 2012.
+        \item[{[21]}] A.~Ahmadyan \emph{et al.}, ``Objectron: A large scale dataset of object-centric videos in the wild with pose annotations,'' \emph{CVPR}, 2021.
+        \item[{[22]}] J.~Reizenstein \emph{et al.}, ``Common Objects in 3D,'' \emph{ICCV}, 2021.
+        \item[{[23]}] X.~Yu \emph{et al.}, ``MVImgNet: A large-scale dataset of multi-view images,'' \emph{CVPR}, 2023.
+        \item[{[24]}] P.-E.~Sarlin \emph{et al.}, ``SuperGlue: Learning feature matching with graph neural networks,'' \emph{CVPR}, 2020.
+      \end{enumerate}
     \end{column}
   \end{columns}
 \end{frame}
