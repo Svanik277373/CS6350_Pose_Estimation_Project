@@ -172,7 +172,7 @@
       \small\head{Crop.} Object box $+20\%$, at most 800\,px; matches mapped back, so $\K$ is unchanged.\\[5pt]
       \head{MASt3R (Matching And Stereo 3D Reconstruction)~\cit{3}.} Built on DUSt3R (Dense and Unconstrained Stereo 3D Reconstruction)~\cit{4}: a ViT (Vision Transformer) encoder with cross-attending decoders predicts a 3D point and a descriptor per pixel.\\[5pt]
       \head{Alternatives.} SIFT (Scale-Invariant Feature Transform)~\cit{10}, XFeat (Accelerated Features)~\cit{11} + LightGlue~\cit{12}, LoFTR (Local Feature TRansformer)~\cit{13}.\\[5pt]
-      \head{Cascades.} \texttt{accurate} takes the first 2D matcher with enough inliers; \texttt{confident} takes a cheap stage only if a learned classifier predicts $P(e<10^\circ)\ge0.45$, else MASt3R.
+      \head{Cascades.} \texttt{accurate}: XFeat+LightGlue $\rightarrow$ outline $\rightarrow$ SIFT $\rightarrow$ LoFTR, taking the first with enough inliers. \texttt{confident}: XFeat+LightGlue $\rightarrow$ SIFT $\rightarrow$ outline $\rightarrow$ MASt3R, taking a stage only if a learned classifier predicts $P(e<10^\circ)\ge0.45$.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Equations}

@@ -15,7 +15,9 @@ it -- and adds, in new modules only:
                  compact segment not touching the border is the object, and the same object
                  is found in image 2 by matching; if there is no separate object (it fills
                  the frame) the whole images are used. --object "name" lets the YOLO-World
-                 detector try first (used only when confident).
+                 detector try first (used only when confident). --region v2 (default) uses
+                 the rule tuned on the tuning split (src/pipeline/region2.py), as in the final
+                 report; --region v1 is the original rule.
   object mask    boxes are cut down to the object's outline by SAM 2.1, or GrabCut if SAM
                  is unavailable (src/pipeline/segment.py)
   verdict        RELIABLE / UNCERTAIN / NO RESULT from inliers, reprojection error, rotation
@@ -40,6 +42,7 @@ from src.pipeline.detect import find_box, select_box  # noqa: E402
 from src.pipeline.focal import K_from_focal, auto_focals  # noqa: E402
 from src.pipeline.match import MATCHERS  # noqa: E402
 from src.pipeline.region import find_regions as auto_regions  # noqa: E402
+from src.pipeline import region2  # noqa: E402  (tuned region rule, the default: --region v2)
 from src.pipeline.scale import size_scale  # noqa: E402
 from src.pipeline.segment import auto_mask, draw_mask  # noqa: E402
 
@@ -157,6 +160,9 @@ def main():
                     help="how to estimate the focal length when there is no EXIF (default mast3r)")
     ap.add_argument("--method", default="mast3r", choices=ALL_PRESETS + MATCHERS,
                     help="pose method (default mast3r: most accurate, handles large viewpoint changes)")
+    ap.add_argument("--region", default="v2", choices=["v2", "v1"],
+                    help="automatic region rule: v2 (default, tuned on the tuning split, as in the final report) "
+                         "or v1 (the original region.py rule)")
     ap.add_argument("--size", type=float, help="object's longest dimension in metres -> metric translation")
     ap.add_argument("--save", help="picture of the matches (+ _mask1/_mask2 pictures)")
     ap.add_argument("--json", help="write the result as JSON here")
@@ -184,8 +190,18 @@ def main():
         m1, m2 = make_masks(img1, img2, box1, box2, args.save)
     else:
         # fully automatic: SAM 2.1 segments, same object in both images by matching (region.py)
-        print("finding the object automatically (SAM 2.1, ~15 s) ...")
-        m1, m2, note, region_mode = auto_regions(img1, img2, name=args.object)
+        print(f"finding the object automatically (SAM 2.1, region rule {args.region}, ~15 s) ...")
+        if args.region == "v2":
+            # detector first if a name was given (as region.py does), else the tuned rule of region2.py
+            m1 = None
+            if args.object:
+                m1, m2, note, region_mode = auto_regions(img1, img2, name=args.object)
+                if region_mode != "detector":
+                    m1 = None
+            if m1 is None:
+                m1, m2, note, region_mode = region2.find_regions(img1, img2)
+        else:
+            m1, m2, note, region_mode = auto_regions(img1, img2, name=args.object)
         print(f"object: {note}")
         if args.save and m1 is not None:
             stem = Path(args.save)
