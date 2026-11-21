@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "method": "mast3r",
+  "reason": "",
+  "seconds": 18.76,
+  "focal_px": [
+    1497.5,
+    1497.5
+  ],
+  "focal_source": "estimated by MASt3R (per image 1488 / 1507; same size -> same camera assumed, averaged)",
+  "R": [
+    [
+      0.99789,
+      -0.000544,
+      0.064931
+    ],
+    [
+      0.000569,
+      1.0,
+      -0.000365
+    ],
+    [
+      -0.064931,
+      0.000401,
+      0.99789
+    ]
+  ],
+  "t_direction": [
+    -0.998745,
+    -0.001417,
+    0.050059
+  ],
+  "rotation_deg": 3.723,
+  "model": "E",
+  "inliers": 1614,
+  "matches": 1614,
+  "reprojection_rms_px": 0.612,
+  "verdict": "RELIABLE -- object confirmed: it moved differently from the background; focal length estimated, not measured -- a 15% error was seen on close-up photos",
+  "region_mode": "moved"
+}

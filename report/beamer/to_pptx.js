@@ -11,8 +11,8 @@ const files = fs.readdirSync(dir).filter((f) => /^s-\d+\.png$/.test(f)).sort();
 const titles = [
   "Title", "Problem statement", "Proposed pipeline", "Step 1: focal length", "Step 2a: SAM 2.1",
   "Step 2b: which candidate moved", "Step 3: crop and MASt3R", "Step 4: H and E", "Step 5: GRIC and decomposition",
-  "Step 6: refinement and outputs", "Evaluation data and preprocessing", "Evaluation metrics", "Score comparison",
-  "Worked example", "Roll, pitch and yaw", "Where each method wins", "References", "Thank you",
+  "Step 6: Levenberg-Marquardt refinement", "Step 7: reprojection error and verdict","Evaluation data and preprocessing", "Evaluation metrics", "Score comparison",
+  "Worked example", "Roll, pitch and yaw", "Where each method wins", "Test sample: monitor box", "Test sample: alloy wheel", "Test sample: checkerboard on wheel assembly", "Instructor's test pair A", "Instructor's test pair C", "References", "Thank you",
 ];
 
 const pres = new pptxgen();

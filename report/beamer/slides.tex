@@ -19,6 +19,7 @@
 \setlength{\leftmargini}{1.2em}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage{graphicx}
 \graphicspath{{../final/figures/}{../figures/}}
 \newcommand{\R}{\mathbf{R}}
@@ -217,28 +218,58 @@
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Equations}
+        \small
         Geometric robust information criterion:
         \[\mathrm{GRIC}=\sum_i\rho\Big(\frac{e_i^2}{\sigma^2}\Big)+\lambda_1d\,n+\lambda_2k\]
         $H$: $d=2,\ k=8$; \quad $E$: $d=3,\ k=5$.\\[4pt]
         Candidates from $E=U\,\mathrm{diag}(1,1,0)V^\top$:
         \[\R\in\{UWV^\top,\ UW^\top V^\top\},\quad \tv=\pm\mathbf{u}_3\]
+        From $\bar H=\R+\tv'\n^\top$ with $\bar H^\top\bar H=V\mathrm{diag}(\sigma_1^2,1,\sigma_3^2)V^\top$~\cit{26}:
+        \[\R_k=W_kU_k^\top,\quad \n_k=\mathbf{v}_2\times\mathbf{u}_k,\quad \tv'_k=(\bar H-\R_k)\n_k\]
       \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ------------------------------------------------------------------ 10 refinement + outputs
-\begin{frame}{Step 6 --- Refinement and outputs}
+\begin{frame}{Step 6 --- Levenberg--Marquardt refinement}
+  \begin{columns}[c]
+    \begin{column}{0.44\textwidth}
+      \small
+      \head{Why.} MAGSAC++ fits from minimal samples; the final pose should minimise a geometric pixel error over \emph{all} inliers.\\[5pt]
+      \head{Parameters.} Small corrections around the current pose: rotation $\boldsymbol\omega$ (3) and translation direction $\boldsymbol\beta$ (2) for $E$; for $H$ also $\tv/d$ and the plane normal (8 in total).\\[5pt]
+      \head{LM~\cit{18,19}.} Small $\mu$: Gauss--Newton step; large $\mu$: short gradient step. MINPACK~\cit{25} adapts $\mu$ by a trust region and accepts a step only if the cost drops. $J$ is computed by finite differences.\\[5pt]
+      \head{Safeguard.} Kept only if the median residual falls; inliers re-selected, refined once more.
+    \end{column}
+    \begin{column}{0.53\textwidth}
+      \begin{block}{Equations}
+        \footnotesize
+        Pose from $\boldsymbol\theta=(\boldsymbol\omega,\boldsymbol\beta)\in\mathbb{R}^5$:
+        \[\R=\exp([\boldsymbol\omega]_\times)\R_0,\quad \tv=\frac{\tv_0+B\boldsymbol\beta}{\|\tv_0+B\boldsymbol\beta\|},\quad F=\K_2^{-\top}[\tv]_\times\R\,\K_1^{-1}\]
+        Residual (signed Sampson distance) and cost:
+        \[r_i(\boldsymbol\theta)=\frac{\p_{2,i}^\top F\,\p_{1,i}}{\|\mathbf{g}_i\|},\qquad C(\boldsymbol\theta)=\tfrac12\sum_{i=1}^N r_i(\boldsymbol\theta)^2\]
+        Jacobian ($N\times5$):
+        \[J=\begin{pmatrix}\frac{\partial r_1}{\partial\omega_1}&\cdots&\frac{\partial r_1}{\partial\beta_2}\\ \vdots&&\vdots\\ \frac{\partial r_N}{\partial\omega_1}&\cdots&\frac{\partial r_N}{\partial\beta_2}\end{pmatrix},\quad \frac{\partial F}{\partial\omega_k}=\K_2^{-\top}[\tv_0]_\times[\mathbf{e}_k]_\times\R_0\K_1^{-1}\]
+        LM update:
+        \[\big(J^\top J+\mu\,D^\top D\big)\,\boldsymbol\delta=-J^\top\mathbf{r},\qquad \boldsymbol\theta\leftarrow\boldsymbol\theta+\boldsymbol\delta\]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ 10b reprojection + verdict
+\begin{frame}{Step 7 --- Reprojection error and verdict}
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
-      \head{Refinement.} Levenberg--Marquardt (LM)~\cit{18,19} adjusts $\R$ and $\tv$ to minimise the pixel error over all inliers, then inliers are re-selected and refined again.\\[8pt]
-      \head{Reprojection error~\cit{1}.} Inliers are triangulated, projected back into both images, and the RMS pixel error is reported.\\[8pt]
+      \head{Triangulation~\cit{1}.} Each inlier pair gives one 3D point by the linear method with $P_1=[I\,|\,\mathbf{0}]$ and $P_2=[\R\,|\,\tv]$.\\[8pt]
+      \head{Reprojection error.} Points in front of both cameras are projected back into both images; the RMS pixel distance is reported.\\[8pt]
       \head{Verdict.} The error shows consistency, not correctness, so the output also states reliable, uncertain or camera motion only.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Equations}
-        Levenberg--Marquardt step:
-        \[\big(J^\top J+\lambda\,\mathrm{diag}(J^\top J)\big)\,\delta=-J^\top\mathbf{r}\]
+        Linear triangulation ($\mathbf{P}^{k\top}$: row $k$ of $P$):
+        \[\begin{pmatrix} x_1\mathbf{P}_1^{3\top}-\mathbf{P}_1^{1\top}\\ y_1\mathbf{P}_1^{3\top}-\mathbf{P}_1^{2\top}\\ x_2\mathbf{P}_2^{3\top}-\mathbf{P}_2^{1\top}\\ y_2\mathbf{P}_2^{3\top}-\mathbf{P}_2^{2\top}\end{pmatrix}\tilde\X=\mathbf{0}\]
+        Projection: $\hat\p_1=\pi(\K_1\X)$, $\hat\p_2=\pi(\K_2(\R\X+\tv))$\\[4pt]
         Reprojection error over $N$ inliers:
         \[\epsilon_{\mathrm{RMS}}^2=\frac{1}{2N}\sum_{i=1}^{N}\Big(\|\hat\p_{1,i}-\p_{1,i}\|^2+\|\hat\p_{2,i}-\p_{2,i}\|^2\Big)\]
       \end{block}
@@ -248,18 +279,21 @@
 
 % ------------------------------------------------------------------ 11 data preprocessing
 \begin{frame}{Evaluation data and preprocessing}
-  \centering
-  \includegraphics[width=0.66\textwidth]{dataprep.png}\par
-  \vspace{4pt}
-  \begin{columns}[t]
-    \begin{column}{0.48\textwidth}
-      \small\head{Datasets.} TUM RGB-D~\cit{20}, Objectron~\cit{21}, CO3D (Common Objects in 3D)~\cit{22}, MVImgNet (Multi-View ImageNet)~\cit{23}.\\
-      \head{Common form.} Frames, pixel $\K$, OpenCV world-to-camera pose and mask --- for evaluation only.
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \small\head{Test pairs.} $\R_{gt}=\R_2\R_1^\top,\ \tv_{gt}=\tv_2-\R_{gt}\tv_1$; 56 held-out pairs, 12 objects, $<1^\circ$ to $90^\circ$; thresholds set on tuning sequences only.
-    \end{column}
-  \end{columns}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.23\textwidth}>{\raggedright\arraybackslash}p{0.52\textwidth}@{}}
+    \toprule
+    \head{Dataset} & \head{Raw data} & \head{Preprocessing}\\
+    \midrule
+    TUM RGB-D~\cit{20} & $640\times480$ frames, motion capture at $\sim$100\,Hz & pose interpolated at each RGB timestamp (linear position, slerp rotation); camera-to-world inverted; whole image used\\
+    Objectron~\cit{21} & phone video + ARKit annotation & pairs chosen from the poses, only those frames decoded; portrait $\to$ landscape; ARKit $\to$ OpenCV axes; mask = hull of 3D box\\
+    CO3D (Common Objects in 3D)~\cit{22} & image sequence, PyTorch3D cameras & only needed files fetched (HTTP range); NDC intrinsics $\to$ pixel $\K$; axes flipped to OpenCV; dataset masks\\
+    MVImgNet (Multi-View ImageNet)~\cit{23} & phone frames, COLMAP model & only needed files fetched; radial distortion removed; alpha channel of the cut-out = mask\\
+    \bottomrule
+  \end{tabular}\par\vspace{6pt}
+  \small
+  \head{Common form.} Frames, pixel $\K$, OpenCV world-to-camera pose and mask --- used for evaluation only.\\[2pt]
+  \head{Test pairs.} $\R_{gt}=\R_2\R_1^\top,\ \tv_{gt}=\tv_2-\R_{gt}\tv_1$; 56 held-out pairs, 12 objects, $<1^\circ$ to $90^\circ$; thresholds set on tuning sequences only.
 \end{frame}
 
 % ------------------------------------------------------------------ 12 metrics
@@ -325,7 +359,7 @@
 \begin{frame}{Results --- one pair through every stage}
   \begin{columns}[c]
     \begin{column}{0.64\textwidth}
-      \includegraphics[width=\linewidth]{case_planar.jpg}
+      \includegraphics[width=\linewidth]{case_planar_slide.jpg}
     \end{column}
     \begin{column}{0.33\textwidth}
       \small
@@ -371,10 +405,10 @@
 % ------------------------------------------------------------------ 15 methods + failure
 \begin{frame}{Results --- where each method wins}
   \begin{columns}[c]
-    \begin{column}{0.62\textwidth}
-      \includegraphics[width=\linewidth]{methods.jpg}
+    \begin{column}{0.64\textwidth}
+      \includegraphics[width=\linewidth]{methods_slide.jpg}
     \end{column}
-    \begin{column}{0.35\textwidth}
+    \begin{column}{0.33\textwidth}
       \small
       Each row is a pair on which the framed method is clearly best.
       \begin{itemize}
@@ -384,6 +418,187 @@
         \item \textbf{LoFTR:} a checkerboard pair where a wrong region pairing misleads MASt3R ($61.7^\circ$ error at only 0.49\,px).
       \end{itemize}
       \head{Reliability.} When MASt3R and \texttt{accurate} agree within $2^\circ$ (34 of 56 pairs), no rotation error exceeds $10^\circ$.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ test sample 1
+\begin{frame}{Evaluation on a test sample --- monitor box}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \centering\scriptsize
+      \begin{tabular}{@{}c@{\hspace{3pt}}c@{}}
+        \includegraphics[width=0.4\linewidth]{samples/monitor_box/image1.jpg} &
+        \includegraphics[width=0.4\linewidth]{samples/monitor_box/image2.jpg}\\
+        image 1 & image 2\\[2pt]
+        \includegraphics[width=0.4\linewidth]{samples/monitor_box/result_mask1.jpg} &
+        \includegraphics[width=0.4\linewidth]{samples/monitor_box/result_mask2.jpg}\\
+        object found (green) & same object in image 2\\[2pt]
+        \multicolumn{2}{c}{\includegraphics[width=0.82\linewidth]{samples/monitor_box/result.jpg}}\\
+        \multicolumn{2}{c}{MASt3R inlier correspondences}
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Result (two images only, MASt3R)}
+        \scriptsize
+        \[\R=\begin{pmatrix}0.99999&-0.00082&-0.00189\\0.00083&0.99998&0.00617\\0.00188&-0.00617&0.99998\end{pmatrix}\]
+        \[\tv=(0.998,\,-0.046,\,0.033)\ \text{(direction)}\]
+        \begin{tabular}{@{}ll@{}}
+          Rotation angle & $0.37^\circ$\\
+          Reprojection RMS & 0.19\,px\\
+          Model (GRIC) & $H$ (planar)\\
+          Inliers / matches & 677 / 677\\
+          Focal length & 893\,px (estimated)\\
+          Region & moved (motion confirmed)\\
+          Pose time & 4.2\,s\\
+          Verdict & \textsc{reliable}\\
+        \end{tabular}
+      \end{block}
+      \footnotesize The box slid sideways without turning: almost no rotation, and the translation points along the camera's $x$ axis.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ test sample 2
+\begin{frame}{Evaluation on a test sample --- alloy wheel}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \centering\scriptsize
+      \begin{tabular}{@{}c@{\hspace{3pt}}c@{}}
+        \includegraphics[width=0.29\linewidth]{samples/sample_12/image1.jpg} &
+        \includegraphics[width=0.29\linewidth]{samples/sample_12/image2.jpg}\\
+        image 1 & image 2\\[2pt]
+        \includegraphics[width=0.29\linewidth]{samples/sample_12/result_mask1.jpg} &
+        \includegraphics[width=0.29\linewidth]{samples/sample_12/result_mask2.jpg}\\
+        object found (green) & same object in image 2\\[2pt]
+        \multicolumn{2}{c}{\includegraphics[width=0.6\linewidth]{samples/sample_12/result.jpg}}\\
+        \multicolumn{2}{c}{MASt3R inlier correspondences}
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Result (two images only, MASt3R)}
+        \scriptsize
+        \[\R=\begin{pmatrix}0.99789&-0.00054&0.06493\\0.00057&1.00000&-0.00037\\-0.06493&0.00040&0.99789\end{pmatrix}\]
+        \[\tv=(-0.999,\,-0.001,\,0.050)\ \text{(direction)}\]
+        \begin{tabular}{@{}ll@{}}
+          Rotation angle & $3.72^\circ$\\
+          Rotation axis & $\approx(0.01,\,1.00,\,0.01)$, vertical\\
+          Reprojection RMS & 0.61\,px\\
+          Model (GRIC) & $E$ (3D)\\
+          Inliers / matches & 1614 / 1614\\
+          Focal length & 1498\,px (estimated)\\
+          Region & moved (motion confirmed)\\
+          Pose time & 18.8\,s\\
+          Verdict & \textsc{reliable}\\
+        \end{tabular}
+      \end{block}
+      \footnotesize The wheel turned by about $3.7^\circ$ about the vertical axis and shifted along $-x$; the whole wheel with its tyre was segmented.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ test sample 3
+\begin{frame}{Evaluation on a test sample --- checkerboard on wheel assembly}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \centering\scriptsize
+      \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \includegraphics[width=0.24\linewidth]{samples/sample_56/image1.jpg} &
+        \includegraphics[width=0.24\linewidth]{samples/sample_56/image2.jpg} &
+        \includegraphics[width=0.24\linewidth]{samples/sample_56/result_mask1.jpg} &
+        \includegraphics[width=0.24\linewidth]{samples/sample_56/result_mask2.jpg}\\
+        image 1 & image 2 & region 1 (green) & region 2 (green)\\[3pt]
+        \multicolumn{4}{c}{\includegraphics[width=0.62\linewidth]{samples/sample_56/result.jpg}}\\
+        \multicolumn{4}{c}{MASt3R inlier correspondences (whole images, after the retry)}
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Result (two images only, MASt3R)}
+        \scriptsize
+        \[\R=\begin{pmatrix}0.99927&0.00124&-0.03810\\-0.00101&0.99998&0.00619\\0.03811&-0.00615&0.99926\end{pmatrix}\]
+        \[\tv=(1.000,\,0.014,\,0.006)\ \text{(direction)}\]
+        \begin{tabular}{@{}ll@{}}
+          Rotation angle & $2.21^\circ$\\
+          Rotation axis & $\approx(-0.16,\,-0.99,\,-0.03)$, vertical\\
+          Reprojection RMS & 0.74\,px\\
+          Model (GRIC) & $E$ (3D)\\
+          Inliers / matches & 872 / 873\\
+          Focal length & 1779\,px (estimated)\\
+          Region & whole images (retry)\\
+          Pose time & 15.1\,s\\
+          Verdict & \textsc{scene motion only}\\
+        \end{tabular}
+      \end{block}
+      \footnotesize The region finder paired different parts (clamp vs.\ hub), so the pose was recomputed on the whole images. The background is black, so every match lies on the object: the assembly turned by about $2.2^\circ$ about the vertical axis and shifted along $+x$.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ instructor's pairs
+\begin{frame}{Instructor's test pair A --- given $\K$, all objects move together}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \centering\scriptsize
+      \begin{tabular}{@{}c@{\hspace{3pt}}c@{}}
+        \includegraphics[width=0.49\linewidth]{samples/prof_pairA/pairA_1.jpg} &
+        \includegraphics[width=0.49\linewidth]{samples/prof_pairA/pairA_2.jpg}\\
+        image 1 & image 2\\[3pt]
+        \multicolumn{2}{@{}c@{}}{\includegraphics[width=\linewidth]{samples/prof_pairA/pairA_matches.jpg}}\\
+        \multicolumn{2}{c}{MASt3R inlier correspondences on the whole images (506 / 513)}
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \scriptsize
+      $\K=\begin{pmatrix}1180&0&640\\0&1180&480\\0&0&1\end{pmatrix}$ (given); one $(\R,\tv)$ for all objects $\Rightarrow$ whole images.
+      \begin{block}{Result (two images only, MASt3R)}
+        \scriptsize\setlength{\arraycolsep}{3pt}
+        \[\R=\begin{pmatrix}0.8906&-0.2852&0.3541\\0.2848&0.9570&0.0545\\-0.3545&0.0524&0.9336\end{pmatrix}\]
+        \[\tv=(-0.988,\,-0.152,\,0.020)\ \text{(direction)}\]
+        \begin{tabular}{@{}ll@{}}
+          Rotation angle & $27.05^\circ$\\
+          Rotation axis & $(-0.002,\,0.779,\,0.627)$\\
+          Roll / pitch / yaw & $3.21^\circ$ / $20.76^\circ$ / $17.73^\circ$\\
+          Model (GRIC) & $E$ (3D)\\
+          Inliers / matches & 506 / 513\\
+          Reprojection RMS & 0.38\,px\\
+          Pose time & 16.8\,s\\
+        \end{tabular}
+      \end{block}
+      \footnotesize The rotation axis lies within $1.6^\circ$ of the table normal $(0.032,\,0.774,\,0.633)$: the objects were turned together by $27^\circ$ about the table normal.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Instructor's test pair C --- same $\K$, all objects move together}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \centering\scriptsize
+      \begin{tabular}{@{}c@{\hspace{3pt}}c@{}}
+        \includegraphics[width=0.49\linewidth]{samples/prof_pairC/pairC_1.jpg} &
+        \includegraphics[width=0.49\linewidth]{samples/prof_pairC/pairC_2.jpg}\\
+        image 1 & image 2\\[3pt]
+        \multicolumn{2}{@{}c@{}}{\includegraphics[width=\linewidth]{samples/prof_pairC/pairC_matches.jpg}}\\
+        \multicolumn{2}{c}{MASt3R inlier correspondences on the whole images (1002 / 1032)}
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \scriptsize
+      $\K=\begin{pmatrix}1180&0&640\\0&1180&480\\0&0&1\end{pmatrix}$ (given); one $(\R,\tv)$ for all objects $\Rightarrow$ whole images.
+      \begin{block}{Result (two images only, MASt3R)}
+        \scriptsize\setlength{\arraycolsep}{3pt}
+        \[\R=\begin{pmatrix}0.9013&0.2700&-0.3389\\-0.2820&0.9593&0.0141\\0.3289&0.0829&0.9407\end{pmatrix}\]
+        \[\tv=(0.995,\,-0.042,\,-0.089)\ \text{(direction)}\]
+        \begin{tabular}{@{}ll@{}}
+          Rotation angle & $25.76^\circ$\\
+          Rotation axis & $(0.079,\,-0.768,\,-0.635)$\\
+          Roll / pitch / yaw & $5.03^\circ$ / $-19.20^\circ$ / $-17.38^\circ$\\
+          Model (GRIC) & $E$ (3D)\\
+          Inliers / matches & 1002 / 1032\\
+          Reprojection RMS & 0.38\,px\\
+          Pose time & 21.2\,s\\
+        \end{tabular}
+      \end{block}
+      \footnotesize The rotation axis lies within $6.2^\circ$ of the table normal $(0.023,\,0.745,\,0.666)$, opposite sign: turned together by $25.8^\circ$, the other way from pair A.
     \end{column}
   \end{columns}
 \end{frame}
@@ -423,6 +638,8 @@
         \item[{[22]}] J.~Reizenstein \emph{et al.}, ``Common Objects in 3D,'' \emph{ICCV}, 2021.
         \item[{[23]}] X.~Yu \emph{et al.}, ``MVImgNet: A large-scale dataset of multi-view images,'' \emph{CVPR}, 2023.
         \item[{[24]}] P.-E.~Sarlin \emph{et al.}, ``SuperGlue: Learning feature matching with graph neural networks,'' \emph{CVPR}, 2020.
+        \item[{[25]}] J.~J.~Mor\'e, ``The Levenberg--Marquardt algorithm: implementation and theory,'' \emph{Numerical Analysis}, LNM 630, Springer, 1978.
+        \item[{[26]}] Y.~Ma, S.~Soatto, J.~Ko\v{s}eck\'a, S.~S.~Sastry, \emph{An Invitation to 3-D Vision}, Springer, 2004.
       \end{enumerate}
     \end{column}
   \end{columns}

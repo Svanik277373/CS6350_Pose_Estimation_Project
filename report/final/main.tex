@@ -99,7 +99,7 @@ which maps a point from the first camera's frame to the second's, $\X_2 = \R\X_1
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=0.92\textwidth]{datasets.png}
+  \includegraphics[width=\textwidth]{datasets.png}
   \caption{One test pair from each dataset with its ground-truth rotation angle.}
   \label{fig:datasets}
 \end{figure*}
@@ -123,7 +123,7 @@ and the dataset masks are used as object regions.
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=0.9\textwidth]{dataprep.png}
+  \includegraphics[width=\textwidth]{dataprep.png}
   \caption{Offline preparation of the evaluation data: each dataset is converted to frames with pixel intrinsics, an OpenCV world-to-camera pose and an object mask, from which the test pairs and their ground-truth relative poses are formed.}
   \label{fig:dataprep}
 \end{figure*}
@@ -140,17 +140,42 @@ The focal length is estimated from the point map predicted by MASt3R~\cite{mast3
 \begin{equation}
   f^\star = \arg\min_f \sum_i \big\|\,\mathbf{p}_i - \mathbf{c} - f\,\mathbf{q}_i\big\|,
 \end{equation}
-where $\mathbf{q}_i = (X_i/Z_i,\,Y_i/Z_i)$ and $\mathbf{c}=(c_x,c_y)$. The minimum is found by Weiszfeld's iteratively reweighted least squares~\cite{weiszfeld,dust3r}. The network is run once for each ordering of the pair and the two estimates are averaged when the images have the same size. If the network is unavailable, a $70^\circ$ horizontal field of view is assumed and the result is flagged. On the test pairs the median focal-length error is 6\%.
+where $\mathbf{q}_i = (X_i/Z_i,\,Y_i/Z_i)$ and $\mathbf{c}=(c_x,c_y)$. The minimum is found by Weiszfeld's iteratively reweighted least squares~\cite{weiszfeld,dust3r}, which starts from the least-squares solution and alternates
+\begin{gather}
+  w_i^{(k)} = \frac{1}{\|\mathbf{a}_i - f^{(k)}\mathbf{q}_i\|},\qquad \mathbf{a}_i=\mathbf{p}_i-\mathbf{c},\\
+  f^{(k+1)} = \frac{\sum_i w_i^{(k)}\,\mathbf{q}_i^\top\mathbf{a}_i}{\sum_i w_i^{(k)}\,\mathbf{q}_i^\top\mathbf{q}_i},
+\end{gather}
+so that pixels that disagree strongly, typically at depth discontinuities, receive small weights. The network is run once for each ordering of the pair and the two estimates are averaged when the images have the same size. If the network is unavailable, a $70^\circ$ horizontal field of view is assumed and the result is flagged. On the test pairs the median focal-length error is 6\%.
 
 \subsection*{Object Segmentation (SAM 2.1)}
-SAM~2.1~\cite{sam,sam2} produces the mask of the object under a prompt. A hierarchical vision transformer (Hiera~\cite{hiera}) encodes the image once; for each prompt a light two-way transformer decoder, in which prompt tokens attend to image features and image features attend to the tokens, outputs the mask. Since no prompt is given, image~1 is prompted with a $12\times12$ grid of points. Near-duplicate masks (intersection over union above 0.8) are merged; masks touching the image border are treated as background, as are masks covering less than 0.2\% or more than 60\% of the image. The remaining segments are object candidates, ranked by area weighted by proximity to the image centre.
+SAM~2.1~\cite{sam,sam2} produces the mask of the object under a prompt. A hierarchical vision transformer (Hiera~\cite{hiera}) encodes the image once; for each prompt a light two-way transformer decoder, in which prompt tokens attend to image features and image features attend to the tokens, outputs the mask (Figure~\ref{fig:sam2}). Both directions use scaled dot-product attention,
+\begin{equation}
+  \mathrm{Attn}(Q,K,V)=\mathrm{softmax}\!\big(QK^\top/\sqrt{d_k}\big)\,V,
+\end{equation}
+with the queries $Q$ taken from one set of tokens and the keys $K$ and values $V$ from the other. Since no prompt is given, image~1 is prompted with a $12\times12$ grid of points. Near-duplicate masks (intersection over union above 0.8) are merged; masks touching the image border are treated as background, as are masks covering less than 0.2\% or more than 60\% of the image. The remaining segments are object candidates, ranked by the score
+\begin{gather}
+  s = A\,(0.25 + c),\qquad c = 1-\frac{\|\bar{\mathbf{m}}-(0.5,\,0.5)\|}{\sqrt{0.5}},
+\end{gather}
+where $A$ is the fraction of the image covered by the mask and $\bar{\mathbf{m}}$ its centroid in normalised image coordinates, so that $c=1$ at the centre and $c=0$ in a corner. This ranking is a heuristic of our own.
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=\textwidth]{arch/sam2.png}
+  \caption{Architecture of SAM~2, reproduced from~\cite{sam2}. For a single image only the image encoder (Hiera), the prompt encoder and the mask decoder are used; the memory attention, memory encoder and memory bank serve video.}
+  \label{fig:sam2}
+\end{figure*}
+
 
 \subsection*{Identification of the Moved Object}
 The object is taken to be the candidate whose motion between the images differs from that of the background.
 
 \textbf{Background motion.} The full images are matched with XFeat~\cite{xfeat} and LightGlue~\cite{lightglue}. A fundamental matrix $F$, satisfying $\mathbf{p}_2^\top F\mathbf{p}_1=0$ for static points, is fitted to the matches outside all candidates with MAGSAC++~\cite{magsac}; it does not depend on the estimated focal length.
 
-\textbf{Motion rule.} For each candidate the fraction of its matches whose Sampson distance to $F$ exceeds the threshold is compared with the same fraction for the background. A candidate with at least 8 matches, at least 1.5\% of the image, and an outlier fraction at least 50 percentage points above the background's has moved independently~\cite{torr}. When the background is a single plane, which leaves $F$ ambiguous, the test is repeated against an $F$ fitted to all matches.
+\textbf{Motion rule.} The residual of a match with respect to $F$ is its Sampson distance~\cite{hz}, the first-order approximation of its geometric distance to the epipolar constraint:
+\begin{gather}
+  e_S(\mathbf{p}_1,\mathbf{p}_2)=\frac{|\mathbf{p}_2^\top F\mathbf{p}_1|}{\|\mathbf{g}\|},\label{eq:sampson}\\
+  \mathbf{g}=\big((F\mathbf{p}_1)_1,\,(F\mathbf{p}_1)_2,\,(F^\top\mathbf{p}_2)_1,\,(F^\top\mathbf{p}_2)_2\big),\nonumber
+\end{gather}
+with $\mathbf{p}$ in homogeneous pixel coordinates. For a candidate $c$, the outlier fraction $o_c$ is the share of its matches with $e_S>2$\,px at matching resolution, and $o_{bg}$ is the same share for the background. A candidate with at least 8 matches, at least 1.5\% of the image, and $o_c-o_{bg}\ge 0.5$ has moved independently~\cite{torr}. When the background is a single plane, which leaves $F$ ambiguous, the test is repeated against an $F$ fitted to all matches.
 
 \textbf{Change rule.} Specular or dark objects yield few matches. For these, a homography fitted to background matches near the candidate is used to warp image~1 onto image~2, cancelling the camera motion locally~\cite{irani}, and the normalised cross-correlation~\cite{lewis}
 \begin{equation}
@@ -164,22 +189,93 @@ is computed inside the candidate and in a surrounding ring, allowing shifts of u
 Each image is cropped to the mask's bounding box enlarged by 20\% on each side and reduced to at most 800\,px on its longer side, so that a small object occupies most of the matcher's input. Matches outside the masks are discarded and the rest are mapped back to full-image coordinates; the intrinsic matrix is therefore unchanged, and the inlier threshold is scaled by the inverse of the resizing factor.
 
 \subsection*{Feature Matching}
-\textbf{MASt3R.} The default matcher is MASt3R~\cite{mast3r}, built on DUSt3R~\cite{dust3r}. Both images are encoded by a shared ViT-Large encoder; two transformer decoders exchange information through cross-attention at every block, and prediction heads output, for every pixel of both images, a 3D point in the first camera's frame, a confidence, and a local descriptor. The descriptors are trained with a contrastive (InfoNCE) objective on ground-truth correspondences. Matches are obtained as mutual nearest neighbours of the descriptors, starting from a grid with 8\,px spacing. Because correspondence is inferred from the predicted 3D structure of both views, the method is robust to large viewpoint changes and weak texture. Only the matches are used; the pose is computed geometrically as described below.
+\textbf{MASt3R.} The default matcher is MASt3R~\cite{mast3r}, built on DUSt3R~\cite{dust3r}. Both images are encoded by a shared ViT-Large encoder; two transformer decoders exchange information through cross-attention at every block, and prediction heads output, for every pixel of both images, a 3D point in the first camera's frame, a confidence, and a local descriptor. The network (Figure~\ref{fig:mast3r}) is trained with a confidence-weighted regression loss and a contrastive (InfoNCE) matching loss,
+\begin{gather}
+  \mathcal{L}_{\mathrm{conf}}=\sum_{v\in\{1,2\}}\sum_{i} C_i^{v}\,\Big\|\tfrac{1}{z}\X_i^{v}-\tfrac{1}{\hat z}\hat\X_i^{v}\Big\| - \alpha\log C_i^{v},\\
+  \mathcal{L}_{\mathrm{match}}=-\!\!\sum_{(i,j)\in\hat{\mathcal M}}\!\Big(\log\frac{s(i,j)}{\sum_{k} s(k,j)}+\log\frac{s(i,j)}{\sum_{k} s(i,k)}\Big),\\
+  s(i,j)=\exp\!\big(\mathbf{D}^{1\top}_i\mathbf{D}^2_j/\tau\big),
+\end{gather}
+where $\hat\X$ is the ground-truth point map, $z$ and $\hat z$ are normalising scale factors, $C$ is the predicted confidence, $\mathbf{D}^1,\mathbf{D}^2$ are the descriptor maps and $\hat{\mathcal M}$ is the set of ground-truth correspondences. The term $-\alpha\log C$ prevents the trivial solution $C=0$, so the network lowers its confidence only where regression is difficult. Matches are the mutual nearest neighbours of the descriptors,
+\begin{gather}
+  \mathcal M=\big\{(i,j)\ \big|\ j=\mathrm{NN}_2(i),\ i=\mathrm{NN}_1(j)\big\},\\
+  \mathrm{NN}_2(i)=\arg\min_{j'}\|\mathbf{D}^2_{j'}-\mathbf{D}^1_i\|,\nonumber\\
+  \mathrm{NN}_1(j)=\arg\min_{i'}\|\mathbf{D}^1_{i'}-\mathbf{D}^2_j\|,\nonumber
+\end{gather}
+found by MASt3R's fast reciprocal search starting from a grid with 8\,px spacing. Because correspondence is inferred from the predicted 3D structure of both views, the method is robust to large viewpoint changes and weak texture. Only the matches are used; the pose is computed geometrically as described below.
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=\textwidth]{arch/dust3r.png}
+  \\[-2pt]{\small (a) DUSt3R}\\[6pt]
+  \includegraphics[width=\textwidth]{arch/mast3r.png}
+  \\[-2pt]{\small (b) MASt3R}\\[2pt]
+  \caption{(a) DUSt3R~\cite{dust3r}: a shared ViT encoder, two decoders exchanging information by cross-attention, and heads regressing a point map and a confidence map for each image in the frame of camera~1. (b) MASt3R~\cite{mast3r} adds a descriptor head per image and matches the descriptors by fast reciprocal nearest neighbours. Both reproduced from the original papers.}
+  \label{fig:mast3r}
+\end{figure*}
 
-\textbf{Alternative matchers.} SIFT~\cite{sift} detects extrema of a difference-of-Gaussians scale space, assigns each a dominant orientation and describes it by 128 gradient-orientation histograms; it is invariant to scale and in-plane rotation, and matches are retained by Lowe's ratio test (0.75). XFeat~\cite{xfeat} is a lightweight convolutional detector-descriptor; LightGlue~\cite{lightglue} matches its keypoints with alternating self- and cross-attention and adaptive depth. LoFTR~\cite{loftr} is detector-free: coarse features at $1/8$ resolution are transformed by interleaved self- and cross-attention, matched by a dual softmax and refined to sub-pixel accuracy.
+
+\textbf{Alternative matchers.} SIFT~\cite{sift} detects extrema of the difference-of-Gaussians scale space
+\begin{equation}
+  D(\mathbf{x},\sigma)=\big(G(\mathbf{x},k\sigma)-G(\mathbf{x},\sigma)\big)*I(\mathbf{x}),
+\end{equation}
+assigns each a dominant orientation and describes it by 128 gradient-orientation histogram values ($4\times4$ cells of 8 bins); it is invariant to scale and in-plane rotation. A match of descriptor $\mathbf{d}$ is kept by Lowe's ratio test,
+\begin{equation}
+  \|\mathbf{d}-\mathbf{d}_1\| < 0.75\,\|\mathbf{d}-\mathbf{d}_2\|,
+\end{equation}
+where $\mathbf{d}_1$ and $\mathbf{d}_2$ are its two nearest descriptors in the other image. XFeat~\cite{xfeat} is a lightweight convolutional detector-descriptor that outputs a keypoint heat map, a 64-dimensional descriptor map and a reliability map at $1/8$ resolution (Figure~\ref{fig:xfeat-lg}a). LightGlue~\cite{lightglue} matches its keypoints with layers of self- and cross-attention that stop early once confident (Figure~\ref{fig:xfeat-lg}b); from the final states $\mathbf{x}_i$ it forms a similarity $S_{ij}$ and a matchability $\sigma_i$ and the soft assignment
+\begin{gather}
+  S_{ij}=\mathrm{Linear}(\mathbf{x}^A_i)^\top\mathrm{Linear}(\mathbf{x}^B_j),\\
+  \sigma_i=\mathrm{Sigmoid}\big(\mathrm{Linear}(\mathbf{x}_i)\big),\\
+  P_{ij}=\sigma^A_i\,\sigma^B_j\,\mathrm{softmax}_k(S_{kj})_i\,\mathrm{softmax}_k(S_{ik})_j .
+\end{gather}
+LoFTR~\cite{loftr} is detector-free (Figure~\ref{fig:loftr}): coarse features at $1/8$ resolution are transformed by interleaved self- and cross-attention and matched by the dual softmax
+\begin{gather}
+  S(i,j)=\tfrac{1}{\tau}\big\langle\tilde F^A_{tr}(i),\,\tilde F^B_{tr}(j)\big\rangle,\\
+  \mathcal P_c(i,j)=\mathrm{softmax}\big(S(i,\cdot)\big)_j\cdot\mathrm{softmax}\big(S(\cdot,j)\big)_i ,
+\end{gather}
+keeping mutual nearest neighbours above a confidence threshold; each coarse match is refined to sub-pixel accuracy as the expectation of a correlation heat map in a $w\times w$ window at $1/2$ resolution.
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=0.9\textwidth]{arch/xfeat.png}
+  \\[-2pt]{\small (a) XFeat}\\[6pt]
+  \includegraphics[width=0.9\textwidth]{arch/lightglue.png}
+  \\[-2pt]{\small (b) LightGlue}\\[2pt]
+  \caption{(a) XFeat~\cite{xfeat}: a keypoint head on $8\times8$ blocks, and a descriptor head fusing three scales into a 64-dimensional descriptor map and a reliability map at $1/8$ resolution. (b) LightGlue~\cite{lightglue}: layers of self- and cross-attention, a confidence classifier that stops early and prunes unmatchable points, and the similarity and matchability scores that form the assignment. Both reproduced from the original papers.}
+  \label{fig:xfeat-lg}
+\end{figure*}
+
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=0.85\textwidth]{arch/loftr.png}
+  \caption{Architecture of LoFTR, reproduced from~\cite{loftr}: a CNN extracts features at $1/8$ and $1/2$ resolution; coarse features pass through self- and cross-attention, are matched by a differentiable (dual-softmax) layer, and each coarse match is refined in a $w\times w$ window at $1/2$ resolution.}
+  \label{fig:loftr}
+\end{figure*}
+
 
 \textbf{Cascades.} Two presets trade accuracy for speed. \texttt{accurate} tries XFeat+LightGlue, an outline-based method for textureless rectangles, SIFT and LoFTR in turn, accepting the first with enough inliers (200, valid outline, 50, 120). \texttt{confident} tries XFeat+LightGlue, SIFT and the outline method, accepting a stage when a gradient-boosted classifier, trained on the tuning split from the inlier count, inlier ratio, reprojection error and GRIC difference, predicts a probability of at least 0.45 that the error is below $10^\circ$; otherwise MASt3R is used.
 
 \subsection*{Robust Estimation of $H$ and $E$}
-Two models are fitted to the correspondences with MAGSAC++~\cite{magsac}, which replaces RANSAC's single inlier threshold~\cite{ransac} by a marginalisation over noise scales and refines the best model by iteratively reweighted least squares. The homography,
+Two models are fitted to the correspondences with MAGSAC++~\cite{magsac}, a robust estimator in the RANSAC family~\cite{ransac}. RANSAC fits a model to each of many random minimal samples and keeps the one with the most residuals below a fixed threshold. MAGSAC++ removes the fixed threshold: it models the residual of an inlier with noise scale $\sigma$ by a $\chi$ distribution, marginalises over $\sigma\in[0,\sigma_{\max}]$, scores each model with the resulting robust loss, and polishes the best model by iteratively reweighted least squares,
+\begin{gather}
+  w_i=\frac{1}{\sigma_{\max}}\int_0^{\sigma_{\max}} p\big(r_i(\theta_k)\,\big|\,\sigma\big)\,d\sigma,\\
+  \theta_{k+1}=\arg\min_\theta\sum_i w_i\,r_i(\theta)^2 ,
+\end{gather}
+so that the weight of a correspondence decreases smoothly with its residual $r_i$. The homography,
 \begin{equation}
   \mathbf{p}_2 \simeq H\mathbf{p}_1,\qquad H = \K_2\Big(\R + \frac{\tv\,\n^\top}{d}\Big)\K_1^{-1},
 \end{equation}
-is exact for a planar object with normal $\n$ at distance $d$ and is estimated from minimal samples of four correspondences by the direct linear transform~\cite{hz}. The essential matrix,
+is exact for a planar object with normal $\n$ at distance $d$ and is estimated from minimal samples of four correspondences by the direct linear transform~\cite{hz}. Each correspondence $\mathbf{p}_1=(x,y,1)^\top\leftrightarrow\mathbf{p}_2=(x',y',1)^\top$ contributes two rows of $A\mathbf{h}=\mathbf{0}$,
+\begin{equation}
+  \begin{pmatrix} \mathbf{0}^\top & -\mathbf{p}_1^\top & y'\,\mathbf{p}_1^\top\\ \mathbf{p}_1^\top & \mathbf{0}^\top & -x'\,\mathbf{p}_1^\top\end{pmatrix}\mathbf{h}=\mathbf{0},
+\end{equation}
+where $\mathbf{h}\in\mathbb{R}^9$ stacks the rows of $H$; $\mathbf{h}$ is the right singular vector of $A$ with the smallest singular value, computed on normalised coordinates. The essential matrix,
 \begin{equation}
   \x_2^\top E\,\x_1 = 0,\qquad E = [\tv]_\times\R,
 \end{equation}
-holds for any rigid motion~\cite{longuethiggins} and is estimated from minimal samples of five normalised correspondences by Nist\'er's algorithm~\cite{nister}. The inlier threshold is 1.5\,px at matching resolution, divided by the focal length for $E$.
+holds for any rigid motion~\cite{longuethiggins} and is estimated from minimal samples of five normalised correspondences by Nist\'er's algorithm~\cite{nister}. The five epipolar constraints leave $E$ in a four-dimensional null space, $E=xE_1+yE_2+zE_3+E_4$, and the cubic constraints of an essential matrix,
+\begin{equation}
+  \det E = 0,\qquad 2EE^\top E-\mathrm{tr}(EE^\top)\,E=0,
+\end{equation}
+reduce to a tenth-degree polynomial in one unknown with up to ten real solutions. The inlier threshold is 1.5\,px at matching resolution, divided by the focal length for $E$.
 
 \subsection*{Model Selection}
 Since $E$ generalises $H$, it fits at least as well even when the object is planar, so residuals alone cannot choose between them. The Geometric Robust Information Criterion~\cite{torr}
@@ -187,20 +283,83 @@ Since $E$ generalises $H$, it fits at least as well even when the object is plan
   \mathrm{GRIC} = \sum_i \rho\!\Big(\frac{e_i^2}{\sigma^2}\Big) + \lambda_1 d\,n + \lambda_2 k,\\
   \rho(x)=\min\!\big(x,\lambda_3(r-d)\big),
 \end{gather}
-penalises each model's freedom: $d$ is the dimension of the model's manifold in the four-dimensional space of correspondences ($d=2$ for $H$, $d=3$ for $E$), $k$ the number of parameters (8 and 5), $r=4$, $\lambda_1=\ln r$, $\lambda_2=\ln rn$ and $\lambda_3=2$. Residuals $e_i$ are the symmetric transfer error for $H$ and the Sampson distance for $E$. The model with the lower score is used.
+penalises each model's freedom: $d$ is the dimension of the model's manifold in the four-dimensional space of correspondences ($d=2$ for $H$, $d=3$ for $E$), $k$ the number of parameters (8 and 5), $r=4$, $\lambda_1=\ln r$, $\lambda_2=\ln rn$ and $\lambda_3=2$. Residuals $e_i$ are the Sampson distance~\eqref{eq:sampson} for $E$ and the symmetric transfer error for $H$,
+\begin{gather}
+  e_H^2=\tfrac12\Big(\|\mathbf{p}_2-\pi(H\mathbf{p}_1)\|^2+\|\mathbf{p}_1-\pi(H^{-1}\mathbf{p}_2)\|^2\Big),\label{eq:transfer}\\
+  \pi(x,y,w)=(x/w,\ y/w).\nonumber
+\end{gather} The model with the lower score is used.
 
 \subsection*{Pose Decomposition}
-\textbf{From $E$.} With $E=U\,\mathrm{diag}(1,1,0)\,V^\top$, the four candidates are $\R\in\{UWV^\top, UW^\top V^\top\}$ and $\tv=\pm\mathbf{u}_3$~\cite{hz}; the candidate placing the triangulated points in front of both cameras is retained.
+\textbf{From $E$.} With the singular value decomposition $E=U\,\mathrm{diag}(1,1,0)\,V^\top$ and
+\begin{equation}
+  W=\begin{pmatrix}0&-1&0\\1&0&0\\0&0&1\end{pmatrix},
+\end{equation}
+the four candidates are $\R\in\{UWV^\top, UW^\top V^\top\}$ (signs chosen so that $\det\R=1$) and $\tv=\pm\mathbf{u}_3$, the last column of $U$~\cite{hz}; the candidate placing the triangulated points in front of both cameras is retained.
 
-\textbf{From $H$.} The normalised homography $\K_2^{-1}H\K_1=\R+\tv\n^\top/d$ is decomposed into up to four solutions~\cite{malis}, of which two remain after the visibility test. For a planar scene both reproduce the images exactly~\cite{faugeras}. They are separated by the number of points in front of both cameras, then by the median Sampson error over all correspondences---points slightly off the plane are explained only by the true pose---when one candidate is better by a factor of 1.5, and otherwise by the prior that the plane faces both cameras.
+\textbf{From $H$.} The normalised homography $\K_2^{-1}H\K_1=\R+\tv\n^\top/d$ is decomposed into up to four solutions~\cite{malis}, of which two remain after the visibility test. In the construction of~\cite{ma2004}, the matrix is first scaled so that its middle singular value is one, giving $\bar H=\R+\tv'\n^\top$ with $\tv'=\tv/d$. With $\bar H^\top\bar H=V\,\mathrm{diag}(\sigma_1^2,1,\sigma_3^2)\,V^\top$ and the columns $\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3$ of $V$,
+\begin{gather}
+  \mathbf{u}_{1,2}=\frac{\sqrt{1-\sigma_3^2}\,\mathbf{v}_1\pm\sqrt{\sigma_1^2-1}\,\mathbf{v}_3}{\sqrt{\sigma_1^2-\sigma_3^2}},\\
+  U_k=\big[\mathbf{v}_2,\ \mathbf{u}_k,\ \mathbf{v}_2\times\mathbf{u}_k\big],\\
+  W_k=\big[\bar H\mathbf{v}_2,\ \bar H\mathbf{u}_k,\ (\bar H\mathbf{v}_2)\times(\bar H\mathbf{u}_k)\big],\\
+  \R_k=W_kU_k^\top,\qquad \n_k=\mathbf{v}_2\times\mathbf{u}_k,\\
+  \tv'_k=(\bar H-\R_k)\,\n_k ,
+\end{gather}
+for $k=1,2$; the pairs $(-\n_k,-\tv'_k)$ give the other two solutions, and requiring positive depth for the observed points removes two of the four. For a planar scene both reproduce the images exactly~\cite{faugeras}. They are separated by the number of points in front of both cameras, then by the median Sampson error over all correspondences---points slightly off the plane are explained only by the true pose---when one candidate is better by a factor of 1.5, and otherwise by the prior that the plane faces both cameras.
 
 \textbf{Planar-twin check.} When $E$ is selected for a nearly planar object, it can coincide with the incorrect plane solution. If the pose from $E$ lies within $10^\circ$ of one candidate of the homography decomposition, the other candidate replaces it when it explains all correspondences nearly as well (median Sampson error within a factor of 3) and the evidence above prefers it.
 
 \subsection*{Non-linear Refinement}
-The pose is refined over all inliers by Levenberg--Marquardt~\cite{levenberg,marquardt}. For $E$ the parameters are the rotation (three, as a rotation vector) and the translation direction (two, on the unit sphere), and the residual is the Sampson distance. For $H$ they are the rotation, the translation scaled by the inverse plane distance and the plane normal (eight in total), and the residual is the symmetric transfer error of the induced homography. The refined pose is kept only if the median residual decreases; inliers are then re-selected among all correspondences and the refinement repeated once.
+The pose is refined over all inliers by Levenberg--Marquardt (LM)~\cite{levenberg,marquardt}, as implemented in MINPACK~\cite{more1978} and called through SciPy. The parameters are increments about the current estimate $(\R_0,\tv_0)$, which keeps the rotation in $SO(3)$ and the translation on the unit sphere.
+
+\textbf{Parameters and residuals for $E$.} Here $\boldsymbol\theta=(\boldsymbol\omega,\boldsymbol\beta)\in\mathbb{R}^5$ and
+\begin{gather}
+  \R(\boldsymbol\omega)=\exp([\boldsymbol\omega]_\times)\,\R_0,\qquad \tv(\boldsymbol\beta)=\frac{\tv_0+B\boldsymbol\beta}{\|\tv_0+B\boldsymbol\beta\|},\\
+  F(\boldsymbol\theta)=\K_2^{-\top}\,[\tv(\boldsymbol\beta)]_\times\,\R(\boldsymbol\omega)\,\K_1^{-1},
+\end{gather}
+where $\exp([\boldsymbol\omega]_\times)$ is evaluated by Rodrigues' formula and the columns $\mathbf{b}_1,\mathbf{b}_2$ of $B\in\mathbb{R}^{3\times2}$ span the plane orthogonal to $\tv_0$. The residual of inlier $i$ is the signed Sampson distance~\eqref{eq:sampson},
+\begin{equation}
+  r_i(\boldsymbol\theta)=\frac{\mathbf{p}_{2,i}^\top F(\boldsymbol\theta)\,\mathbf{p}_{1,i}}{\|\mathbf{g}_i(\boldsymbol\theta)\|},
+\end{equation}
+and LM minimises $C(\boldsymbol\theta)=\tfrac12\|\mathbf{r}(\boldsymbol\theta)\|^2=\tfrac12\sum_{i=1}^N r_i(\boldsymbol\theta)^2$.
+
+\textbf{Jacobian and update.} With the $N\times5$ Jacobian
+\begin{equation}
+  J=\frac{\partial\mathbf{r}}{\partial\boldsymbol\theta}=
+  \begin{pmatrix}
+    \dfrac{\partial r_1}{\partial\omega_1}&\dfrac{\partial r_1}{\partial\omega_2}&\dfrac{\partial r_1}{\partial\omega_3}&\dfrac{\partial r_1}{\partial\beta_1}&\dfrac{\partial r_1}{\partial\beta_2}\\[2pt]
+    \vdots&\vdots&\vdots&\vdots&\vdots\\
+    \dfrac{\partial r_N}{\partial\omega_1}&\dfrac{\partial r_N}{\partial\omega_2}&\dfrac{\partial r_N}{\partial\omega_3}&\dfrac{\partial r_N}{\partial\beta_1}&\dfrac{\partial r_N}{\partial\beta_2}
+  \end{pmatrix},
+\end{equation}
+each iteration solves the damped normal equations
+\begin{equation}
+  \big(J^\top J+\mu\,D^\top D\big)\,\boldsymbol\delta=-J^\top\mathbf{r},\qquad \boldsymbol\theta\leftarrow\boldsymbol\theta+\boldsymbol\delta ,
+\end{equation}
+where $D$ is a diagonal scaling matrix. For small $\mu$ this is the Gauss--Newton step and for large $\mu$ a short step along the negative gradient $-J^\top\mathbf{r}$. MINPACK chooses $\mu$ implicitly through a trust region $\|D\boldsymbol\delta\|\le\Delta$: a step is accepted only if it lowers $C$, and $\Delta$ is enlarged or reduced according to the ratio of the actual to the predicted reduction,
+\begin{equation}
+  \rho=\frac{C(\boldsymbol\theta)-C(\boldsymbol\theta+\boldsymbol\delta)}{C(\boldsymbol\theta)-\tfrac12\|\mathbf{r}+J\boldsymbol\delta\|^2}.
+\end{equation}
+By the chain rule, $\partial r_i/\partial\theta_j=(\partial r_i/\partial F):(\partial F/\partial\theta_j)$, and at $\boldsymbol\theta=\mathbf{0}$
+\begin{gather}
+  \frac{\partial F}{\partial\omega_k}=\K_2^{-\top}[\tv_0]_\times[\mathbf{e}_k]_\times\R_0\K_1^{-1},\\
+  \frac{\partial F}{\partial\beta_k}=\K_2^{-\top}[\mathbf{b}_k]_\times\R_0\K_1^{-1},
+\end{gather}
+with $\mathbf{e}_k$ the $k$-th unit vector. In the implementation $J$ is computed by forward differences, $J_{:,j}\approx\big(\mathbf{r}(\boldsymbol\theta+h_j\mathbf{e}_j)-\mathbf{r}(\boldsymbol\theta)\big)/h_j$, and the iterations stop when the relative change of $C$ or of $\boldsymbol\theta$ falls below $10^{-8}$.
+
+\textbf{Planar case.} For $H$, $\boldsymbol\theta=(\boldsymbol\omega,\boldsymbol\tau,\boldsymbol\gamma)\in\mathbb{R}^8$ with $\boldsymbol\tau=\tv/d$ and $\n(\boldsymbol\gamma)=(\n_0+B_n\boldsymbol\gamma)/\|\n_0+B_n\boldsymbol\gamma\|$; the induced homography is
+\begin{equation}
+  H(\boldsymbol\theta)=\K_2\big(\R(\boldsymbol\omega)+\boldsymbol\tau\,\n(\boldsymbol\gamma)^\top\big)\K_1^{-1},
+\end{equation}
+the residual $r_i$ is the symmetric transfer error $e_H$ of~\eqref{eq:transfer}, and $J\in\mathbb{R}^{N\times8}$. Refinement starts from $\boldsymbol\omega=\mathbf{0}$, $\boldsymbol\gamma=\mathbf{0}$ and the plane parameters $\boldsymbol\tau_0$ of the decomposition.
+
+The refined pose is kept only if the median $|r_i|$ decreases; inliers are then re-selected among all correspondences and the refinement is repeated once.
 
 \subsection*{Reprojection Error and Verdict}
-The inliers are triangulated with the final pose, and points in front of both cameras are projected back into both images. The reported reprojection error is
+The inliers are triangulated with the final pose by the linear method~\cite{hz}. With $P_1=[I\,|\,\mathbf{0}]$, $P_2=[\R\,|\,\tv]$, normalised coordinates $\x_1=(x_1,y_1,1)^\top$, $\x_2=(x_2,y_2,1)^\top$ and $\mathbf{P}^{k\top}$ the $k$-th row of $P$, the homogeneous point $\tilde\X$ is the least-squares solution of
+\begin{equation}
+  \begin{pmatrix} x_1\mathbf{P}_1^{3\top}-\mathbf{P}_1^{1\top}\\ y_1\mathbf{P}_1^{3\top}-\mathbf{P}_1^{2\top}\\ x_2\mathbf{P}_2^{3\top}-\mathbf{P}_2^{1\top}\\ y_2\mathbf{P}_2^{3\top}-\mathbf{P}_2^{2\top}\end{pmatrix}\tilde\X=\mathbf{0}.
+\end{equation}
+Points in front of both cameras are projected back, $\hat{\mathbf{p}}_{1}=\pi(\K_1\X)$ and $\hat{\mathbf{p}}_{2}=\pi\big(\K_2(\R\X+\tv)\big)$, and the reported reprojection error is
 \begin{equation}
   \epsilon_{\mathrm{RMS}} = \sqrt{\frac{1}{2N}\sum_{i=1}^{N}\Big(\|\hat{\mathbf{p}}_{1,i}-\mathbf{p}_{1,i}\|^2+\|\hat{\mathbf{p}}_{2,i}-\mathbf{p}_{2,i}\|^2\Big)} .
 \end{equation}
@@ -212,7 +371,10 @@ The rotation error is the geodesic angle and the translation error the angle bet
   e_R &= \arccos\!\Big(\tfrac{\mathrm{tr}(\R_{est}^\top\R_{gt})-1}{2}\Big),\\
   e_t &= \arccos\!\Big(\tfrac{\tv_{est}^\top\tv_{gt}}{\|\tv_{est}\|\,\|\tv_{gt}\|}\Big).
 \end{align}
-The pose error is $\max(e_R,e_t)$. The area under the cumulative pose-error curve up to $\tau\in\{5^\circ,10^\circ,20^\circ\}$, normalised to 100 (AUC@$\tau$), is reported as in~\cite{superglue,loftr}, with failures counted as infinite error. For comparability with earlier coursework, the rotation is also expressed as roll $=\mathrm{atan2}(r_{32},r_{33})$, pitch $=-\arcsin r_{31}$ and yaw $=\mathrm{atan2}(r_{21},r_{11})$, and per-axis absolute errors are summarised by MAE, MSE, maximum, minimum and standard deviation.
+The pose error is $\max(e_R,e_t)$. A rotation is reported by its angle and axis,
+\begin{equation}
+  \theta=\arccos\!\Big(\tfrac{\mathrm{tr}\,\R-1}{2}\Big),\qquad \mathbf{a}=\frac{1}{2\sin\theta}\begin{pmatrix}r_{32}-r_{23}\\ r_{13}-r_{31}\\ r_{21}-r_{12}\end{pmatrix}.
+\end{equation} The area under the cumulative pose-error curve up to $\tau\in\{5^\circ,10^\circ,20^\circ\}$, normalised to 100 (AUC@$\tau$), is reported as in~\cite{superglue,loftr}, with failures counted as infinite error. For comparability with earlier coursework, the rotation is also expressed as roll $=\mathrm{atan2}(r_{32},r_{33})$, pitch $=-\arcsin r_{31}$ and yaw $=\mathrm{atan2}(r_{21},r_{11})$, and per-axis absolute errors are summarised by MAE, MSE, maximum, minimum and standard deviation.
 
 % ------------------------------------------------------------------ 3
 \section{Results}
@@ -330,7 +492,7 @@ Yaw & 0.187 & 0.055 & 0.751 & 0.021 & 0.142 & 38\\
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=0.86\textwidth]{euler_struct_near_gap20.png}
+  \includegraphics[width=0.72\textwidth]{euler_struct_near_gap20.png}
   \caption{Frame-wise roll, pitch and yaw against ground truth for 38 consecutive pairs 20 frames apart (TUM \texttt{struct\_near}), each estimated from the two images only. The estimates follow the ground truth closely; the largest deviations are a roll error of $8.5^\circ$ at pair 30 and a pitch overshoot of $3.8^\circ$ at pair 6.}
   \label{fig:euler}
 \end{figure*}
@@ -366,7 +528,7 @@ MASt3R & \textbf{50.4} / \textbf{69.0} / \textbf{81.0} & \textbf{1.17}$^\circ$ &
 
 Figure~\ref{fig:methods} shows, for individual pairs, situations in which a particular method gives clearly the best pose, together with the result of every method on the same pair. A pair is shown for a method only if its pose error is at most $5^\circ$ and every other method is at least twice and $3^\circ$ worse; a cascade is credited when it selects a stage that succeeds while the methods it did not select fail. MASt3R succeeds on keys with weak texture where the 2D matchers fail; \texttt{confident} succeeds on a similar pair by deferring to MASt3R; \texttt{accurate} succeeds on a laptop through its outline-based stage when every correspondence-based method is $8$--$12^\circ$ in error; and LoFTR succeeds on the checkerboard pair of Figure~\ref{fig:failure}, where MASt3R's correspondences between the incorrectly paired regions lead to a large error. No pair satisfied the criterion for SIFT or XFeat+LightGlue alone.
 
-\begin{figure*}[t]
+\begin{figure*}[p]
   \centering
   \includegraphics[width=\textwidth]{methods.jpg}
   \caption{Pairs on which one method gives clearly the best pose (framed), with the result of every method, two images only. Inlier correspondences are green when the rotation error is below $5^\circ$ and red otherwise; the text gives the rotation and translation-direction errors, the number of inliers, the selected model and the reprojection error.}
@@ -431,6 +593,84 @@ A planar scene admits two poses that explain both images exactly. Choosing betwe
 \end{itemize}
 
 % ------------------------------------------------------------------ 6
+\begin{figure*}[!htbp]
+  \centering
+  \includegraphics[width=0.48\linewidth]{prof/pairA_1.jpg}\hfill
+  \includegraphics[width=0.48\linewidth]{prof/pairA_2.jpg}\\[4pt]
+  \includegraphics[width=\linewidth]{prof/pairA_matches.jpg}
+  \caption{Instructor's pair A: view 1 and view 2 (top) and the MASt3R inlier correspondences on the whole images (bottom; 506 of 513 matches are inliers).}
+  \label{fig:pairA}
+\end{figure*}
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=0.48\linewidth]{prof/pairC_1.jpg}\hfill
+  \includegraphics[width=0.48\linewidth]{prof/pairC_2.jpg}\\[4pt]
+  \includegraphics[width=\linewidth]{prof/pairC_matches.jpg}
+  \caption{Instructor's pair C: view 1 and view 2 (top) and the MASt3R inlier correspondences on the whole images (bottom; 1002 of 1032 matches are inliers).}
+  \label{fig:pairC}
+\end{figure*}
+\section{Evaluation on the Instructor's Test Pairs}
+The instructor supplied test image pairs together with the camera intrinsics,
+\begin{equation}
+  \K=\begin{pmatrix}1180&0&640\\0&1180&480\\0&0&1\end{pmatrix},
+\end{equation}
+and specified that all objects in a pair undergo the same rigid transformation. A single $(\R,\tv)$ is therefore shared by every object, so the pose is estimated from the whole images, with all objects contributing correspondences, rather than from one isolated object; the given $\K$ replaces the focal-length estimate. The command used is \texttt{run.py IMG1 IMG2 --K camera.json --method mast3r}, followed by the remaining stages of Section~2 (MAGSAC++, GRIC, decomposition and refinement).
+
+\subsection*{Pair A}
+Figure~\ref{fig:pairA} shows the first pair and the inlier correspondences, which are spread over all objects (coins, key and watch), and Table~\ref{tab:pairA} lists the result.
+
+
+
+\begin{table}[!htbp]
+\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{ll}
+\toprule
+Quantity & Value\\
+\midrule
+Rotation $\R$ & $\begin{pmatrix}0.8906&-0.2852&0.3541\\0.2848&0.9570&0.0545\\-0.3545&0.0524&0.9336\end{pmatrix}$\\[14pt]
+Translation direction $\tv$ & $(-0.988,\ -0.152,\ 0.020)$\\
+Rotation angle & $27.05^\circ$\\
+Rotation axis & $(-0.002,\ 0.779,\ 0.627)$\\
+Roll / pitch / yaw & $3.21^\circ$ / $20.76^\circ$ / $17.73^\circ$\\
+Model (GRIC) & $E$ (non-planar)\\
+Inliers / matches & 506 / 513\\
+Reprojection RMS & 0.38\,px\\
+Run time (pose) & 16.8\,s\\
+\bottomrule
+\end{tabular}
+\caption{Result for the instructor's pair A (given $\K$, whole images, MASt3R).}\label{tab:pairA}
+\end{table}
+
+
+\textbf{Consistency check.} The rotation axis, $(-0.002,\,0.779,\,0.627)$ in camera-2 coordinates, lies within $1.6^\circ$ of the normal of the supporting surface, $(0.032,\,0.774,\,0.633)$, obtained independently from a homography fitted to the scene. The objects were therefore rotated together by $27.0^\circ$ about the normal to the surface on which they rest, as expected when the whole arrangement is turned as one. The translation is reported as a unit direction: its magnitude is not observable from two views without a known object size or depth (Section~1).
+
+\subsection*{Pair C}
+The second pair shows a box with a handle, a key and a watch (Fig.~\ref{fig:pairC}). The same command and the same $\K$ were used; Table~\ref{tab:pairC} lists the result.
+
+\begin{table}[!htbp]
+\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{ll}
+\toprule
+Quantity & Value\\
+\midrule
+Rotation $\R$ & $\begin{pmatrix}0.9013&0.2700&-0.3389\\-0.2820&0.9593&0.0141\\0.3289&0.0829&0.9407\end{pmatrix}$\\[14pt]
+Translation direction $\tv$ & $(0.995,\ -0.042,\ -0.089)$\\
+Rotation angle & $25.76^\circ$\\
+Rotation axis & $(0.079,\ -0.768,\ -0.635)$\\
+Roll / pitch / yaw & $5.03^\circ$ / $-19.20^\circ$ / $-17.38^\circ$\\
+Model (GRIC) & $E$ (non-planar)\\
+Inliers / matches & 1002 / 1032\\
+Reprojection RMS & 0.38\,px\\
+Run time (pose) & 21.2\,s\\
+\bottomrule
+\end{tabular}
+\caption{Result for the instructor's pair C (given $\K$, whole images, MASt3R).}\label{tab:pairC}
+\end{table}
+
+
+\textbf{Consistency check.} The rotation axis, $(0.079,\,-0.768,\,-0.635)$, lies within $6.2^\circ$ of the supporting-surface normal $(0.023,\,0.745,\,0.666)$ obtained from a homography fitted to the scene (with opposite sign). The objects were therefore turned together by $25.8^\circ$ about the surface normal, in the opposite sense to pair A. Both pairs give an essential-matrix model, reprojection errors of $0.38$\,px and more than $97\%$ inliers, so the two results are equally well supported by the images.
+
+% ------------------------------------------------------------------
 \section{Conclusion}
 A pipeline was presented that estimates the change in pose of a small object from two RGB images without any additional input. The focal length is obtained from a predicted point map, the moved object is identified by geometric and photometric consistency with the background, and the pose is computed from 3D-aware correspondences with a planar/non-planar model choice, an explicit treatment of the planar ambiguity and non-linear refinement. On 56 held-out pairs from four datasets, the median rotation error is $0.97^\circ$, the median translation-direction error $1.79^\circ$ and the median reprojection error 0.46\,px, within one point of AUC@10 of the same estimator given the true camera and object mask; along a TUM sequence the per-axis rotation errors are below $0.5^\circ$. The principal remaining errors arise from the region decision in static scenes and from the unobservability of translation over very short baselines. Future work includes enforcing agreement between independent matchers in the verdict and tracking the object region jointly across both images.
 
@@ -466,6 +706,8 @@ The code and results are available at\\ \url{https://github.com/Svanik277373/CS6
 \bibitem{co3d} J.~Reizenstein \emph{et al.}, ``Common Objects in 3D: Large-scale learning and evaluation of real-life 3D category reconstruction,'' in \emph{ICCV}, 2021.
 \bibitem{mvimgnet} X.~Yu \emph{et al.}, ``MVImgNet: A large-scale dataset of multi-view images,'' in \emph{CVPR}, 2023.
 \bibitem{zhang} Z.~Zhang, ``A flexible new technique for camera calibration,'' \emph{IEEE Trans.\ PAMI}, vol.~22, no.~11, pp.~1330--1334, 2000.
+\bibitem{ma2004} Y.~Ma, S.~Soatto, J.~Ko\v{s}eck\'a and S.~S. Sastry, \emph{An Invitation to 3-D Vision: From Images to Geometric Models}, Springer, 2004, ch.~5.
+\bibitem{more1978} J.~J. Mor\'e, ``The Levenberg--Marquardt algorithm: implementation and theory,'' in \emph{Numerical Analysis}, Lecture Notes in Mathematics, vol.~630, Springer, 1978, pp.~105--116.
 \end{thebibliography}
 
 % ------------------------------------------------------------------ 7
@@ -559,7 +801,7 @@ MASt3R & \textbf{68.3} & \textbf{76.5} & \textbf{72.4}\\
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\columnwidth]{focal_sens.png}
+  \includegraphics[width=\columnwidth]{focal_sens.png}
   \caption{AUC@10 against the relative error of the focal length.}
   \label{fig:focal}
 \end{figure}

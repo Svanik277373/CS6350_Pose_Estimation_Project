@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "method": "mast3r",
+  "reason": "",
+  "seconds": 15.06,
+  "focal_px": [
+    1778.6,
+    1778.6
+  ],
+  "focal_source": "estimated by MASt3R (per image 1732 / 1825; same size -> same camera assumed, averaged)",
+  "R": [
+    [
+      0.999273,
+      0.001241,
+      -0.038103
+    ],
+    [
+      -0.001006,
+      0.99998,
+      0.006194
+    ],
+    [
+      0.03811,
+      -0.006151,
+      0.999255
+    ]
+  ],
+  "t_direction": [
+    0.999887,
+    0.013791,
+    0.006032
+  ],
+  "rotation_deg": 2.213,
+  "model": "E",
+  "inliers": 872,
+  "matches": 873,
+  "reprojection_rms_px": 0.744,
+  "verdict": "SCENE MOTION ONLY -- whole images used: this is the camera's motion relative to the scene; it is the object's pose change only if the object did not move relative to its surroundings; focal length estimated, not measured -- a 15% error was seen on close-up photos",
+  "region_mode": "scene"
+}
