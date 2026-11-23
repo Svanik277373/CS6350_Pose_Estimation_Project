@@ -248,10 +248,63 @@ images + object regions
 * **Object only.** Unless labelled "with surroundings", matches come only from the
   object's mask.
 
-The datasets are downloaded by the `scripts/download_*.py` scripts. They fetch only the
-needed sequences: CO3D and MVImgNet are read out of the remote zips with HTTP range
-requests. MVImgNet's password is read from the `MVIMGNET_PASSWORD` environment variable
-and is never stored.
+### Downloading the datasets
+
+Only small, fixed subsets are used (about 5.2 GB on disk in total), and each has its own
+download script. The scripts fetch only the files the evaluation needs. CO3D and MVImgNet are
+read out of the remote zips with HTTP range requests, so their full archives (90–140 GB per
+CO3D category, 11–24 GB per MVImgNet category) are never downloaded. Everything goes to
+`data/<dataset>/` (not in git).
+
+| dataset | official page | files fetched by the script | subset | on disk |
+|---|---|---|---|---|
+| TUM RGB-D | [cvg.cit.tum.de/data/datasets/rgbd-dataset/download](https://cvg.cit.tum.de/data/datasets/rgbd-dataset/download) | `https://cvg.cit.tum.de/rgbd/dataset/freiburg3/rgbd_dataset_freiburg3_<name>.tgz` | fr3 `nostructure_texture_far`, `nostructure_texture_near_withloop`, `structure_texture_far`, `structure_texture_near`, `checkerboard_large` (RGB + ground truth; depth deleted) | 2.5 GB |
+| Objectron | [github.com/google-research-datasets/Objectron](https://github.com/google-research-datasets/Objectron) | index `https://storage.googleapis.com/objectron/v1/index/<category>_annotations_test`, then `.../videos/<id>/video.MOV` and `.../annotations/<id>.pbdata` | book, laptop, cereal box: first 10 test sequences each | 1.4 GB |
+| CO3Dv2 | [github.com/facebookresearch/co3d](https://github.com/facebookresearch/co3d) | zip URLs listed in [links.json](https://raw.githubusercontent.com/facebookresearch/co3d/main/co3d/links.json); images, masks and cameras read from inside the zips | cellphone, handbag: the 10 sequences with the best viewpoint-quality score (≥ 100 frames) | 0.9 GB |
+| MVImgNet | [github.com/GAP-LAB-CUHK-SZ/MVImgNet](https://github.com/GAP-LAB-CUHK-SZ/MVImgNet) | SharePoint folder `MVImgNet_by_categories` (link in `scripts/download_mvimgnet.py`); images, cut-outs and COLMAP models read from inside the zips | key (class 219), watch (class 222): 10 fully registered sequences each (≥ 25 frames) | 0.45 GB |
+
+The exact sequences used are listed in `data/<dataset>/manifest.csv`, which is committed, so
+a rerun fetches the same ones.
+
+**Steps** (Windows; on Linux/macOS use `venv/bin/python` and `export` instead of `set`):
+
+1. Create the environment once:
+   ```
+   python -m venv venv
+   venv\Scripts\python.exe -m pip install -r requirements.txt
+   ```
+2. TUM RGB-D (no registration needed):
+   ```
+   venv\Scripts\python.exe scripts\download_tum.py
+   ```
+3. Objectron (public Google Cloud bucket, no registration):
+   ```
+   venv\Scripts\python.exe scripts\download_objectron.py
+   ```
+4. CO3Dv2 (public links, no registration):
+   ```
+   venv\Scripts\python.exe scripts\download_co3d.py
+   ```
+5. MVImgNet (needs a password). Fill in the
+   [MVImgNet access form](https://docs.google.com/forms/d/e/1FAIpQLSfU9BkV1hY3r75n5rc37IvlzaK2VFYbdsvohqPGAjb2YWIbUg/viewform?usp=sf_link)
+   linked from its GitHub page; the reply contains the SharePoint password. Then:
+   ```
+   set MVIMGNET_PASSWORD=<password from the form>        (PowerShell: $env:MVIMGNET_PASSWORD="<password>")
+   venv\Scripts\python.exe scripts\download_mvimgnet.py
+   ```
+   The password is read only from this environment variable and is never written to disk.
+6. Check the ground truth of every dataset (each loader converts its poses to OpenCV axes):
+   ```
+   venv\Scripts\python.exe scripts\check_loaders.py
+   ```
+   It matches SIFT points on a few pairs per dataset and reports their distance to the
+   epipolar lines predicted by the ground-truth pose: about 1 px when the conversion is right,
+   tens to hundreds of pixels for a deliberately wrong pose. Epipolar images go to `results/checks/`.
+
+All scripts resume where they stopped and skip files that are already present, so they can be
+rerun after an interrupted download. The preprocessing of each dataset (pose interpolation,
+axis conversion, intrinsics, masks, undistortion) happens in `src/loaders/` when pairs are
+loaded; it is described in the report's "Dataset Preprocessing" section.
 
 ---
 

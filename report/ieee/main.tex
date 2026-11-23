@@ -8,6 +8,7 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
 \usepackage{etoolbox}
 % body text double-spaced as in the template; tables, figure captions and references single-spaced
 \AtBeginEnvironment{table}{\linespread{1}\selectfont}
@@ -94,8 +95,8 @@ which maps a point from the first camera's frame to the second's, $\X_2 = \R\X_1
   \label{fig:datasets}
 \end{figure}
 
-\subsection{Dataset Preprocessing}
-All four datasets are converted offline into a common form: image frames, a pixel intrinsic matrix $\K$, a world-to-camera pose $(\R_i,\tv_i)$ in the OpenCV convention ($x$ right, $y$ down, $z$ forward) and, where available, an object mask (Figure~\ref{fig:dataprep}). This step prepares the evaluation data and its ground truth only; the pipeline itself receives just the two images.
+\subsection{Dataset Preprocessing}\label{sec:prep}
+All four datasets are converted offline into a common form: image frames, a pixel intrinsic matrix $\K$, a world-to-camera pose $(\R_i,\tv_i)$ in the OpenCV convention ($x$ right, $y$ down, $z$ forward) and, where available, an object mask (Figure~\ref{fig:dataprep}). This step prepares the evaluation data and its ground truth only; the pipeline itself receives just the two images. The download sources and the steps to obtain these subsets are given in Appendix~\ref{app:download}.
 
 \textbf{TUM RGB-D.} Five fr3 sequences are used, with the RGB images only. Motion capture provides camera-to-world poses at about 100\,Hz while the RGB camera runs at about 30\,Hz, so the pose of each frame is interpolated at its timestamp---linearly for the position and by spherical linear interpolation for the orientation---and then inverted to world-to-camera. The camera axes already follow the OpenCV convention, and in these scenes the textured scene itself is the region of interest.
 
@@ -747,5 +748,28 @@ MASt3R & \textbf{76.8} & \textbf{81.5} & \textbf{67.8} & \textbf{65.9} & \textbf
 
 
 
+
+
+% ------------------------------------------------------------------ dataset download
+\section{Dataset Download}\label{app:download}
+The evaluation uses fixed subsets of four public datasets, about 5.2\,GB in total. Each subset is fetched by a script in the repository that downloads only the files required; the sequences used are listed in \texttt{data/<dataset>/manifest.csv}, so the same subset is obtained on every run. The preprocessing of Section~\ref{sec:prep} is applied when the pairs are loaded.
+
+\begin{itemize}
+  \item \textbf{TUM RGB-D}~\cite{tum} (2.5\,GB). Source: \url{https://cvg.cit.tum.de/data/datasets/rgbd-dataset/download}. Five fr3 sequences are downloaded as \url{https://cvg.cit.tum.de/rgbd/dataset/freiburg3/rgbd_dataset_freiburg3_<name>.tgz}, with \texttt{<name>} one of \texttt{nostructure\_texture\_far}, \texttt{nostructure\_texture\_near\_withloop}, \texttt{structure\_texture\_far}, \texttt{structure\_texture\_near} and \texttt{checkerboard\_large}; the depth images are discarded.
+  \item \textbf{Objectron}~\cite{objectron} (1.4\,GB). Source: \url{https://github.com/google-research-datasets/Objectron}. For the book, laptop and cereal-box categories, the first ten sequences of the test index \url{https://storage.googleapis.com/objectron/v1/index/<category>_annotations_test} are used; for each, the video \url{https://storage.googleapis.com/objectron/videos/<id>/video.MOV} and the annotation \url{https://storage.googleapis.com/objectron/annotations/<id>.pbdata} are downloaded.
+  \item \textbf{CO3Dv2}~\cite{co3d} (0.9\,GB). Source: \url{https://github.com/facebookresearch/co3d}; the archive addresses are listed in \url{https://raw.githubusercontent.com/facebookresearch/co3d/main/co3d/links.json}. For the cellphone and handbag categories, the ten sequences with the highest viewpoint-quality score and at least 100 frames are selected, and only their images, masks and cameras are read from the remote archives by HTTP range requests.
+  \item \textbf{MVImgNet}~\cite{mvimgnet} (0.45\,GB). Source: \url{https://github.com/GAP-LAB-CUHK-SZ/MVImgNet}. Access is granted through the form linked on that page, which returns the password of the SharePoint folder. For the key (class 219) and watch (class 222) categories, ten sequences in which every frame is registered and which have at least 25 frames are selected; their images, cut-outs and COLMAP models are read from the remote archives by HTTP range requests.
+\end{itemize}
+
+The data are obtained as follows, with the Python interpreter of the project's virtual environment:
+\begin{enumerate}
+  \item Create the environment: \texttt{python -m venv venv}, then install the dependencies with \texttt{pip install -r requirements.txt}.
+  \item TUM RGB-D: \texttt{python scripts/download\_tum.py}.
+  \item Objectron: \texttt{python scripts/download\_objectron.py}.
+  \item CO3Dv2: \texttt{python scripts/download\_co3d.py}.
+  \item MVImgNet: set the environment variable \texttt{MVIMGNET\_PASSWORD} to the password received from the form, then run \texttt{python scripts/download\_mvimgnet.py}. The password is read only from the environment and is not stored.
+  \item Verify the ground truth: \texttt{python scripts/check\_loaders.py} measures, on sample pairs of each dataset, the distance of SIFT correspondences to the epipolar lines predicted by the ground-truth pose (about 1\,px when the conventions are correct).
+\end{enumerate}
+The scripts resume interrupted downloads and skip files that are already present. The data are stored under \texttt{data/<dataset>/}, which is not part of the code repository.
 
 \end{document}
